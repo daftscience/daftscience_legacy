@@ -1,0 +1,207 @@
+{% extends "layout.html" %} {% block body %} {% include 'header.html' %}
+<input type="hidden" autofocus="true" />
+
+<div class="container" id="projects">
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1>Tales of<strong>3d<br />printing</strong> and programming</h1>
+            <br>
+            <h3>
+               an introduction to my printers... 
+            </h3>
+        </div>
+    </div>
+    <!-- /row -->
+
+
+    <div class="row mt centered projectRow center-block">
+        <div class="col-md-4 projectColumn centered">
+            <img src="{{url_for('static', filename='img/rostock.jpg')}}" width="180" alt="" class="printerProject">
+            <h4>RostockMax</h4>
+        </div>
+        <div class="col-md-4 projectColumn centered">
+            <img src="{{url_for('static', filename='img/prusai3.jpg')}}" width="180" alt="" class="printerProject">
+            <h4>Prusa i3</h4>
+        </div>
+
+        <div class="col-md-4 projectColumn centered">
+            <img src="{{url_for('static', filename='img/simpson.jpg')}}" width="180" alt="" class="printerProject">
+            <h4>GUS Simpson</h4>
+        <h5>work in progress</h5>
+        </div>
+
+    </div>
+    <div class="row mt">
+        <div class="col-md-4">
+            
+            <p class="indent">
+                The RostockMax is a delta robot 3d printer designed by SeeMeCNC. The three arm design allows this printer to have a combination of speed, build volume, precision and accuracy that (at the time it was made) was not easy to replicate with a standard cartisian printer. However, the design also makes this printer more difficult to build and calibrate.
+            </p>
+        </div>
+        <!--/col-lg-4 -->
+
+        <div class="col-md-4">
+            
+            <p class="indent">
+                The Prusa i3 (iteration 3), designed by Josef Prusa, is the third 3d printer in the Prusa line of printers. It's an H-frame cartisian printer with a simple design that is both easy to build and calibrate. However, the build volume is much smaller, and single plate design makes it unstable at higher speeds (box framed versions compensate for this.)
+            </p>
+
+        </div>
+        <!--/col-lg-4 -->
+
+        <div class="col-md-4">
+            <p class="indent">
+                The Simpson printer, designed by Nicolas Seward, is an entirely new beast. This printer is made almost entirely out of 3d printed parts. The drive mechanism is made from fishing line instead of belts (which can get pricey, especially on the rostock.) This design is still in its infancy and there isn't any software that has supports it, meaning the gcode (a set of instructions the printer uses to print an object) needs to be run through a pre-processor script before sending it to the printer.
+            </p>
+
+        </div>
+        <!--/col-lg-4 -->
+    </div>
+    <!-- /row -->
+   <hr>
+</div>
+<!-- /container -->
+
+
+<div class="container" id="gallery">
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1><strong>2d </strong>pictures of <strong>3d</strong> things</h1>
+            <h4>
+                Here are the latest things I've printed. 
+            </h4>
+        </div>
+        <div class="col-lg-8 col-lg-offset-2">
+            <div id="links">
+                {% for image in gallery %}{% if image %}<a href="{{ url_for('static', filename='%s' % image.loc)}}" title="{{image.cat}}" data-gallery><img src="{{ url_for('static', filename='%s' % image.thumbLoc)}}" alt="{{image.cat}} "></a>{% endif %}{% endfor %}
+            </div>
+        </div>
+        <!-- /row -->
+ 
+    </div>
+</div>
+<!-- /container -->
+
+<div class="container" id="about">
+ <hr>
+    <div class="row mt centered">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1>about <strong>me</strong></h1>
+                <h2>and <strong>how </strong> to get in touch...</h2>
+
+        </div>
+    </div>
+    <!-- /row -->
+
+    <div class="row mt centered">
+        <div class="col-lg-12">
+            <h3>Tom Perry</h3>
+            <img class="img-circle" id="myPicture" src="" width="140" alt="">
+            <h3 id="tagline"></h3>
+            <h4 id="occupation"></h4>
+        </div>
+    </div>
+    <div class="row mt centered">
+        <div class="col-lg-4 col col-lg-offset-4">
+            <hr>
+            <h3>follow me <strong>on</strong>:</h3>
+            <a href="https://facebook.com/daftscience" target="_blank">
+                <i class="fa fa-facebook-square fa-2x"></i>
+            </a>
+            <a href="https://plus.google.com/+TomPerrydaftscience" target="_blank">
+                <i class="fa fa-google-plus-square fa-2x"></i>
+            </a>
+            <a href="https://github.com/daftscience" target="_blank">
+                <i class="fa fa-github-square fa-2x"></i>
+            </a>
+            <a href="https://www.youtube.com/channel/UC6L8ZsIdPXXth0x2mEF6_BQ" target="_blank">
+                <i class="fa fa-youtube-square fa-2x"></i>
+            </a>
+            <a href="https://twitter.com/daftscience" target="_blank">
+                <i class="fa fa-twitter-square fa-2x"></i>
+            </a>
+        </div>
+        <!--/col-lg-4 -->
+    </div>
+</div>
+
+
+<div class="container" id="contact">
+    <hr>
+        
+        {% if sent %}
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+            <div class="bs-callout bs-callout-theme">
+                <h3>Thank you {{ name }} </h3>
+                <p>Your message has been sent.</p>
+            </div>
+        </div>
+    </div>
+        {% endif %}
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>drop a line</h3>
+            <hr>
+            <address>
+                <strong>Email: </strong>
+                <a href="mailto:#">info@daftscience.com</a>
+                <br>
+                <br>
+                <strong>Phone: </strong>(858) 432-3884
+            </address>
+        </div>
+
+
+        
+        <form id="contact" method="post" class="form" action="{{ url_for('.index') }}">
+            <div class="col-sm-8 contact-form">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required />
+                    </div>
+                    <div class="col-xs-6 col-md-6 form-group">
+                        <input class="form-control" id="email" name="email" placeholder="email" type="email" required />
+                    </div>
+                </div>
+                    <textarea class="form-control" id="message" name="message" placeholder="Message" rows="5" value=""></textarea>
+                <br />
+                <div class="row">
+                    <div class="col-xs-12 col-md-12 form-group">
+                        <button class="btn btn-primary pull-right" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+            <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+
+            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+                <div class="slides"></div>
+                <h3 class="title"></h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+            </div>
+
+
+            <!--This is more stuff for the gallery                -->
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+            <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+            <script src="{{url_for('static', filename='js/blueimp-gallery.min.js')}}"></script>
+            <script src="{{url_for('static', filename='js/daftscience.js')}}"></script>
+
+            <script>
+                blueimp.Gallery(
+                    document.getElementById('links').getElementsByTagName('a'), {
+                        container: '#blueimp-gallery-carousel',
+                        carousel: true
+                    }
+                );
+            </script>
+
+            {% endblock %}

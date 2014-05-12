@@ -1,0 +1,21 @@
+//Get my Google+ profile data
+//GO here to build requests
+//https://developers.google.com/+/api/latest/people/get#examples
+
+// formated like this to allow easy addition of people with a simple loop through the html elements
+var req1 = "https://www.googleapis.com/plus/v1/people/%2B";
+var req2 = "?fields=aboutMe%2CbraggingRights%2CcurrentLocation%2CdisplayName%2Cemails%2Cimage%2Cname%2Fformatted%2Cnickname%2Coccupation%2Cskills%2Ctagline&key=";
+var apiKey = "AIzaSyCKcv7erbLDPqMyF0cRU0BMlQWf4XfbX4o";
+var user = "tomperrydaftscience";
+
+request = req1+user+req2+apiKey;
+//window.alert(request);
+
+$.ajaxSetup({ cache: false });
+$.getJSON(request, function (json) {
+    document.getElementById("myPicture").src = json.image.url + "&sz=200";
+//    window.alert(json.tagline);
+    $('#tagline').html(json.tagline);
+    $('#occupation').html(json.occupation);
+    $('#skills').html(json.skills);
+});
