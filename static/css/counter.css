@@ -1,12 +1,12 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
- #counter {
+ #Counter {
     background-color: #DCE5DE;
     /*    display: block;*/
     /*    width: 100%;*/
-/*        margin: 100px;*/
+    /*        margin: 100px;*/
     /*    left: 0;*/
 }
-#tips {
+#Tips {
     padding-top: 80px;
 }
 /*
@@ -20,23 +20,23 @@
 
 
 */
-.alert{
-    margin:0;
-    padding:5;
-}
 
+.alert {
+    margin: 0;
+    padding: 5;
+}
 #statusWrapper {
     /*  left: 450px;*/
     position: absolute;
     margin: 0px;
-/*      margin-left: 35px;*/
+    /*      margin-left: 35px;*/
     width: 100%;
-    padding:0px;
+    padding: 0px;
 }
 #floatingStatus {
     opacity: 0.95;
     position: absolute;
-/*    top: 0;*/
+    /*    top: 0;*/
     margin: 0px;
     /* just used to show how to include the margin in the effect */
     /*  margin-top: 20px;*/
@@ -118,4 +118,36 @@ div.counter {
 }
 td {
     text-align: left;
+}
+@media print {
+    .nonPrintable {
+        display: none;
+    }
+    .alert {
+        border: 0px;
+    }
+    .btn {
+        display: none;
+    }
+    #floatingStatus {
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-bottom: 0px;
+        position: fixed;
+        top: 0;
+    }
+/*
+    .progress {
+        background-image: none;
+        -webkit-print-color-adjust: exact;
+        box-shadow: inset 0 0;
+        -webkit-box-shadow: inset 0 0;
+    }
+    .progress-bar {
+            background-image: none;
+            -webkit-print-color-adjust: exact;
+            box-shadow: inset 0 0;
+            -webkit-box-shadow: inset 0 0;
+    }
+*/
 }

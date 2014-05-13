@@ -173,38 +173,7 @@ function changeCount(countSelected) {
 
 
 function initScripts() {
-
-    //toggle button for count numbers, that doesnt really work when the page first loads. 
-
-
-
-
-
-
-    //    $(document).load(function ($) {
-    //        $('div.btn-group[data-toggle-name=*]').each(function () {
-    //            var group = $(this);
-    //            var form = group.parents('form').eq(0);
-    //            var name = group.attr('data-toggle-name');
-    //            var hidden = $('input[name="' + name + '"]', form);
-    //            $('button', group).each(function () {
-    //                var button = $(this);
-    //                button.on('click', function () {
-    //                    hidden.val($(this).val());
-    //                });
-    //                if (button.val() == hidden.val()) {
-    //                    button.addClass('active');
-    //                }
-    //            });
-    //        });
-    //    });
     resetForm();
-    //Runs through all the variables and toggles whether or not they are 
-    //enabled. This will also change the appearence of them to reflect the
-    //current mode. 
-
-
-
 }
 
 
@@ -277,9 +246,6 @@ function resetForm() {
     diffName.disabled = true;
 
     document.getElementById('c100').click();
-
-
-
 
 } //CLeaned..kinda?
 
