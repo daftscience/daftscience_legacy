@@ -166,7 +166,7 @@ window.onload = function () {
 
 function changeCount(countSelected) {
     countTo = countSelected.value;
-    //    $(".countTo").toggleClass(".active");
+    recalc();
 }
 
 
@@ -181,7 +181,7 @@ if (window.addEventListener) {
     // create the keys and konami variables
     var keys = [],
     konami = "38,38,40,40,37,39,37,39,66,65";
-    debug = "38,38,38,40,40,40";
+    debug = "68,69,66,85,71";
     jillian = "74,73,76,76,73,65,78";
     kitty = "75,73,84,84,89";
 
@@ -435,8 +435,8 @@ function KeyCheck(evt) {
         // $('#numlock').hide();
         return;
     case 68: //debug mode:
-        $('#debug').toggle();
-        evt.preventDefault();
+//        $('#debug').toggle();
+//        evt.preventDefault();
         return;
     case 69: //edit mode
 //For some reason internet explorer will display the page properly if I do this times three. #whatTheFuck!
@@ -525,6 +525,7 @@ function recalc() {
     }
 
     document.getElementById('total').innerHTML = tot;
+    document.getElementById('toGo').innerHTML = countTo - tot;
     normalize();
 
 

@@ -23,27 +23,30 @@
 
 .alert {
     margin: 0;
-    padding: 5;
+    padding: 0;
+    border: none;
+}
+.counted{
+    margin: 0;
+    padding: 0;
+    padding-top: .2em;
+    border: none;
+
 }
 #statusWrapper {
-    /*  left: 450px;*/
     position: absolute;
     margin: 0px;
-    /*      margin-left: 35px;*/
     width: 100%;
     padding: 0px;
 }
 #floatingStatus {
     opacity: 0.95;
     position: absolute;
-    /*    top: 0;*/
     margin: 0px;
-    /* just used to show how to include the margin in the effect */
-    /*  margin-top: 20px;*/
-    /*  border-top: 1px solid purple;*/
-    /*  padding-top: 19px;*/
     z-index: 99;
     width: 100%;
+    padding-bottom: .2em;
+    border-bottom:thin solid #9fccb5;
 }
 #floatingStatus.fixed {
     margin-top: 50px;
@@ -53,7 +56,7 @@
     top: 0;
 }
 .counterTitle {
-    padding-top: 140px;
+    padding-top: 1.5em;
 }
 .total {
     padding: 0px;

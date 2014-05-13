@@ -37,27 +37,25 @@
 
 <div id="statusWrapper" class="container">
     <div id="floatingStatus" class="row mt centered alert alert-success">
-        <div class="col-sm-2">
-            <h3>Counted:
-                <span id="total">0</span>
-            </h3>
+        <div class="col-sm-3 counted">
+            <h3 class="counted">Counted: <span id="total" class="counted">0</span></h3>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-6">
             <div id="ready" class="alert alert-success changeable">
                 <p>differential mode</p>
-                ready when you are.
+                start your diff!
             </div>
             <div id="done" class="alert alert-success changeable" hidden>
-                <p>done mode</p>
-                you're a champ!
+                <p>Finished!</p>
+                Hit 'r' to reset, or Ctrl+P to print.
             </div>
             <div id="subtract" class="alert alert-danger changeable" hidden>
-                <p>oops mode</p>
-                made a mistake? It's cool, you're now counting backwards. Press '+' to resume diff.
+                <p>Subtrating</p>
+                Buttons will now subtract, hit '+' to resume diff. 
             </div>
             <div id="edit" class="alert alert-warning changeable" hidden>
-                <p>big oops mode</p>
-                that bad huh? Fix what you need, when you're done press 'e' or the edit button to recalculate and resume diff.
+                <p>Edit Mode</p>
+                Change the title or percentages, hit 'E' to resume diff. 
             </div>
             <div id="wylajb" class="alert alert-success alert-dismissable" hidden>
                 <p>konami mode:</p>
@@ -69,6 +67,9 @@
                 That was close, you have to turn the number lock on before you start counting. It's usually somewhere above the 7 key.
             </div>
         </div>
+        <div class="col-sm-3 counted">
+            <h3 class="counted">Remaining: <span id="toGo" class="counted">100</span></h3>
+        </div>
     </div>
 </div>
 
@@ -79,10 +80,8 @@
     <div id="Counter" class="counter">
         <section class="counter">
             <div class="row container-fluid centered counter">
+                <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
                 <h1 class="counterTitle">Electronic Diff-o-matic</h1>
-                <div class="col-md-3 col-lg-3 visible-lg visible-md"></div>
-                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
-
                     <div class="btn-group" data-toggle-name="is_private" data-toggle="buttons-radio">
                         <button type="button" class="btn btn-primary" data-toggle="button" value="100" onclick="changeCount(this);" id="c100">100</button>
                         <button type="button" class="btn btn-primary" data-toggle="button" value="200" onclick="changeCount(this);">200</button>
@@ -98,11 +97,11 @@
                             <i class="fa fa-print"></i>Print</button>
                     </div>
                 </div>
-                <div class="col-md-3 col-lg-3 visible-lg visible-md"></div>
             </div>
+            
+            
             <div class="row mt container-fluid centered counter">
-                <div class="col-md-3 col-lg-3 visible-lg visible-md"></div>
-                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon">
                             <i class="fa fa-barcode" id="safeFocus" onclick="toggleDisableX3();"></i>
@@ -110,27 +109,28 @@
                         <input type="text" id="diffName" class="form-control" placeholder="Differential I.D." disabled>
                     </div>
                 </div>
-                <div class="col-md-3 col-lg-3 visible-lg visible-md"></div>
             </div>
+            
             <div class="row mt container-fluid centered counter">
-                <div class="col-md-1 col-lg-2 visible-lg visible-md"></div>
-                <div class="col-md-5 col-lg-4 col-sm-6 col-xs-6">
-                    <script>
-                        seedHTML("bargraph");
-                    </script>
+                <div class="col-sm-12 col-md-8 col-md-offset-2">
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <script>
+                            seedHTML("bargraph");
+                        </script>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
+                        <form name="cellForm" id="cellForm">
+                            <table>
+                                <script>
+                                    seedHTML("cells");
+                                </script>
+                            </table>
+                        </form>
+                    </div>
+                    <input type="text" id="totalNorm" value="0" class="alwaysDisable" readonly hidden>
                 </div>
-                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-6">
-                    <form name="cellForm" id="cellForm">
-                        <table>
-                            <script>
-                                seedHTML("cells");
-                            </script>
-                        </table>
-                    </form>
-                </div>
-                <div class="col-md-2 col-lg-2 visible-lg visible-md"></div>
-                <input type="text" id="totalNorm" value="0" class="alwaysDisable" readonly hidden>
             </div>
+            
             <div class="row mt centered counter">
 
                 <p></p>
