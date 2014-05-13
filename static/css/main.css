@@ -8,7 +8,7 @@
  */
 
 body {
-  background-color: #f2f2f2;
+    background-color: #f2f2f2;
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 16px;
@@ -58,15 +58,15 @@ p {
 
 .printerProject{
     border: 0px solid #999;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     behavior: url('static/css/pie/PIE.htc');
 }
 
 .projectRow{
     display: table;
-/*    behavior: url('static/css/pie/PIE.htc');*/
+    behavior: url('static/css/pie/PIE.htc');
 }
 .projectColumn{
     float:none;
@@ -138,12 +138,6 @@ a:after {
 	width: 280px;
 }
 
-/*
-i {
-	margin: 8px;
-	color: #3498db; 
-}
-*/
 .fa {
 	text-rendering: auto;
 	font-variant: normal;
@@ -153,11 +147,11 @@ i {
 	padding: 0;
 }
 .fa-list {
-    color: #1abc9c;
+    color: #9fccb5;
 }
 .fa-green {
     font-size: 40px;
-    color: #1abc9c;
+    color: #9fccb5;
 }
 
 /* Base styles (regardless of theme) */
@@ -194,9 +188,6 @@ border-color: #5bc0de;
 background-color: #f0f7fd;
 border-color: #9fccb5;
 }
-
-
-
 
 /* HeaderWrap */
 #headerwrap {

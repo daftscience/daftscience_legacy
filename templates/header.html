@@ -11,11 +11,11 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://daftscience.com/counter">diffcounter</a></li>
-            <li><a href="#projects">projects</a></li>
-            <li><a href="#about">about</a></li>
-            <li><a href="#contact">contact</a></li>
-          </ul>
+	  	<li><a href="#">Home</a></li>
+	  {% for link in links %}
+		<li><a href="#{{ link }}">{{link}}</a></li>
+          {% endfor %}
+	  </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>

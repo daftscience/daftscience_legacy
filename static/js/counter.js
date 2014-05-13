@@ -27,6 +27,8 @@ var countTo = 100;
 var KeyID;
 var diffName;
 var nag = false;
+var hasIE_ughhh = false;
+
 
 
 var seedCells = {
@@ -54,24 +56,36 @@ function toggleDisableX3(){
 
 jQuery(document).keydown(function (e) {
     KeyCheck(e);
-    $('#debug').html("Key pressed: " + e.keyCode + "<br /> Editing =" + editing + "<br /> Adding = " + adding + "<br /> Nagging = "+ nag);
+    $('#debug').html("Internet Explorer: " + hasIE_ughhh +"<br />Key pressed: " + e.keyCode + "<br /> Editing =" + editing + "<br /> Adding = " + adding + "<br /> Nagging = "+ nag);
 
 });
 
-//This functions is here because IE thinks it only needs to show the fa-awesome 
-//icons the first time the page is loaded. 
-//$(function () {
-//var head = document.getElementsByTagName('head')[0],
-//	style = document.createElement('style');
-//style.type = 'text/css';
-//style.styleSheet.cssText = ':before,:after{content:none !important';
-//head.appendChild(style);
-//setTimeout(function(){
-//head.removeChild(style);
-//}, 0);
-//});
-//
-//resize header on scroll
+$(document).ready(function () {
+  var top = $('#floatingStatus').offset().top - parseFloat($('#floatingStatus').css('marginTop').replace(/auto/, 0));
+  $(window).scroll(function (event) {
+    // what the y position of the scroll is
+    var y = $(this).scrollTop();
+
+    // whether that's below the form
+    //IE8 for some reason will trigger when the top bar hits the
+//      status bar. Other browsers need to subtract the navbar height.
+    if (hasIE_ughhh){
+        scrollSwitch = top-20;  
+    }else{
+        scrollSwitch = top-50;
+    }
+    if (y >= (scrollSwitch)) {
+      // if so, ad the fixed class
+      $('#floatingStatus').addClass('fixed');
+    } else {
+      // otherwise remove it
+      $('#floatingStatus').removeClass('fixed');
+    }
+  });
+});
+
+
+
 $(document).on("scroll", function () {
     if ($(document).scrollTop() > 100) {
         $("header").addClass("shrink");
@@ -113,7 +127,7 @@ function seedHTML(whichTable) {
     } else {
         for (var cell in seedCells) {
             if (seedCells.hasOwnProperty(cell)) {
-                document.write("<div class='progress progress-striped'>");
+                document.write("<div class='progress'>");
                 document.write("<div id='" + seedCells[cell] + "Prog'");
                 document.write("class='progress progress-bar progress-bar-theme text-right' role='progressbar'");
                 document.write("aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'");

@@ -1,157 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %} {% block body %} {% include 'header.html' %}
+<!-- +++++ Welcome Section +++++ -->
 
-<head>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <script>
-        var hasIE_ughhh = false;
-    </script>
-    <!--[if lt IE 9]>
-<script> 
-var hasIE_ughhh = true;
-</script>
-<![endif]-->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Differential counter">
-    <meta name="author" content="Thomas Perry">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
-    <title>Daftscience.com</title>
-    <!-- Bootstrap core CSS -->
-    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="{{url_for('static', filename='css/counter_main.css')}}" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script> 
-<![endif]--> 
-    <link href="{{ url_for('static', filename='css/counter_nav.css')}}" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/1.1.6/waypoints.min.js"></script>
-    <!--[if !IE]>
-<script src="{{ url_for('static', filename='js/hover.zoom.js')}}"></script>
-<script src="{{ url_for('static', filename='js/hover.zoom.conf.js')}}"></script>
-<![endif]-->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <!--MY edits-->
-    <script>
-        window.focused = "#FFD387";
-    </script>
-    <script src="{{url_for('static', filename='js/counter.js')}}"></script>
-    <audio id="tardis" src="tardis.wav" preload="auto"></audio>
-    <!--THe color scheme used in this site can be found here: -->
-    <!--http://colorschemedesigner.com/#3c41TrpDHw0w0-->
-    <!--http://colorschemedesigner.com/#3c31TrpDHw0w0-->
 
-</head>
+<section id="1" class="home">
+    <div id="ww">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 centered">
+                    <!--[if lte IE 8 ]>
+    <br /><br />
+    <div id="hasIE" class="alert alert-danger">
+        <p>
+            If the buttons bunch together when you hit edit button, they will go back to normal the next time its pressed.
+        </p>
 
-<body>
-    <div id="non-printable">
-        <nav role="navigation" id="nav" class="navbar navbar-inverse navbar-fixed-top ">
-            <header>
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a id="s1" class="navbar-brand" href="#">D<i class="fa fa-flask fa-white"></i>ftscience</a>
-                </div>
-                <div class="navbar-collapse collapse nav-container">
-                    <ul class="nav navbar-nav pull-right">
-                        <li>
-                            <a id="s2" href="#counter">Counter</a>
-                        </li>
-                        <li>
-                            <a id="s3" href="#tips">Tips</a>
-                        </li>
-                        <li>
-                            <a id="s4" href="#4">References</a>
-                        </li>
-                        <li>
-                            <a id="s5" href="http://daftscience.com">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </header>
-        </nav>
-        <!-- +++++ Welcome Section +++++ -->
-        <section id="1" class="home">
-            <div id="ww">
-                <div class="container">
-                    <div class="row">
-		       <div class="col-lg-8 col-lg-offset-2 centered">
-                           <img src="{{ url_for('static', filename='img/header.png')}}" alt="soo realistic" class="img-responsive centered">
- <!--[if lte IE 8 ]>
-<br />
-<br />
-<div id="iesucks" class="alert alert-danger">
-<p>
-<strong>
-If the buttons bunch together when you hit edit button, they will go back to normal the next time its pressed.
-<p>Internet explorer can be a silly goose. </p>
-</strong>
-</p>
-</div>
-<![endif]-->
-                            <h1>
-                                <strong>welcome</strong>
-                            </h1>
-                            <p>This app was built to help Medical Laboratory Science students practice differentials. It works best using the 10 key pad. If you have any questions just click the "Tips" link at the top of the page, or scroll down.</p>
-                            <p>
-                                <u>IMPORTANT:</u> This is for practice purposes only, not intended for clinical differentials. There are known, and possibly unknown mathematical errors in how relative values are calculated (rounding errors: see below.) Please double check any values you get.
-                            </p>
-                        </div>
-                        <!-- /col-lg-8 -->
-                    </div>
-                    <!-- /row -->
-                </div>
-                <!-- /container -->
-            </div>
-            <!-- /ww -->
-        </section>
-        <!-- +++++ Differential Section +++++ -->
-
+        <p>Internet explorer can be a silly goose.</p>
     </div>
-    <!--      Nonprintable-->
-    <div id="gahh" class="counter">
-        <section class="counter">
-            <div id="non-printable">
-                <div class="container pt counter" id="counter">
-                    <div class="row mt centered">
-                        <h1 class="counter">Electronic Diff-o-matic</h1>
-                        <div id="ready" class="alert alert-success changeable">
-                            <p>differential mode</p>
-                            ready when you are.
-                        </div>
-                        <div id="done" class="alert alert-success changeable" hidden>
-                            <p>done mode</p>
-                            you're a champ!
-                        </div>
-                        <div id="subtract" class="alert alert-danger changeable" hidden>
-                            <p>oops mode</p>
-                            made a mistake? It's cool, you're now counting backwards. Press '+' to resume diff.
-                        </div>
-                        <div id="edit" class="alert alert-warning changeable" hidden>
-                            <p>big oops mode</p>
-                            that bad huh? Fix what you need, when you're done press 'e' or the edit button to recalculate and resume diff.
-                        </div>
-                        <div id="wylajb" class="alert alert-success alert-dismissable" hidden>
-                            <p>konami mode:</p>
-                            would you like a jelly baby?
-                        </div>
-                        <div id="debug" class="alert alert-warning debug" hidden></div>
-                        <div id="numlock" class="alert alert-danger alert-dismissable" hidden>
-                            <p>whoa, hang on a sec...</p>
-                            That was close, you have to turn the number lock on before you start counting. It's usually somewhere above the 7 key.
-                        </div>
-                    </div>
+<![endif]-->
+                    <h1>
+                        <img src="{{ url_for('static', filename='img/header.png')}}" alt="soo realistic" class="img-responsive centered">
+                    </h1>
+                    <p>This app was built to help Medical Laboratory Science students practice differentials. It works best using the 10 key pad. If you have any questions just click the "Tips" link at the top of the page, or scroll down.</p>
+                    <p>
+                        <u>IMPORTANT:</u>This is for practice purposes only, not intended for clinical differentials. There are known, and possibly unknown mathematical errors in how relative values are calculated (rounding errors: see below.) Please double check any values you get.
+                    </p>
                 </div>
+                <!-- /col-lg-8 -->
             </div>
-            <!--          nonprintable-->
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /ww -->
+</section>
+<!-- +++++ Differential Section +++++ -->
 
+<div id="statusWrapper" class="container">
+    <div id="floatingStatus" class="row mt centered alert alert-success">
+        <div class="col-sm-2">
+            <h3>Counted:
+                <span id="total">0</span>
+            </h3>
+        </div>
+        <div class="col-sm-8">
+            <div id="ready" class="alert alert-success changeable">
+                <p>differential mode</p>
+                ready when you are.
+            </div>
+            <div id="done" class="alert alert-success changeable" hidden>
+                <p>done mode</p>
+                you're a champ!
+            </div>
+            <div id="subtract" class="alert alert-danger changeable" hidden>
+                <p>oops mode</p>
+                made a mistake? It's cool, you're now counting backwards. Press '+' to resume diff.
+            </div>
+            <div id="edit" class="alert alert-warning changeable" hidden>
+                <p>big oops mode</p>
+                that bad huh? Fix what you need, when you're done press 'e' or the edit button to recalculate and resume diff.
+            </div>
+            <div id="wylajb" class="alert alert-success alert-dismissable" hidden>
+                <p>konami mode:</p>
+                would you like a jelly baby?
+            </div>
+            <div id="debug" class="alert alert-warning debug" hidden></div>
+            <div id="numlock" class="alert alert-danger alert-dismissable" hidden>
+                <p>whoa, hang on a sec...</p>
+                That was close, you have to turn the number lock on before you start counting. It's usually somewhere above the 7 key.
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    <!--      Nonprintable-->
+    <div id="counter" class="counter">
+        <section class="counter">
+            <!--          nonprintable-->
             <div class="row container-fluid centered counter">
+                <h1 class="counterTitle">Electronic Diff-o-matic</h1>
                 <div class="col-md-3 col-lg-3 visible-lg visible-md"></div>
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
 
@@ -172,8 +102,6 @@ If the buttons bunch together when you hit edit button, they will go back to nor
                 </div>
                 <div class="col-md-3 col-lg-3 visible-lg visible-md"></div>
             </div>
-
-
             <div class="row mt container-fluid centered counter">
                 <div class="col-md-3 col-lg-3 visible-lg visible-md"></div>
                 <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
@@ -186,10 +114,6 @@ If the buttons bunch together when you hit edit button, they will go back to nor
                 </div>
                 <div class="col-md-3 col-lg-3 visible-lg visible-md"></div>
             </div>
-
-
-
-
             <div class="row mt container-fluid centered counter">
                 <div class="col-md-1 col-lg-2 visible-lg visible-md"></div>
                 <div class="col-md-5 col-lg-4 col-sm-6 col-xs-6">
@@ -211,12 +135,10 @@ If the buttons bunch together when you hit edit button, they will go back to nor
             </div>
             <div class="row mt centered counter">
 
-                <h2>
-                    <span class="label label-info text-center total" id="total">0</span>
+                <p></p>
                 </h2>
             </div>
             <!-- /container -->
-
         </section>
     </div>
     <div id="non-printable">
@@ -241,7 +163,8 @@ If the buttons bunch together when you hit edit button, they will go back to nor
                             </dd>
                             <dt>Manual edit</dt>
                             <dd>
-                                <p>Press the "E" key or the "Edit" button to manually change the counts, press it again to resume. The <i class="fa fa-unlock"></i> icon on the edit button indicates you're in "Edit Mode" </p>
+                                <p>Press the "E" key or the "Edit" button to manually change the counts, press it again to resume. The
+                                    <i class="fa fa-unlock"></i>icon on the edit button indicates you're in "Edit Mode"</p>
                             </dd>
                             <dt>Differential Name</dt>
                             <dd>
@@ -348,7 +271,7 @@ If the buttons bunch together when you hit edit button, they will go back to nor
                             <dd>
                                 <p>In standard rounding rules it is common for numbers ending in 5 to be rounded up. However, because n.5 is exactly between its nearest integers, always rounding up will create a positive bias.</p>
                                 <p>In order to correct that bias the Diff-o-Matic uses a
-                                    <strong>Round to Even</strong> method. This will round any number ending in .5 to the nearest even integer (e.g. 2.5 -> 2 .)
+                                    <strong>Round to Even</strong>method. This will round any number ending in .5 to the nearest even integer (e.g. 2.5 -> 2 .)
                                 </p>
                                 <p>Unfortunately, this will cause relative values of 0.5 to be rounded down to 0. The worlds top engineers, scientists, and barista have been working on this issue around the clock, a patch will be released shortly.</p>
                             </dd>
@@ -359,7 +282,7 @@ If the buttons bunch together when you hit edit button, they will go back to nor
             </div>
             <!-- /container -->
         </section>
-        <section id="4">
+        <section id="References">
             <!-- +++++ Reference material +++++ -->
             <div id="ref">
                 <div class="container">
@@ -394,17 +317,12 @@ If the buttons bunch together when you hit edit button, they will go back to nor
                 </div>
             </div>
         </div>
-        <a id="toTop" href="#">
-            <div class="to-top"></div>
-        </a>
         <!-- Bootstrap core JavaScript
 ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <!--        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>-->
+        <!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
     </div>
     <!--      non printable-->
 
-</body>
-
-</html>
+    {% endblock %}

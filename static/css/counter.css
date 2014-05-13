@@ -1,0 +1,121 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+ #counter {
+    background-color: #DCE5DE;
+    /*    display: block;*/
+    /*    width: 100%;*/
+/*        margin: 100px;*/
+    /*    left: 0;*/
+}
+#tips {
+    padding-top: 80px;
+}
+/*
+.alert{
+    top: 0;
+    bottom:0;
+    position:fixed;
+    overflow-y:scroll;
+    overflow-x:hidden;
+}
+
+
+*/
+.alert{
+    margin:0;
+    padding:5;
+}
+
+#statusWrapper {
+    /*  left: 450px;*/
+    position: absolute;
+    margin: 0px;
+/*      margin-left: 35px;*/
+    width: 100%;
+    padding:0px;
+}
+#floatingStatus {
+    opacity: 0.95;
+    position: absolute;
+/*    top: 0;*/
+    margin: 0px;
+    /* just used to show how to include the margin in the effect */
+    /*  margin-top: 20px;*/
+    /*  border-top: 1px solid purple;*/
+    /*  padding-top: 19px;*/
+    z-index: 99;
+    width: 100%;
+}
+#floatingStatus.fixed {
+    margin-top: 50px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    position: fixed;
+    top: 0;
+}
+.counterTitle {
+    padding-top: 140px;
+}
+.total {
+    padding: 0px;
+    margin: 0px;
+}
+.progress-bar-theme {
+    background-color: #9fccb5;
+    text-align: right;
+}
+.progress-text {} .progress-bar {
+    height: 25px overflow-x: visible;
+    white-space: nowwrap;
+    color: black;
+}
+input.count {
+    padding-bottom: 1px;
+    margin: 1px;
+    width: 50px;
+    height: 27px;
+    margin-right: 4px;
+}
+#maxNum {
+    width: 50px;
+    height: 26px;
+}
+.progress-gtzero {} .progress {
+    margin: 1px;
+    padding-bottom: 1px;
+    float: right;
+    height: 27px;
+    width: 75%;
+}
+.mono {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 16px;
+}
+dt {
+    font-size: 16px;
+    text-decoration: underline;
+}
+.keylist {
+    font-size: 16px;
+    text-decoration: underline;
+}
+dd {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+}
+#help p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+}
+div.infoform {
+    display: none;
+}
+div.counter {
+    background-color: transparent;
+}
+td {
+    text-align: left;
+}

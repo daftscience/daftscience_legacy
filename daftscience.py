@@ -32,9 +32,6 @@ from wtforms.validators import Required
 from flask.ext.assets import Environment, Bundle
 import pushover
 
-
-
-
 app = Flask(__name__)
 assets = Environment(app)
 app.config.from_object(__name__)
@@ -106,9 +103,6 @@ def get_gallery():
     return gallery
 
 
-
-
-
 @app.route('/', methods=['POST', 'GET'])
 def index():
     form = ContactForm()    
@@ -123,7 +117,8 @@ def index():
 
 @app.route('/counter/')
 def counter():
-    return render_template('counter.html')
+	links = ['Counter', 'Tips', 'References' ] 
+	return render_template('counter.html', counter='counter', links=links)
     
 if __name__ == '__main__':
 	app.run(host='daftscience.com', debug=True)
