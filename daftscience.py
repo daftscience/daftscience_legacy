@@ -66,10 +66,6 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
         
-        
-        
-        
-        
 #Contact form stuff
 class ContactForm(Form):
   name = TextField("Name")

@@ -127,13 +127,22 @@ function seedHTML(whichTable) {
     } else {
         for (var cell in seedCells) {
             if (seedCells.hasOwnProperty(cell)) {
-                document.write("<div class='progress'>");
+
+		document.write("<div class='col-xs-10 col-md-11 printProgressBar'>");
+		document.write("<div class='progress'>");
                 document.write("<div id='" + seedCells[cell] + "Prog'");
                 document.write("class='progress progress-bar progress-bar-theme text-right' role='progressbar'");
-                document.write("aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'");
+                document.write(" aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'");
                 document.write("style='width: 0%; min-width='100px;''>");
-                document.write("<span class='progress-text text-right'>0%</span></div></div>");
-            }
+													//document.write("<span class='progress-text'>0%</span>");
+                document.write("</div>");
+     		document.write("</div>");
+		document.write("</div>");
+             	document.write("<div class='col-xs-2 col-md-1 printPercent'>");
+		document.write("<span id='" + seedCells[cell] + "ProgText' class='progressPercent pull-right'>0%</span>");
+	     	document.write("</div>");
+		
+}
         }
 
     }
@@ -230,7 +239,11 @@ function resetForm() {
     var elements = document.querySelectorAll('.progress-bar.progress-bar-theme');
     for (var j = 0, len = elements.length; j < len; j++) {
         elements[j].style.width = 0 + '%';
-        elements[j].children[0].innerHTML = 0 + '%';
+    }
+
+    var percentages = document.querySelectorAll('.progressPercent');
+    for (var j = 0, len = percentages.length; j < len; j++){
+	percentages[j].innerHTML = '';
     }
     var inputs = document.querySelectorAll('.count');
     for (var i = 0; i < inputs.length; i++) {
@@ -559,6 +572,7 @@ function normalize() {
         if (inputs[i].className == 'count') {
             var unNormalized = [inputs[i].id, 'Prog'];
             var cellProg = unNormalized.join('');
+	    var cellProgText = cellProg + 'Text';
             if (inputs[i].value === '0' || inputs[i].value === '') {
                 currentCell = '';
             }
@@ -568,8 +582,14 @@ function normalize() {
                 currentCell = ((intCheck / runningTotal) * 100);
 
                 document.getElementById(cellProg).style.width = parseInt(currentCell) + '%';
-                document.getElementById(cellProg).children[0].innerHTML = parseInt(currentCell) + '%';
-                //IEFIX
+                if(parseInt(currentCell) > 0){
+			document.getElementById(cellProgText).innerHTML = parseInt(currentCell) + '%';
+		}else{
+
+			document.getElementById(cellProgText).innerHTML = '';
+			
+		}        
+        	//IEFIX
                 //                document.getElementById(cellProg).firstElementChild.innerHTML = parseInt(currentCell) + '%';
                 //}
                 //to here. Except up there
@@ -580,9 +600,13 @@ function normalize() {
     document.getElementById('totalNorm').value = tot;
     if (tot > 0) {
         document.getElementById('nrbcProg').style.width = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
-        document.getElementById('nrbcProg').children[0].innerHTML = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
+    	if (parseInt(document.getElementById('nrbc').value) > 0 ){
+		document.getElementById('nrbcProgText').innerHTML = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
+	}
         document.getElementById('megaProg').style.width = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
-        document.getElementById('megaProg').children[0].innerHTML = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
+        if (parseInt(document.getElementById('mega').value) > 0){
+		document.getElementById('megaProgText').innerHTML = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
+    	}
     }
 
     //fixRoundingError();

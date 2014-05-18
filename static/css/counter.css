@@ -71,6 +71,9 @@
     white-space: nowwrap;
     color: black;
 }
+.progressPercent{
+    text-alight: right;
+}
 input.count {
     padding-bottom: 1px;
     margin: 1px;
@@ -87,7 +90,8 @@ input.count {
     padding-bottom: 1px;
     float: right;
     height: 27px;
-    width: 75%;
+    width: 100%;
+
 }
 .mono {
     font-family: "Source Sans Pro", sans-serif;
@@ -122,10 +126,19 @@ div.counter {
 td {
     text-align: left;
 }
+.hiddenTillPrint{
+	display: none;
+}
 @media print {
     .nonPrintable {
         display: none;
     }
+    .hiddenTillPrint{
+	display: inline;
+    }
+    .counter{
+	width: 100%;
+	}
     .alert {
         border: 0px;
     }
@@ -136,9 +149,27 @@ td {
         margin-top: 0px;
         margin-left: 0px;
         margin-bottom: 0px;
+	border-bottom: none;
         position: fixed;
         top: 0;
     }
+    .progress-bar-theme{
+	border-width: 1px;
+	border-style:solid;
+    }
+    .printBar{
+	width: 70%;
+	}
+    .printForm{
+	width: 30%;
+    }
+    .printPercent{
+	width:10%
+	}
+.printProgressBar{
+
+	width:90%;
+}
 /*
     .progress {
         background-image: none;
