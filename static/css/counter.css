@@ -1,13 +1,13 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
  #Counter {
-    background-color: #DCE5DE;
-    /*    display: block;*/
-    /*    width: 100%;*/
-    /*        margin: 100px;*/
-    /*    left: 0;*/
+	background-color: #DCE5DE;
+	/*    display: block;*/
+	/*    width: 100%;*/
+	/*        margin: 100px;*/
+	/*    left: 0;*/
 }
 #Tips {
-    padding-top: 80px;
+	padding-top: 80px;
 }
 /*
 .alert{
@@ -17,171 +17,171 @@
     overflow-y:scroll;
     overflow-x:hidden;
 }
-
-
 */
 
 .alert {
-    margin: 0;
-    padding: 0;
-    border: none;
+	margin: 0;
+	padding: 0;
+	border: none;
 }
-.counted{
-    margin: 0;
-    padding: 0;
-    padding-top: .2em;
-    border: none;
-
+.counted {
+	margin: 0;
+	padding: 0;
+	padding-top: .2em;
+	border: none;
 }
 #statusWrapper {
-    position: absolute;
-    margin: 0px;
-    width: 100%;
-    padding: 0px;
+	position: absolute;
+	margin: 0;
+	width: 100%;
+	padding: 0;
 }
 #floatingStatus {
-    opacity: 0.95;
-    position: absolute;
-    margin: 0px;
-    z-index: 99;
-    width: 100%;
-    padding-bottom: .2em;
-    border-bottom:thin solid #9fccb5;
+	opacity: 0.95;
+	position: absolute;
+	margin: 0;
+	z-index: 99;
+	width: 100%;
+	padding-bottom: .2em;
+	border-bottom: thin solid #9fccb5;
 }
 #floatingStatus.fixed {
-    margin-top: 50px;
-    margin-left: 0px;
-    margin-bottom: 0px;
-    position: fixed;
-    top: 0;
+	margin-top: 50px;
+	margin-left: 0;
+	margin-bottom: 0;
+	position: fixed;
+	top: 0;
 }
 .counterTitle {
-    padding-top: 1.5em;
+	padding-top: 1.5em;
 }
 .total {
-    padding: 0px;
-    margin: 0px;
+	padding: 0;
+	margin: 0;
 }
 .progress-bar-theme {
-    background-color: #9fccb5;
-    text-align: right;
+	background-color: #9fccb5;
+	text-align: right;
 }
-.progress-text {} .progress-bar {
-    height: 25px overflow-x: visible;
-    white-space: nowwrap;
-    color: black;
+.progress-text .progress-bar {
+	height: 25px;
+	overflow-x: visible;
+	white-space: nowrap;
+	color: black;
 }
-.progressPercent{
-    text-alight: right;
+.progressPercent {
+	text-align: right;
 }
 input.count {
-    padding-bottom: 1px;
-    margin: 1px;
-    width: 50px;
-    height: 27px;
-    margin-right: 4px;
+	padding-bottom: 1px;
+	margin: 1px;
+	width: 50px;
+	height: 27px;
+	margin-right: 4px;
 }
 #maxNum {
-    width: 50px;
-    height: 26px;
+	width: 50px;
+	height: 26px;
 }
 .progress-gtzero {} .progress {
-    margin: 1px;
-    padding-bottom: 1px;
-    float: right;
-    height: 27px;
-    width: 100%;
-
+	margin: 1px;
+	padding-bottom: 1px;
+	float: right;
+	height: 27px;
+	width: 100%;
 }
 .mono {
-    font-family: "Source Sans Pro", sans-serif;
-    font-size: 16px;
+	font-family: "Source Sans Pro", sans-serif;
+	font-size: 16px;
 }
 dt {
-    font-size: 16px;
-    text-decoration: underline;
+	font-size: 16px;
+	text-decoration: underline;
 }
 .keylist {
-    font-size: 16px;
-    text-decoration: underline;
+	font-size: 16px;
+	text-decoration: underline;
 }
 dd {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 20px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 20px;
 }
 #help p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: 300;
-    line-height: 20px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 20px;
 }
 div.infoform {
-    display: none;
+	display: none;
 }
 div.counter {
-    background-color: transparent;
+	background-color: transparent;
 }
 td {
-    text-align: left;
+	text-align: left;
 }
-.hiddenTillPrint{
+.hiddenTillPrint {
 	display: none;
 }
 @media print {
-    .nonPrintable {
-        display: none;
-    }
-    .hiddenTillPrint{
-	display: inline;
-    }
-    .counter{
-	width: 100%;
+	/* 	Use this to try and print... */
+	/* 	https://github.com/MrRio/jsPDF */
+	.progress {
+		background-color: #F5F5F5 !important;
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F5F5F5', endColorstr='#F5F5F5')" !important;
 	}
-    .alert {
-        border: 0px;
-    }
-    .btn {
-        display: none;
-    }
-    #floatingStatus {
-        margin-top: 0px;
-        margin-left: 0px;
-        margin-bottom: 0px;
-	border-bottom: none;
-        position: fixed;
-        top: 0;
-    }
-    .progress-bar-theme{
-	border-width: 1px;
-	border-style:solid;
-    }
-    .printBar{
-	width: 70%;
+	.progress-bar-theme {
+		background-color: #F5F5F5 !important;
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F5F5F5', endColorstr='#F5F5F5')" !important;
 	}
-    .printForm{
-	width: 30%;
-    }
-    .printPercent{
-	width:10%
+	.progress,
+	.progress > .progress-bar {
+		display: block !important;
+		-webkit-print-color-adjust: exact !important;
+		box-shadow: inset 0 0 !important;
+		-webkit-box-shadow: inset 0 0 !important;
 	}
-.printProgressBar{
-
-	width:90%;
-}
-/*
-    .progress {
-        background-image: none;
-        -webkit-print-color-adjust: exact;
-        box-shadow: inset 0 0;
-        -webkit-box-shadow: inset 0 0;
-    }
-    .progress-bar {
-            background-image: none;
-            -webkit-print-color-adjust: exact;
-            box-shadow: inset 0 0;
-            -webkit-box-shadow: inset 0 0;
-    }
-*/
+	.nonPrintable {
+		display: none;
+	}
+	.hiddenTillPrint {
+		display: inline;
+	}
+	.counter {
+		width: 100%;
+	}
+	.alert {
+		border: 0;
+	}
+	.btn {
+		display: none;
+	}
+	#floatingStatus {
+		margin-top: 0;
+		margin-left: 0;
+		margin-bottom: 0;
+		border-bottom: none;
+		position: fixed;
+		top: 0;
+	}
+	.progress-bar-theme {
+		border-width: 1px;
+		border-style: solid;
+/* 		background-color: #ccc !important; */
+	}
+	.printBar {
+		width: 70%;
+	}
+	.printForm {
+		width: 30%;
+	}
+	.printPercent {
+		width: 10%
+	}
+	.printProgressBar {
+		width: 90%;
+	}
 }
