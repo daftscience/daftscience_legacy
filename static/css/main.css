@@ -111,6 +111,10 @@ hr {
 .navbar-default .navbar-nav > li > a {
 	color: white;
 }
+.headText {
+    text-shadow: 0.1em 0.1em 0.6em black;
+
+}
 /* Helpers */
 
 .mt {

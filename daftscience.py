@@ -28,12 +28,18 @@ import sqlite3, random
 from flask import Flask, render_template, url_for, jsonify, flash, request, session, g, abort
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, HiddenField
-from wtforms.validators import Required
-from flask.ext.assets import Environment, Bundle
+#from wtforms.validators import Required
+#from flask.ext.assets import Environment, Bundle
+from counterVariables import diffCells, diffKeys
+
+
+
 import pushover
 
+
+
 app = Flask(__name__)
-assets = Environment(app)
+#assets = Environment(app)
 app.config.from_object(__name__)
 
 # Load default config and override config from an environment variable
@@ -46,6 +52,8 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
+for cell in diffCells:
+    print(cell + ": " + diffCells[cell])
 
 #Database Functions
 def connect_db():
@@ -114,7 +122,7 @@ def index():
 @app.route('/counter/')
 def counter():
 	links = ['Counter', 'Tips', 'References' ] 
-	return render_template('counter.html', counter='counter', links=links)
+	return render_template('counter.html', counter='counter', links=links, diffCells = diffCells, diffKeys = diffKeys)
     
 if __name__ == '__main__':
 	app.run(host='daftscience.com', debug=True)

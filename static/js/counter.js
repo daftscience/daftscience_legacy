@@ -49,7 +49,6 @@ var seedCells = {
 };
 
 var cellKeys = {
-	
 	Neutrophils: "2",
 	"Bands Cells": "1",
 	Lymphocytes: "3",
@@ -250,7 +249,7 @@ function resetForm() {
 			inputs[i].value = "";
 		}
 	}
-	var elements = document.querySelectorAll('.progress-bar.progress-bar-theme');
+	var elements = document.querySelectorAll('.progress-bar');
 	for (var j = 0, len = elements.length; j < len; j++) {
 		elements[j].style.width = 0 + '%';
 	}
@@ -380,12 +379,12 @@ function KeyCheck(evt) {
 	//Picks the Key
 	switch (KeyID) {
 		case 98:
-		case 49:
+		case 50:
 			// 2
 			cell = 'neut';
 			break;
 		case 97:
-		case 50:
+		case 49:
 			//1 
 			cell = 'band';
 			break;
@@ -395,7 +394,7 @@ function KeyCheck(evt) {
 			cell = 'lymph';
 			break;
 		case 102:
-		case 52:
+		case 54:
 			//6
 			cell = 'mono';
 			break;
@@ -405,7 +404,7 @@ function KeyCheck(evt) {
 			cell = 'eos';
 			break;
 		case 100:
-		case 54:
+		case 52:
 
 			//4
 			cell = 'baso';
@@ -426,15 +425,16 @@ function KeyCheck(evt) {
 			cell = 'pro';
 			break;
 		case 110:
-		case 48:
+		case 190:
 			//0 or . I forget
 			cell = 'blast';
 			break;
 		case 96:
+        case 48:
 			//0 or . I forget
 			cell = 'nrbc';
 			break;
-		case 65:
+		case 79:
 			//o
 			cell = 'other';
 			break;
@@ -443,6 +443,7 @@ function KeyCheck(evt) {
 			cell = 'mega';
 			break;
 		case 111:
+        case 191:
 			//* or / i forget
 			cell = 'plasma';
 			break;
@@ -596,13 +597,13 @@ function normalize() {
 				currentCell = ((intCheck / runningTotal) * 100);
 
 				document.getElementById(cellProg).style.width = parseInt(currentCell) + '%';
-				if (parseInt(currentCell) > 0) {
-					document.getElementById(cellProgText).innerHTML = parseInt(currentCell) + '%';
-				} else {
+//				if (parseInt(currentCell) > 0) {
+//					document.getElementById(cellProgText).style.width = parseInt(currentCell) + '%';
+//				} else {
 
-					document.getElementById(cellProgText).innerHTML = '';
+//					document.getElementById(cellProgText).innerHTML = '';
 
-				}
+//				}
 				//IEFIX
 				//                document.getElementById(cellProg).firstElementChild.innerHTML = parseInt(currentCell) + '%';
 				//}
