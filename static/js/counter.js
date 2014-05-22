@@ -616,11 +616,11 @@ function normalize() {
 	if (tot > 0) {
 		document.getElementById('nrbcProg').style.width = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
 		if (parseInt(document.getElementById('nrbc').value) > 0) {
-			document.getElementById('nrbcProgText').innerHTML = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
+			//document.getElementById('nrbcProgText'). = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
 		}
 		document.getElementById('megaProg').style.width = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
 		if (parseInt(document.getElementById('mega').value) > 0) {
-			document.getElementById('megaProgText').innerHTML = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
+			//document.getElementById('megaProgText').innerHTML = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
 		}
 	}
 
