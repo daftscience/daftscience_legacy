@@ -95,11 +95,11 @@
 					</div>
 					<div class="btn-group">
 						<button type="button" class="btn btn-default btn-warning" onclick="toggleDisableX3();">
-							<i class="fa fa-lock" id="lockButton"></i>Edit</button>
+							<i class="fa fa-lock" id="lockButton"></i> Edit</button>
 						<button type="button" class="btn btn-default btn-danger" onclick="resetForm();">
-							<i class="fa fa-eraser"></i>Reset</button>
+							<i class="fa fa-eraser"></i> Reset</button>
 						<button type="button" class="btn btn-default btn-primary" onclick="window.print();">
-							<i class="fa fa-print"></i>Print</button>
+							<i class="fa fa-print"></i> Print</button>
 					</div>
 					<!-- 						<script>
 							$(function() {
@@ -185,7 +185,7 @@
 						<dt>Manual edit</dt>
 						<dd>
 							<p>Press the "E" key or the "Edit" button to manually change the counts, press it again to resume. The
-								<i class="fa fa-unlock"></i>icon on the edit button indicates you're in "Edit Mode"</p>
+								<i class="fa fa-unlock"></i> icon on the edit button indicates you're in "Edit Mode"</p>
 						</dd>
 						<dt>Differential Name</dt>
 						<dd>
@@ -210,7 +210,9 @@
 							{% for cell in cells %}
 							<tr class="tight">
 								<td class="tight text-right">{{cell}}</td>
-								<td class="tight text-center"><i class="fa fa-angle-double-right  fa-list"></i></td>
+								<td class="tight text-center">
+									<i class="fa fa-angle-double-right  fa-list"></i>
+								</td>
 								<td class="tight text-left">{{keys[cell]}}</td>
 							</tr>
 							{% endfor %}
@@ -220,15 +222,15 @@
 					<ul class="fa-ul">
 						<strong class="keylist">Modes</strong>
 						<li>
-							<span class="mono">R</span>
+							<span class="monoFont">R </span>
 							<i class="fa fa-angle-double-right  fa-list"></i>Reset form
 						</li>
 						<li>
-							<span class="mono">E</span>
+							<span class="monoFont">E </span>
 							<i class="fa fa-angle-double-right  fa-list"></i>Edit Mode
 						</li>
 						<li>
-							<span class="mono">D</span>
+							<span class="monoFont">D </span>
 							<i class="fa fa-angle-double-right  fa-list"></i>Debug Mode
 						</li>
 					</ul>
@@ -244,7 +246,7 @@
 						<dd>
 							<p>In standard rounding rules it is common for numbers ending in 5 to be rounded up. However, because n.5 is exactly between its nearest integers, always rounding up will create a positive bias.</p>
 							<p>In order to correct that bias the Diff-o-Matic uses a
-								<strong>Round to Even</strong>method. This will round any number ending in .5 to the nearest even integer (e.g. 2.5 -> 2 .)
+								<strong>Round to Even </strong>method. This will round any number ending in .5 to the nearest even integer (e.g. 2.5 -> 2 .)
 							</p>
 							<p>Unfortunately, this will cause relative values of 0.5 to be rounded down to 0. The worlds top engineers, scientists, and barista have been working on this issue around the clock, a patch will be released shortly.</p>
 						</dd>
