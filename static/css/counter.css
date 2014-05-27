@@ -1,5 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
- #Counter {
+#Counter {
 	background-color: #DCE5DE;
 }
 #Tips {
@@ -51,15 +51,19 @@
 	padding: 0;
 	margin: 0;
 }
+.progressPercent{
+    padding-right: .2em;
+
+}
 .progress-bar {
     display: block;
     height: 28px;
     background-color: #9fccb5;
+	float: right;
 }
 .bar-background{
     margin-bottom:0;
     background-color: white;
-
 }
 input.count {
 	width: 50px;
@@ -68,7 +72,7 @@ input.count {
 	width: 50px;
 	height: 26px;
 }
-.mono {
+.monoFont {
 	font-family: "Source Sans Pro", sans-serif;
 	font-size: 16px;
 }
@@ -105,9 +109,11 @@ th,td {
 	display: none;
 }
 table{
-    table-layout: fixed !important;
-    
-    
+    table-layout: fixed !important;   
+}
+.keyMap{
+	padding-right: .5em !important;
+	padding-left: .5em !important;
 }
 @media print {
 	.progress {

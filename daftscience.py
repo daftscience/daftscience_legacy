@@ -25,15 +25,12 @@
 
 import os, sys, Image, pprint
 import sqlite3, random
-from flask import Flask, render_template, url_for, jsonify, flash, request, session, g, abort
+from flask import Flask, render_template, url_for, jsonify, flash, request, session, g, abort, redirect
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, HiddenField
 #from wtforms.validators import Required
 #from flask.ext.assets import Environment, Bundle
-from counterVariables import diffCells, diffKeys
-
-
-
+from counterVariables import diffCells, diffKeys, ueoCells, ueoKeys
 import pushover
 
 
@@ -52,8 +49,10 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-for cell in diffCells:
-    print(cell + ": " + diffCells[cell])
+countType = 'diff'
+
+for cell in ueoCells:
+    print(cell + ": " + ueoCells[cell])
 
 #Database Functions
 def connect_db():
@@ -114,15 +113,24 @@ def index():
         print(request.form['message'])
         notify(request)
         return render_template('index.html', sent = True, gallery = get_gallery(), name=request.form['name'])
-    
     elif request.method == 'GET':
         return render_template('index.html', form=form, gallery=get_gallery())
     return render_template('index.html', sent = False, gallery = get_gallery(), form=form)
 
+@app.route('/requestType', methods=['POST', 'GET'])
+def requestType():
+	global countType
+	print("requestType called")
+	countType = request.form['countType']
+	return redirect(url_for('counter'))
+
 @app.route('/counter/')
 def counter():
-	links = ['Counter', 'Tips', 'References' ] 
-	return render_template('counter.html', counter='counter', links=links, diffCells = diffCells, diffKeys = diffKeys)
+	links = ['Counter', 'Tips', 'References']
+	print(countType)
+	if countType == 'UEO':
+		return render_template('counter.html', countType=countType, links=links, cells = ueoCells, keys = ueoKeys)    
+	return render_template('counter.html', countType=countType, links=links, cells = diffCells, keys = diffKeys)
     
 if __name__ == '__main__':
 	app.run(host='daftscience.com', debug=True)

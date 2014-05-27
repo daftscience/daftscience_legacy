@@ -1,7 +1,13 @@
 from collections import OrderedDict
+ueoCells = OrderedDict()
+ueoCells['Eosinophils']     = 'eos'
+ueoCells['Others']          = 'other'
+
+ueoKeys = OrderedDict()
+ueoKeys['Eosinophils']      = "3"
+ueoKeys['Others']           = "2"
 
 diffCells = OrderedDict()
-
 diffCells['Neutrophils']    = 'neut'
 diffCells['Bands Cells']    = 'band'
 diffCells['Lymphocytes']    = "lymph"

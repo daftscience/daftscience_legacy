@@ -1,83 +1,77 @@
 {% extends "layout.html" %} {% block body %} {% include 'header.html' %}
 <!-- +++++ Welcome Section +++++ -->
+{% if countType == 'UEO' %}
+<script>
+	countType = "UEO";
+</script>
+{% endif %}
+
 
 
 <section id="1" class="home nonPrintable">
-    <div id="ww" class="nonPrintable">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 centered">
-                    <!--[if lte IE 8 ]>
-    <br /><br />
-    <div id="hasIE" class="alert alert-danger">
-        <p>
-            If the buttons bunch together when you hit edit button, they will go back to normal the next time its pressed.
-        </p>
-
-        <p>Internet explorer can be a silly goose.</p>
-    </div><p></p>
-<![endif]-->
-<div class="alert alert-danger"><p>This is a beta version of the diffcounter, if you're having issues with it please use the
-<a href="http://daftscience.com/counter/"> stable version.</a></p></div>
-                    <h1>
-                        <img src="{{ url_for('static', filename='img/header.png')}}" alt="soo realistic" class="img-responsive centered">
-                    </h1>
-                    <p>This app was built to help Medical Laboratory Science students practice differentials. It works best using the 10 key pad. If you have any questions just click the "Tips" link at the top of the page, or scroll down.</p>
-                    <p>
-                        <u>IMPORTANT:</u>This is for practice purposes only, not intended for clinical differentials. There are known, and possibly unknown mathematical errors in how relative values are calculated (rounding errors: see below.) Please double check any values you get.
-                    </p>
-                </div>
-                <!-- /col-lg-8 -->
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- /ww -->
+	<div id="ww" class="nonPrintable">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 centered">
+					<h1>
+						<img src="{{ url_for('static', filename='img/header.png')}}" alt="soo realistic" class="img-responsive centered">
+					</h1>
+					<p>This app was built to help Medical Laboratory Science students practice differentials. It works best using the 10 key pad. If you have any questions just click the "Tips" link at the top of the page, or scroll down.</p>
+					<p>
+						<u>IMPORTANT:</u>This is for practice purposes only, not intended for clinical differentials. There are known, and possibly unknown mathematical errors in how relative values are calculated (rounding errors: see below.) Please double check any values you get.
+					</p>
+				</div>
+				<!-- /col-lg-8 -->
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!-- /ww -->
 </section>
 <!-- +++++ Differential Section +++++ -->
 
 <div id="statusWrapper" class="container">
-    <div id="floatingStatus" class="row mt centered alert alert-success">
-        <div class="col-sm-3 counted">
-            <h3 class="counted">Counted:
-                <span id="total" class="counted">0</span>
-            </h3>
-        </div>
-        <div class="col-sm-6 hiddenTillPrint"></div>
-        <div class="col-sm-6 nonPrintable">
-            <div id="ready" class="alert alert-success changeable">
-                <p>differential mode</p>
-                start your diff!
-            </div>
-            <div id="done" class="alert alert-success changeable" hidden>
-                <p>Finished!</p>
-                Hit 'R' to reset, or Ctrl+P to print.
-            </div>
-            <div id="subtract" class="alert alert-danger changeable" hidden>
-                <p>Subtrating</p>
-                Buttons will now subtract, hit '+' to resume diff.
-            </div>
-            <div id="edit" class="alert alert-warning changeable" hidden>
-                <p>Edit Mode</p>
-                Change the title or percentages, hit 'E' to resume diff.
-            </div>
-            <div id="wylajb" class="alert alert-success alert-dismissable" hidden>
-                <p>konami mode:</p>
-                would you like a jelly baby?
-            </div>
-            <div id="debug" class="alert alert-warning debug" hidden></div>
-            <div id="numlock" class="alert alert-danger alert-dismissable" hidden>
-                <p>whoa, hang on a sec...</p>
-                That was close, you have to turn the number lock on before you start counting. It's usually somewhere above the 7 key.
-            </div>
-        </div>
-        <div class="col-sm-3 counted">
-            <h3 class="counted">Remaining:
-                <span id="toGo" class="counted">100</span>
-            </h3>
-        </div>
-    </div>
+	<div id="floatingStatus" class="row mt centered alert alert-success">
+		<div class="col-sm-3 counted">
+			<h3 class="counted">Counted:
+				<span id="total" class="counted">0</span>
+			</h3>
+		</div>
+		<div class="col-sm-6 hiddenTillPrint"></div>
+		<div class="col-sm-6 nonPrintable">
+			<div id="ready" class="alert alert-success changeable">
+				<p>differential mode</p>
+				start your diff!
+			</div>
+			<div id="done" class="alert alert-success changeable" hidden>
+				<p>Finished!</p>
+				Hit 'R' to reset, or Ctrl+P to print.
+			</div>
+			<div id="subtract" class="alert alert-danger changeable" hidden>
+				<p>Subtrating</p>
+				Buttons will now subtract, hit '+' to resume diff.
+			</div>
+			<div id="edit" class="alert alert-warning changeable" hidden>
+				<p>Edit Mode</p>
+				Change the title or percentages, hit 'E' to resume diff.
+			</div>
+			<div id="wylajb" class="alert alert-success alert-dismissable" hidden>
+				<p>konami mode:</p>
+				would you like a jelly baby?
+			</div>
+			<div id="debug" class="alert alert-warning debug" hidden></div>
+			<div id="numlock" class="alert alert-danger alert-dismissable" hidden>
+				<p>whoa, hang on a sec...</p>
+				That was close, you have to turn the number lock on before you start counting. It's usually somewhere above the 7 key.
+			</div>
+		</div>
+		<div class="col-sm-3 counted">
+			<h3 class="counted">Remaining:
+				<span id="toGo" class="counted">100</span>
+			</h3>
+		</div>
+	</div>
 </div>
 
 
@@ -85,248 +79,222 @@
 
 
 <div id="Counter" class="container-fluid counter">
-    <section class="counter">
-        <div class="row centered counter">
-            <div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-                <h1 class="counterTitle">Electronic Diff-o-matic</h1>
-                <div class="btn-group" data-toggle-name="is_private" data-toggle="buttons-radio">
-                    <button type="button" class="btn btn-primary" data-toggle="button" value="100" onclick="changeCount(this);" id="c100">100</button>
-                    <button type="button" class="btn btn-primary" data-toggle="button" value="200" onclick="changeCount(this);">200</button>
-                    <button type="button" class="btn btn-primary" data-toggle="button" value="300" onclick="changeCount(this);">300</button>
-                    <input type="hidden" name="is_private" value="100" />
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-warning" onclick="toggleDisableX3();">
-                        <i class="fa fa-lock" id="lockButton"></i>Edit</button>
-                    <button type="button" class="btn btn-default btn-danger" onclick="resetForm();">
-                        <i class="fa fa-eraser"></i>Reset</button>
-                    <button type="button" class="btn btn-default btn-primary" onclick="window.print();">
-                        <i class="fa fa-print"></i>Print</button>
-                </div>
-            </div>
-        </div>
+	<section class="counter">
+		<div class="row centered counter">
+			<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+				<h1 class="counterTitle">Electronic Diff-o-matic</h1>
+			</div>
+		</div>
+		<div class="row centered counter">
+			<!--			<div class="center-block">-->
+			<div class="pagination">
+				<div class="btn-toolbar text-center">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default" id="changeCountTo">100</button>
+						<button type="button" class="btn btn-default" id="toggleCountType">UEO</button>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default btn-warning" onclick="toggleDisableX3();">
+							<i class="fa fa-lock" id="lockButton"></i>Edit</button>
+						<button type="button" class="btn btn-default btn-danger" onclick="resetForm();">
+							<i class="fa fa-eraser"></i>Reset</button>
+						<button type="button" class="btn btn-default btn-primary" onclick="window.print();">
+							<i class="fa fa-print"></i>Print</button>
+					</div>
+					<!-- 						<script>
+							$(function() {
+								$('.dropdown-menu li').click(function() {
+									$('#type').val($(this).html());
+									$('#typeForm').submit();
+								});
+							});
+						</script> -->
+				</div>
+			</div>
+			<!--			</div>-->
+		</div>
+		<div class="row mt centered counter">
+			<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+				<div class="input-group input-group-lg">
+					<span class="input-group-addon">
+						<i class="fa fa-barcode" id="safeFocus" onclick="toggleDisableX3();"></i>
+					</span>
+					<input type="text" id="diffName" class="form-control" placeholder="Differential I.D." disabled>
+				</div>
+			</div>
+		</div>
 
+		<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+			<table class="table tight">
+				{% for cell in cells %}
+				<tr class="tight {{cells[cell]}}{% if cells[cell] != 'eos' %}{% if cells[cell] != 'other' %} notUEO{% endif %}{% endif %}" id="{{cells[cell]}}Tr">
+					<td class="col-xs-5 col-sm-7 tight bar-background">
+						<span id='{{cells[cell]}}Prog' class="progress-bar"></span>
+					</td>
+					<td class="col-xs-1 col-sm-1 tight text-right">
+						<span class="progressPercent" id="{{cells[cell]}}ProgText">0%</span>
+					</td>
+					<td class="col-xs-1 col-sm-1 tight centered">
+						<input type='number' id="{{cells[cell]}}" value='' class="count" readOnly/>
+					</td>
+					<td class="col-xs-5 col-sm-3 tight text-left" id="{{cells[cell]}}Map">{{cell}} ({{keys[cell]}})</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<input type="text" id="totalNorm" value="0" class="alwaysDisable" readonly hidden>
 
-        <div class="row mt centered counter">
-            <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon">
-                        <i class="fa fa-barcode" id="safeFocus" onclick="toggleDisableX3();"></i>
-                    </span>
-                    <input type="text" id="diffName" class="form-control" placeholder="Differential I.D." disabled>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-            <form name="cellForm" id="cellForm">
-                <table class="table col-sm-12 col-md-10 col-lg-8">
-                    <tbody>
-                        {% for cell in diffCells %}
-                        <tr class="tight">
-                            <td class="col-xs-5 col-sm-3 tight text-right">{{cell}} ({{diffKeys[cell]}})</td>
-                            <td class="col-xs-1 col-sm-1 tight centered"><input type='number' id="{{diffCells[cell]}}" value='' class="count" readOnly/></td>
-                            <td class="col-xs-6 col-sm-8 tight bar-background"><span id='{{diffCells[cell]}}Prog' class="progress-bar"></span></td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </form>
-            <input type="text" id="totalNorm" value="0" class="alwaysDisable" readonly hidden>
-        </div>
-        <div class="row mt centered counter">
-            <p></p>
-            </h2>
-        </div>
-        <!-- /container -->
-    </section>
+		</div>
+		<div class="row mt centered counter">
+			<p></p>
+		</div>
+		<!-- /container -->
+	</section>
 </div>
 
 
 
 <div class="nonPrintable">
-    <section id="Tips">
-        <div class="container pt" id="help">
-            <div class="row mt">
-                <div class="col-lg-8 col-lg-offset-2 centered">
-                    <h1>Tips and Tricks</h1>
-                </div>
-            </div>
-            <div class="row mt">
-                <div class="col-md-4 centered">
-                    <i class="fa fa-cogs fa-5x fa-green"></i>
-                    <h3>How do I use this fancy thing?</h3>
-                </div>
-                <div class="col-md-4 centered">
-                    <i class="fa fa-keyboard-o fa-5x fa-green"></i>
-                    <h3>Keyboard layout</h3>
-                </div>
-                <div class="col-md-4 centered">
-                    <i class="fa fa-bug fa-5x fa-green"></i>
-                    <h3>Normalization issues</h3>
-                </div>
-            </div>
-            <div class="row mt">
-                <div class="col-md-4">
-                    <dl>
-                        <dt>Subtract cells</dt>
-                        <dd>
-                            <p>Press the "-" key to start subtracting cells. Press the "+" key to to resume.</p>
-                        </dd>
-                        <dt>Manual edit</dt>
-                        <dd>
-                            <p>Press the "E" key or the "Edit" button to manually change the counts, press it again to resume. The
-                                <i class="fa fa-unlock"></i>icon on the edit button indicates you're in "Edit Mode"</p>
-                        </dd>
-                        <dt>Differential Name</dt>
-                        <dd>
-                            <p>In edit mode the name field is editable, when enter is pressed Diff-o-matic will exit edit mode.</p>
-                        </dd>
-                        <dt>Count more cells</dt>
-                        <dd>
-                            <p>Umm... basically what I said above.</p>
-                        </dd>
-                    </dl>
-                </div>
-                <div class="col-md-4">
-                    <ul class="fa-ul">
-                        <strong class="keylist">Cells</strong>
-                        <li>
-                            <span class="mono">1</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Band Cells
-                        </li>
-                        <li>
-                            <span class="mono">2</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Neutrophils
-                        </li>
-                        <li>
-                            <span class="mono">3</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Lymphocytes
-                        </li>
-                        <li>
-                            <span class="mono">4</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Basophils
-                        </li>
-                        <li>
-                            <span class="mono">5</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Eosinophils
-                        </li>
-                        <li>
-                            <span class="mono">6</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Monocytes
-                        </li>
-                        <li>
-                            <span class="mono">7</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Metamyelocytes
-                        </li>
-                        <li>
-                            <span class="mono">8</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Myelocytes
-                        </li>
-                        <li>
-                            <span class="mono">9</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Promyelocyte
-                        </li>
-                        <li>
-                            <span class="mono">.</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Blast
-                        </li>
-                        <li>
-                            <span class="mono">0</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Nucleated Red Cells
-                        </li>
-                        <li>
-                            <span class="mono">/</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Plasma Cells?
-                        </li>
-                        <li>
-                            <span class="mono">*</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Megakaryocyte?
-                        </li>
-                        <li>
-                            <span class="mono">o</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Other (O as in the letter)
-                        </li>
-                    </ul>
-                    <ul class="fa-ul">
-                        <strong class="keylist">Modes</strong>
-                        <li>
-                            <span class="mono">R</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Reset form
-                        </li>
-                        <li>
-                            <span class="mono">E</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Edit Mode
-                        </li>
-                        <li>
-                            <span class="mono">D</span>
-                            <i class="fa fa-angle-double-right  fa-list"></i>Debug Mode
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-4">
-                    <dl>
-                        <dt>What is this?</dt>
-                        <dd>
-                            <p>The progress bars to the right were designed to give normalized percentages for 200 cell counts. Using cutting edge mathematical formulas, advanced super computing power and an old magic eight ball, the Diff-o-Matic is capable of providing that value in real time!
-                            </p>
-                        </dd>
-                        <dt>DISCLAIMER:</dt>
-                        <dd>
-                            <p>In standard rounding rules it is common for numbers ending in 5 to be rounded up. However, because n.5 is exactly between its nearest integers, always rounding up will create a positive bias.</p>
-                            <p>In order to correct that bias the Diff-o-Matic uses a
-                                <strong>Round to Even</strong>method. This will round any number ending in .5 to the nearest even integer (e.g. 2.5 -> 2 .)
-                            </p>
-                            <p>Unfortunately, this will cause relative values of 0.5 to be rounded down to 0. The worlds top engineers, scientists, and barista have been working on this issue around the clock, a patch will be released shortly.</p>
-                        </dd>
-                    </dl>
-                </div>
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </section>
-    <section id="References">
-        <!-- +++++ Reference material +++++ -->
-        <div id="ref">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 centered">
-                        <!--<img src="header.png" alt="Stanley">-->
-                        <h1>Reference Material</h1>
-                        <p>Coming Soon:</p>
-                        <p>A list of resources to help with performing differentials.</p>
-                    </div>
-                    <!-- /col-lg-8 -->
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /ww -->
-    </section>
-    <!-- +++++ Footer Section +++++ -->
-    <div id="footer">
-        <div class="container">
-            <div class="centered">
-                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
-                    <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
-                </a>
-                <br />
-                <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" property="dct:title" rel="dct:type">Diffcounter</span>by
-                <a xmlns:cc="http://creativecommons.org/ns#" href="daftscience.com/diffcounter" property="cc:attributionName" rel="cc:attributionURL">Daftscience</a>is licensed under a
-                <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-                <br />Based on a work at
-                <a xmlns:dct="http://purl.org/dc/terms/" href="daftscience.com/counter" rel="dct:source">daftscience.com/counter</a>.
-            </div>
-        </div>
-    </div>
-    <!-- Bootstrap core JavaScript
+	<section id="Tips">
+		<div class="container pt" id="help">
+			<div class="row mt">
+				<div class="col-lg-8 col-lg-offset-2 centered">
+					<h1>Tips and Tricks</h1>
+				</div>
+			</div>
+			<div class="row mt">
+				<div class="col-md-4 centered">
+					<i class="fa fa-cogs fa-5x fa-green"></i>
+					<h3>How do I use this fancy thing?</h3>
+				</div>
+				<div class="col-md-4 centered">
+					<i class="fa fa-keyboard-o fa-5x fa-green"></i>
+					<h3>Keyboard layout</h3>
+				</div>
+				<div class="col-md-4 centered">
+					<i class="fa fa-bug fa-5x fa-green"></i>
+					<h3>Normalization issues</h3>
+				</div>
+			</div>
+			<div class="row mt">
+				<div class="col-md-4">
+					<dl>
+						<dt>Subtract cells</dt>
+						<dd>
+							<p>Press the "-" key to start subtracting cells. Press the "+" key to to resume.</p>
+						</dd>
+						<dt>Manual edit</dt>
+						<dd>
+							<p>Press the "E" key or the "Edit" button to manually change the counts, press it again to resume. The
+								<i class="fa fa-unlock"></i>icon on the edit button indicates you're in "Edit Mode"</p>
+						</dd>
+						<dt>Differential Name</dt>
+						<dd>
+							<p>In edit mode the name field is editable, when enter is pressed Diff-o-matic will exit edit mode.</p>
+						</dd>
+						<dt>Count more cells</dt>
+						<dd>
+							<p>Umm... basically what I said above.</p>
+						</dd>
+					</dl>
+				</div>
+				<div class="col-md-4">
+					<table class="table tight table-condensed">
+						<thead>
+							<tr>
+								<th class="tight text-center">Cells</th>
+								<th></th>
+								<th class="col-md-3 tight text-center">Keys</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for cell in cells %}
+							<tr class="tight">
+								<td class="tight text-right">{{cell}}</td>
+								<td class="tight text-center"><i class="fa fa-angle-double-right  fa-list"></i></td>
+								<td class="tight text-left">{{keys[cell]}}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<hr>
+					<ul class="fa-ul">
+						<strong class="keylist">Modes</strong>
+						<li>
+							<span class="mono">R</span>
+							<i class="fa fa-angle-double-right  fa-list"></i>Reset form
+						</li>
+						<li>
+							<span class="mono">E</span>
+							<i class="fa fa-angle-double-right  fa-list"></i>Edit Mode
+						</li>
+						<li>
+							<span class="mono">D</span>
+							<i class="fa fa-angle-double-right  fa-list"></i>Debug Mode
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-4">
+					<dl>
+						<dt>What is this?</dt>
+						<dd>
+							<p>The progress bars to the right were designed to give normalized percentages for 200 cell counts. Using cutting edge mathematical formulas, advanced super computing power and an old magic eight ball, the Diff-o-Matic is capable of providing that value in real time!
+							</p>
+						</dd>
+						<dt>DISCLAIMER:</dt>
+						<dd>
+							<p>In standard rounding rules it is common for numbers ending in 5 to be rounded up. However, because n.5 is exactly between its nearest integers, always rounding up will create a positive bias.</p>
+							<p>In order to correct that bias the Diff-o-Matic uses a
+								<strong>Round to Even</strong>method. This will round any number ending in .5 to the nearest even integer (e.g. 2.5 -> 2 .)
+							</p>
+							<p>Unfortunately, this will cause relative values of 0.5 to be rounded down to 0. The worlds top engineers, scientists, and barista have been working on this issue around the clock, a patch will be released shortly.</p>
+						</dd>
+					</dl>
+				</div>
+			</div>
+			<!-- /row -->
+		</div>
+		<!-- /container -->
+	</section>
+	<section id="References">
+		<!-- +++++ Reference material +++++ -->
+		<div id="ref">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 centered">
+						<!--<img src="header.png" alt="Stanley">-->
+						<h1>Reference Material</h1>
+						<p>Coming Soon:</p>
+						<p>A list of resources to help with performing differentials.</p>
+					</div>
+					<!-- /col-lg-8 -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /ww -->
+	</section>
+	<!-- +++++ Footer Section +++++ -->
+	<div id="footer">
+		<div class="container">
+			<div class="centered">
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+					<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+				</a>
+				<br />
+				<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" property="dct:title" rel="dct:type">Diffcounter</span>by
+				<a xmlns:cc="http://creativecommons.org/ns#" href="daftscience.com/diffcounter" property="cc:attributionName" rel="cc:attributionURL">Daftscience</a>is licensed under a
+				<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+				<br />Based on a work at
+				<a xmlns:dct="http://purl.org/dc/terms/" href="daftscience.com/counter" rel="dct:source">daftscience.com/counter</a>.
+			</div>
+		</div>
+	</div>
+	<!-- Bootstrap core JavaScript
 ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!--        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>-->
-    <!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!--        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>-->
+	<!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
 </div>
 <!--      non printable-->
 

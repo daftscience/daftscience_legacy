@@ -28,8 +28,7 @@ var KeyID;
 var diffName;
 var nag = false;
 var hasIE_ughhh = false;
-
-
+var countType = "differential"; //UEO or differential
 
 var seedCells = {
 	Neutrophils: "neut",
@@ -65,6 +64,7 @@ var cellKeys = {
 	"Plasma Cells": "/"
 };
 
+
 function toggleDisableX3() {
 	//window.alert("in toggleDisableX3");
 	toggleDisable();
@@ -74,7 +74,7 @@ function toggleDisableX3() {
 
 jQuery(document).keydown(function(e) {
 	KeyCheck(e);
-	$('#debug').html("Internet Explorer: " + hasIE_ughhh + "<br />Key pressed: " + e.keyCode + "<br /> Editing =" + editing + "<br /> Adding = " + adding + "<br /> Nagging = " + nag);
+	$('#debug').html("Internet Explorer: " + hasIE_ughhh + "<br />Key pressed: " + e.keyCode + "<br /> Editing =" + editing + "<br /> Adding = " + adding + "<br /> Nagging = " + nag + "<br /> countType = " + countType);
 
 });
 
@@ -100,6 +100,43 @@ $(document).ready(function() {
 			$('#floatingStatus').removeClass('fixed');
 		}
 	});
+
+	$('#changeCountTo').click(function() {
+		switch (countTo){
+			case 100:
+				changeCount(200);
+				break;
+			case 200:
+				changeCount(300);
+				break;
+			case 300:
+				changeCount(100);
+				break;
+			default:
+				changeCount(100);
+		}
+	});
+	
+	$('#toggleCountType').click(function() {
+		if(countType=="UEO"){
+			$(this).html("UEO");
+			$("#otherMap").html("Other (o-letter)");
+			$("#eosMap").html("Eosinophils (5)");
+			countType='differential';
+			$("#changeCountTo").show();
+		}else{
+			$("#changeCountTo").hide();
+			$("#otherMap").html("Other (2)");
+			$("#eosMap").html("Eosinophils (3)");
+			countType='UEO';
+			$(this).html("Diff");
+		}
+//		window.alert("test");
+		$(".notUEO").slideToggle(0);
+		resetForm();
+		
+	});
+
 });
 
 
@@ -113,7 +150,7 @@ $(document).on("scroll", function() {
 });
 
 
-$('.btn-group[data-input]').each(function() {
+/* $('.btn-group[data-input]').each(function() {
 	var hidden = $('[name="' + $(this).data('input') + '"]');
 	$(this).on('click', '.btn', function() {
 		hidden.val($(this).val());
@@ -121,7 +158,7 @@ $('.btn-group[data-input]').each(function() {
 		$(this).toggleClass('active', $(this).val() == hidden.val())
 	});
 });
-
+ */
 
 function seedHTML(whichTable) {
 
@@ -166,7 +203,6 @@ function seedHTML(whichTable) {
 //This adds the onclick function to all of the buttons
 window.onload = function() {
 	//    document.getElementsByClassName('count')
-
 	var anchors = document.querySelectorAll('.count');
 	for (var i = 0; i < anchors.length; i++) {
 		var anchor = anchors[i];
@@ -186,9 +222,11 @@ window.onload = function() {
 
 };
 
-function changeCount(countSelected) {
-	countTo = countSelected.value;
+function changeCount(newCount) {
+	countTo = newCount;
+	$("#changeCountTo").html(newCount);
 	recalc();
+	return false;
 }
 
 
@@ -271,8 +309,11 @@ function resetForm() {
 	diffName.value = '';
 	diffName.disabled = true;
 
-	document.getElementById('c100').click();
-
+	if (countType == 'UEO') {
+		changeCount(200);
+	} else {
+		changeCount(100);
+	}
 } //CLeaned..kinda?
 
 //Changes the status on the top.
@@ -302,10 +343,6 @@ function toggleDisable(option) {
 			$(document.activeElement).blur();
 		}
 	} catch (error) {}
-
-
-
-
 
 	toggleSubtract('addEdit');
 	//check if the disabled flag is set and toggle it. Change content to refect the new mode.
@@ -381,17 +418,25 @@ function KeyCheck(evt) {
 		case 98:
 		case 50:
 			// 2
-			cell = 'neut';
+			if (countType == 'UEO') {
+				cell = 'other';
+			} else {
+				cell = 'neut';
+			}
 			break;
 		case 97:
 		case 49:
-			//1 
+			//1
 			cell = 'band';
 			break;
 		case 99:
 		case 51:
 			//3
-			cell = 'lymph';
+			if (countType == 'UEO') {
+				cell = 'eos';
+			} else {
+				cell = 'lymph';
+			}
 			break;
 		case 102:
 		case 54:
@@ -430,7 +475,7 @@ function KeyCheck(evt) {
 			cell = 'blast';
 			break;
 		case 96:
-        case 48:
+		case 48:
 			//0 or . I forget
 			cell = 'nrbc';
 			break;
@@ -443,7 +488,7 @@ function KeyCheck(evt) {
 			cell = 'mega';
 			break;
 		case 111:
-        case 191:
+		case 191:
 			//* or / i forget
 			cell = 'plasma';
 			break;
@@ -495,6 +540,12 @@ function KeyCheck(evt) {
 	}
 	var cellElem = document.getElementById(cell);
 	//increments
+
+	if (countType == 'UEO') {
+		if (cell != 'other' && cell != 'eos') {
+			return;
+		}
+	}
 
 	if (!editing) {
 		increment(cellElem);
@@ -597,13 +648,14 @@ function normalize() {
 				currentCell = ((intCheck / runningTotal) * 100);
 
 				document.getElementById(cellProg).style.width = parseInt(currentCell) + '%';
-//				if (parseInt(currentCell) > 0) {
-//					document.getElementById(cellProgText).style.width = parseInt(currentCell) + '%';
-//				} else {
+				if (parseInt(currentCell) > 0) {
+					document.getElementById(cellProgText).innerHTML = parseInt(currentCell) + '%';
+					//document.getElementById(cellProg).style.width = parseInt(currentCell) + '%';
+				} else {
 
-//					document.getElementById(cellProgText).innerHTML = '';
+					document.getElementById(cellProgText).innerHTML = '';
 
-//				}
+				}
 				//IEFIX
 				//                document.getElementById(cellProg).firstElementChild.innerHTML = parseInt(currentCell) + '%';
 				//}
@@ -613,14 +665,14 @@ function normalize() {
 		}
 	}
 	document.getElementById('totalNorm').value = tot;
-	if (tot > 0) {
+	if (tot > 0 && countType != 'UEO') {
 		document.getElementById('nrbcProg').style.width = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
 		if (parseInt(document.getElementById('nrbc').value) > 0) {
-			//document.getElementById('nrbcProgText'). = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
+			document.getElementById('nrbcProgText').innerHTML = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
 		}
 		document.getElementById('megaProg').style.width = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
 		if (parseInt(document.getElementById('mega').value) > 0) {
-			//document.getElementById('megaProgText').innerHTML = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
+			document.getElementById('megaProgText').innerHTML = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
 		}
 	}
 
