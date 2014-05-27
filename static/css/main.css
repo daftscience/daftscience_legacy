@@ -129,8 +129,10 @@ hr {
 	color: white;
 }
 .headText {
-    text-shadow: 0.1em 0.1em 0.6em black;
-
+    text-shadow: 0.05em 0.05em 0.1em black;
+}
+.shadowed{
+    text-shadow: 0.03em 0.03em 0.1em black;
 }
 /* Helpers */
 
