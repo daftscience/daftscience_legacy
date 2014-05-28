@@ -25,7 +25,7 @@
 
 import os, sys, Image, pprint
 import sqlite3, random
-from flask import Flask, render_template, url_for, jsonify, flash, request, session, g, abort, redirect
+from flask import Flask, render_template, url_for, jsonify, flash, request, session, g, abort
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, HiddenField
 #from wtforms.validators import Required
@@ -105,7 +105,6 @@ def get_gallery():
 #    pp.pprint(gallery)
     return gallery
 
-
 @app.route('/', methods=['POST', 'GET'])
 def index():
     form = ContactForm()    
@@ -116,13 +115,6 @@ def index():
     elif request.method == 'GET':
         return render_template('index.html', form=form, gallery=get_gallery())
     return render_template('index.html', sent = False, gallery = get_gallery(), form=form)
-
-@app.route('/requestType', methods=['POST', 'GET'])
-def requestType():
-	global countType
-	print("requestType called")
-	countType = request.form['countType']
-	return redirect(url_for('counter'))
 
 @app.route('/counter/')
 def counter():
