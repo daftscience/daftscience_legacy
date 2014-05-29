@@ -635,12 +635,11 @@ function recalc() {
 		if (!editing && !nag) {
 			changeAlert('done');
 			window.alert('way to go!');
+			ga('send', 'event', countType, 'Finished Diff', $("#diffName").val(), tot);
 			nag = true;
 		}
 	}
 }
-
-
 
 function normalize() {
 	var runningTotal = document.getElementById('total').innerHTML;
