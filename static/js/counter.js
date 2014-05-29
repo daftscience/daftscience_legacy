@@ -556,6 +556,9 @@ function KeyCheck(evt) {
 }
 
 function toggleSubtract(mode) {
+	if(editing){
+		return;
+	}
 	switch (mode) {
 		case 'toggle':
 			if (!adding) {
