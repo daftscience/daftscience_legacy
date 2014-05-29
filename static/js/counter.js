@@ -345,6 +345,8 @@ function toggleDisable(option) {
 	} catch (error) {}
 
 	toggleSubtract('addEdit');
+	$("#subtractButton").removeClass("fa-plus");
+	$("#subtractButton").addClass("fa-minus");
 	//check if the disabled flag is set and toggle it. Change content to refect the new mode.
 	if ($('#edit').is(':visible')) {
 		changeAlert('ready');
@@ -558,20 +560,28 @@ function toggleSubtract(mode) {
 		case 'toggle':
 			if (!adding) {
 				changeAlert('ready');
+				$("#subtractButton").removeClass("fa-plus");
+				$("#subtractButton").addClass("fa-minus");
 			} else {
 				changeAlert('subtract');
+				$("#subtractButton").removeClass("fa-minus");
+				$("#subtractButton").addClass("fa-plus");
 			}
 			adding = !adding;
 			break;
 		case 'subtract':
 			adding = false;
 			changeAlert('subtract');
+			$("#subtractButton").removeClass("fa-minus");
+			$("#subtractButton").addClass("fa-plus");
 			recalc(); //just incase, to make sure nothing funny happened.
 			//Also this is a quick way to clean up the zeros
 			break;
 		case 'add':
 			adding = true;
 			changeAlert('ready');
+			$("#subtractButton").removeClass("fa-plus");
+			$("#subtractButton").addClass("fa-minus");
 			recalc(); //just incase, to make sure nothing funny happened.
 			//Also this is a quick way to clean up the zeros
 			break;

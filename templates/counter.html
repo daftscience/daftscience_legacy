@@ -94,6 +94,8 @@
 						<button type="button" class="btn btn-default" id="toggleCountType">UEO</button>
 					</div>
 					<div class="btn-group">
+						<button type="button" class="btn btn-default btn-warning" onclick="toggleSubtract('toggle');">
+							<i class="fa fa-minus" id="subtractButton"></i></button>
 						<button type="button" class="btn btn-default btn-warning" onclick="toggleDisableX3();">
 							<i class="fa fa-lock" id="lockButton"></i> Edit</button>
 						<button type="button" class="btn btn-default btn-danger" onclick="resetForm();">
@@ -274,32 +276,7 @@
 			</div>
 			<!-- /container -->
 		</div>
+<hr><p></p>
 		<!-- /ww -->
 	</section>
-	<!-- +++++ Footer Section +++++ -->
-	<div id="footer">
-		<div class="container">
-			<div class="centered">
-				<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
-					<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
-				</a>
-				<br />
-				<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/StillImage" property="dct:title" rel="dct:type">Diffcounter</span>by
-				<a xmlns:cc="http://creativecommons.org/ns#" href="daftscience.com/diffcounter" property="cc:attributionName" rel="cc:attributionURL">Daftscience</a>is licensed under a
-				<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-				<br />Based on a work at
-				<a xmlns:dct="http://purl.org/dc/terms/" href="daftscience.com/counter" rel="dct:source">daftscience.com/counter</a>.
-			</div>
-		</div>
-	</div>
-	<!-- Bootstrap core JavaScript
-================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<!--        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>-->
-	<!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-</div>
-<!--      non printable-->
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
 {% endblock %}
