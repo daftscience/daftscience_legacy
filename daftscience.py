@@ -33,8 +33,6 @@ from wtforms import TextField, TextAreaField, SubmitField, HiddenField
 from counterVariables import diffCells, diffKeys, ueoCells, ueoKeys
 import pushover
 
-
-
 app = Flask(__name__)
 #assets = Environment(app)
 app.config.from_object(__name__)
@@ -107,14 +105,14 @@ def get_gallery():
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    form = ContactForm()    
+    form = ContactForm()
+    links = ['Builds', 'Prints', 'About', 'Contact Me']
     if request.method == 'POST':
-        print(request.form['message'])
         notify(request)
-        return render_template('index.html', sent = True, gallery = get_gallery(), name=request.form['name'])
+        return render_template('index.html', sent = True, links=links, gallery = get_gallery(), name=request.form['name'])
     elif request.method == 'GET':
-        return render_template('index.html', form=form, gallery=get_gallery())
-    return render_template('index.html', sent = False, gallery = get_gallery(), form=form)
+        return render_template('index.html', form=form, links=links, gallery=get_gallery())
+    return render_template('index.html', sent = False, links=links, gallery = get_gallery(), form=form)
 
 @app.route('/counter/')
 def counter():

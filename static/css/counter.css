@@ -2,6 +2,14 @@
 #Counter {
 	background-color: #DCE5DE;
 }
+body.transform {
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476); /* IE6,IE7 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476)"; /* IE8 */
+  transform:rotate(180deg);
+  -ms-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg); 
+}
+
 #Tips {
 	padding-top: 80px;
 }
@@ -20,6 +28,10 @@
     padding-left: 0 !important;
     padding-bottom: 0 !important;
     padding-right: 0 !important;
+}
+.debugging{
+	padding-top:6em !important;
+
 }
 
 #statusWrapper {
