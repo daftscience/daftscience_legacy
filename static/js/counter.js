@@ -219,6 +219,13 @@ window.onload = function() {
 
 	diffName = document.getElementById('diffName');
 	initScripts();
+	$("#printButton").click(function(){
+		var d = new Date(); 
+		var now = d.toString();
+		ga('send', 'event', "print", countType, now);
+		window.print();
+	});
+
 
 };
 
@@ -228,6 +235,7 @@ function changeCount(newCount) {
 	recalc();
 	return false;
 }
+
 
 
 
