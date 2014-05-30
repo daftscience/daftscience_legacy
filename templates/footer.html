@@ -1,25 +1,29 @@
-<div id="footer">
-{% if countType %}
-	{% include 'counterFooter.html' %}
-<hr>
-{% endif %}
-<div class="centered">
-made with <i class="fa fa-heart"></i> by: <a href="https://plus.google.com/+TomPerrydaftscience"><span class="fa fa-google-plus"></span> +Tom</a><br />
-
-Copyright 2011-2014 <span class="glyphicon glyphicon-copyright-mark"></span> Daftscience.com <br />
-Code licensed under <a href="https://github.com/daftscience/daftscience/blob/master/LICENSE">MIT</a> 
-<p></p>
+<div id="footer" class="footer">
+	{% if countType %} {% include 'counterFooter.html' %}
+	<div class="row mt centered tight">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8 tight">
+			<hr>
+		</div>
+		<div class="col-sm-2"></div>
+	</div>
+	{% endif %}
+	<div class="centered">
+		made with <i class="fa fa-heart"></i> by: <a href="https://plus.google.com/+TomPerrydaftscience"><span class="fa fa-google-plus"></span> +Tom</a>
+		<br />Copyright 2011-2014 <span class="glyphicon glyphicon-copyright-mark"></span> Daftscience.com
+		<br />Code licensed under <a href="https://github.com/daftscience/daftscience/blob/master/LICENSE">MIT</a> 
+		<p></p>
+	</div>
 </div>
 
 
 
-
-        <!-- Bootstrap core JavaScript
+<!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <!--        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>-->
 <!--        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-</div>
+
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>

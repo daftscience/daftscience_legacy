@@ -134,7 +134,19 @@ hr {
 .shadowed{
     text-shadow: 0.03em 0.03em 0.1em black;
 }
+.footer {
+	background-color: #9fccb5;
+	border-color: transparent;
+	padding: 2em;
+}
 /* Helpers */
+
+#footer a:link, 
+#footer a:visited, 
+#footer a:hover {  
+	color: white;  
+	text-decoration: none; 
+} 
 
 .mt {
 	margin-top: 40px;

@@ -635,7 +635,11 @@ function recalc() {
 		if (!editing && !nag) {
 			changeAlert('done');
 			window.alert('way to go!');
-			ga('send', 'event', countType, 'Finished Diff', $("#diffName").val(), tot);
+			var d = new Date();
+			var now = d.toString(); 
+
+			//catagory, action, label, value
+			ga('send', 'event', countType, 'Finished Diff', now, tot);
 			nag = true;
 		}
 	}
