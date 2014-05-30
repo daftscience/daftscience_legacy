@@ -160,43 +160,43 @@ $(document).on("scroll", function() {
 });
  */
 
-function seedHTML(whichTable) {
-
-	if (whichTable === "cells") {
-		for (var cell in seedCells) {
-			if (seedCells.hasOwnProperty(cell)) {
-				document.write("<tr><td>");
-				if (!hasIE_ughhh) {
-					document.write("<input type='number' id='");
-				} else {
-					document.write("<input type='text' id='");
-				}
-				document.write(seedCells[cell]);
-				document.write("' value='' class='count' readOnly/>");
-				document.write("</td><td>");
-				document.write(cell + " (" + cellKeys[cell] + ")" + "</td></tr>");
-			}
-		}
-	} else {
-		for (var cell in seedCells) {
-			if (seedCells.hasOwnProperty(cell)) {
-				document.write("<div class='col-xs-10 col-md-11 printProgressBar'>");
-				document.write("<div class='progress'>");
-				document.write("<div id='" + seedCells[cell] + "Prog'");
-				document.write("class='progress progress-bar progress-bar-theme text-right' role='progressbar'");
-				document.write(" aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'");
-				document.write("style='width: 0%; min-width='100px;''>");
-				//document.write("<span class='progress-text'>0%</span>");
-				document.write("</div>");
-				document.write("</div>");
-				document.write("</div>");
-				document.write("<div class='col-xs-2 col-md-1 printPercent'>");
-				document.write("<span id='" + seedCells[cell] + "ProgText' class='progressPercent pull-right'>0%</span>");
-				document.write("</div>");
-			}
-		}
-	}
-}
+//function seedHTML(whichTable) {
+//
+//	if (whichTable === "cells") {
+//		for (var cell in seedCells) {
+//			if (seedCells.hasOwnProperty(cell)) {
+//				document.write("<tr><td>");
+//				if (!hasIE_ughhh) {
+//					document.write("<input type='number' id='");
+//				} else {
+//					document.write("<input type='text' id='");
+//				}
+//				document.write(seedCells[cell]);
+//				document.write("' value='' class='count' readOnly/>");
+//				document.write("</td><td>");
+//				document.write(cell + " (" + cellKeys[cell] + ")" + "</td></tr>");
+//			}
+//		}
+//	} else {
+//		for (var cell in seedCells) {
+//			if (seedCells.hasOwnProperty(cell)) {
+//				document.write("<div class='col-xs-10 col-md-11 printProgressBar'>");
+//				document.write("<div class='progress'>");
+//				document.write("<div id='" + seedCells[cell] + "Prog'");
+//				document.write("class='progress progress-bar progress-bar-theme text-right' role='progressbar'");
+//				document.write(" aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'");
+//				document.write("style='width: 0%; min-width='100px;''>");
+//				//document.write("<span class='progress-text'>0%</span>");
+//				document.write("</div>");
+//				document.write("</div>");
+//				document.write("</div>");
+//				document.write("<div class='col-xs-2 col-md-1 printPercent'>");
+//				document.write("<span id='" + seedCells[cell] + "ProgText' class='progressPercent pull-right'>0%</span>");
+//				document.write("</div>");
+//			}
+//		}
+//	}
+//}
 
 
 
