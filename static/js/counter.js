@@ -150,56 +150,6 @@ $(document).on("scroll", function() {
 });
 
 
-/* $('.btn-group[data-input]').each(function() {
-	var hidden = $('[name="' + $(this).data('input') + '"]');
-	$(this).on('click', '.btn', function() {
-		hidden.val($(this).val());
-	}).find('.btn').each(function() {
-		$(this).toggleClass('active', $(this).val() == hidden.val())
-	});
-});
- */
-
-//function seedHTML(whichTable) {
-//
-//	if (whichTable === "cells") {
-//		for (var cell in seedCells) {
-//			if (seedCells.hasOwnProperty(cell)) {
-//				document.write("<tr><td>");
-//				if (!hasIE_ughhh) {
-//					document.write("<input type='number' id='");
-//				} else {
-//					document.write("<input type='text' id='");
-//				}
-//				document.write(seedCells[cell]);
-//				document.write("' value='' class='count' readOnly/>");
-//				document.write("</td><td>");
-//				document.write(cell + " (" + cellKeys[cell] + ")" + "</td></tr>");
-//			}
-//		}
-//	} else {
-//		for (var cell in seedCells) {
-//			if (seedCells.hasOwnProperty(cell)) {
-//				document.write("<div class='col-xs-10 col-md-11 printProgressBar'>");
-//				document.write("<div class='progress'>");
-//				document.write("<div id='" + seedCells[cell] + "Prog'");
-//				document.write("class='progress progress-bar progress-bar-theme text-right' role='progressbar'");
-//				document.write(" aria-valuenow='100' aria-valuemin='0' aria-valuemax='100'");
-//				document.write("style='width: 0%; min-width='100px;''>");
-//				//document.write("<span class='progress-text'>0%</span>");
-//				document.write("</div>");
-//				document.write("</div>");
-//				document.write("</div>");
-//				document.write("<div class='col-xs-2 col-md-1 printPercent'>");
-//				document.write("<span id='" + seedCells[cell] + "ProgText' class='progressPercent pull-right'>0%</span>");
-//				document.write("</div>");
-//			}
-//		}
-//	}
-//}
-
-
-
 //This adds the onclick function to all of the buttons
 window.onload = function() {
 	//    document.getElementsByClassName('count')
@@ -703,27 +653,4 @@ function normalize() {
 	//fixRoundingError();
 }
 
-function fixRoundingError() {
-	var totalNorm = document.getElementById('totalNorm').value;
-	var difference = (100 - totalNorm);
-	while (total < 100) {
-		var largestRemainder = 0;
-		var inputs = document.getElementsByClass('count');
 
-
-		for (var i = 0; i < inputs.length; i++) {
-			if (inputs[i].value > (inputs[largestRemainder].value)) {
-				largestRemainder = i;
-			}
-		}
-
-	}
-
-}
-
-function isEven(value) {
-	if (value % 2 === 0)
-		return true;
-	else
-		return false;
-}
