@@ -175,6 +175,11 @@ hr {
 	color: #ffffff;
 	padding: 0;
 }
+.fa-heart{
+	color: #f78891;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
 .fa-list {
 	color: #9fccb5;
 }
