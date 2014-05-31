@@ -70,7 +70,7 @@ p {
 	behavior: url('static/css/pie/PIE.htc');
 }
 
-.table thead>tr>th {
+.table thead>tr>th>td {
 vertical-align: bottom;
 /*border-bottom: none;*/
 border: 0px solid #ddd !important;
