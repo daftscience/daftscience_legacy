@@ -24,26 +24,22 @@
 
 # !/usr/bin/python
 
-import os, sys
-import Image
-import pprint
+import os, sys, Magick, Image, pprint
 from random import shuffle
-
-#from images2gif import readGif as readGif
-#from images2gif import writeGif as writeGif
-
-#quesion 9988517/resize-gif-animation-pil-imagemagick-python
-#            go there for gifs
-basewidth = 200
+from copy import copy, deepcopy
 
 
-def shrink(imageLoc):
+shrinkWidth = 200
+thumbWidth = 200
+
+def shrink(imageLoc, smallLoc, w):
     im = Image.open(imageLoc)
-    wpercent = (basewidth / float(im.size[0]))
+    imageFormat = im.format
+    wpercent = (w / float(im.size[0]))
     hsize = int((float(im.size[1])*float(wpercent)))
-    im = im.resize((basewidth, hsize), Image.ANTIALIAS)
-    im.save(tempLoc)
-    print (imageLoc)
+    im = im.resize((w, hsize), Image.ANTIALIAS)
+    im.save(smallLoc)
+    print ("Image resized: " + smallLoc)
 
 def shrinkCrop(imageLoc, tempLoc):
     thumbSize = 75,75
@@ -65,7 +61,7 @@ def shrinkCrop(imageLoc, tempLoc):
         
     img = img.crop((left, upper, right, lower))
     img.thumbnail(thumbSize, Image.ANTIALIAS)
-    img.save(tempLoc)
+    img.save(tempLoc, quality=95)
 
 for root, dirs, files in os.walk("static/images/", topdown=False):
     for name in files:
@@ -74,16 +70,43 @@ for root, dirs, files in os.walk("static/images/", topdown=False):
         splitPath.append(name)
         imageLoc = os.path.join('', *splitPath)
         print(splitPath[2])
-        if splitPath[2] != 'thumbs':
-            splitPath.insert(2, 'thumbs/')
-            thumbLoc = os.path.join('', *splitPath)
-            print ("ThumbLocation: " + thumbLoc)
-#        imageLoc = os.path.join(root, name)
+        if splitPath[2] != 'thumbs' and splitPath[2] != "smaller":
+#			make the path for the smaller files
+#   Copy the list as an array
+            smallPath = deepcopy(splitPath)
+#	add the new subdirectory
+            smallPath.insert(2, 'smaller/')
+#	Remove the file name
+            tmp = smallPath.pop()
+#	create string with directory
+            smallDir = os.path.join('', *smallPath)
+#	add the stupid path back
+            smallPath.append(tmp)
+#	create string with full location of image
+            smallLoc = os.path.join('', *smallPath)
+
+            if not os.path.exists(smallDir):
+                os.makedirs(smallDir)
+			
+#			make the path for the thumbs
+            thumbPath = deepcopy(splitPath)
+            thumbPath.insert(2, 'thumbs/')
+            tmp = thumbPath.pop()
+            thumbDir = os.path.join('', *thumbPath)
+            thumbPath.append(tmp)
+            thumbLoc = os.path.join('', *thumbPath)
+            
+            if not os.path.exists(thumbDir):
+                os.makedirs(thumbDir)
+			
+			
+            print("Small Location: " + smallLoc)
+            print("Small dir: " + smallDir)
+            print("Thumb Location: " + thumbLoc)
             print("Image Location: " + imageLoc)
 
-#    Put the try catch thing in here 
-#it will catch shitty errors
-            shrinkCrop(imageLoc, thumbLoc) 
-
-
-        
+			
+#            shrink(imageLoc, smallLoc, 1200) 
+            shrinkCrop(imageLoc, thumbLoc)
+	
+	
