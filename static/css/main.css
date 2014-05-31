@@ -70,20 +70,30 @@ p {
 	behavior: url('static/css/pie/PIE.htc');
 }
 
-.table thead>tr>th>td {
-vertical-align: bottom;
-/*border-bottom: none;*/
-border: 0px solid #ddd !important;
-}
-
-td
-{
-    max-width: 100px;
+.table > thead > tr > th, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > tbody > tr > td, 
+.table > tfoot > tr > td {
+	vertical-align: bottom;
+	/*border-bottom: none;*/
+	border: 0px solid #ddd;
+	
+	max-width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
+.diffTable > thead > tr > th, 
+.diffTable > tbody > tr > th, 
+.diffTable > tfoot > tr > th, 
+.diffTable > thead > tr > td, 
+.diffTable > tbody > tr > td, 
+.diffTable > tfoot > tr > td {
+	border-bottom: 1px solid #ddd;
+}
 /* Links */
 
 a {
@@ -132,7 +142,7 @@ hr {
     text-shadow: 0.05em 0.05em 0.1em black;
 }
 .shadowed{
-    text-shadow: 0.03em 0.03em 0.1em black;
+/*    text-shadow: 0.00em 0.03em 0.1em #ccc;*/
 }
 .footer {
 	background-color: #9fccb5;

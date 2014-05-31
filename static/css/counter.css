@@ -34,6 +34,15 @@ body.transform {
 
 }
 
+@media (max-width: 768px) {
+/*@media (max-width: @screen-md-min) {*/
+	.counterTitle {
+		padding-top: 4.1em !important;
+	}
+}
+.counterTitle {
+	padding-top: 1.6em;
+}
 #statusWrapper {
 	position: absolute;
 	margin: 0;
@@ -41,7 +50,7 @@ body.transform {
 	padding: 0;
 }
 #floatingStatus {
-	opacity: 0.95;
+/*	opacity: 0.9;*/
 	position: absolute;
 	margin: 0;
 	z-index: 99;
@@ -56,9 +65,7 @@ body.transform {
 	position: fixed;
 	top: 0;
 }
-.counterTitle {
-	padding-top: 3em;
-}
+
 .total {
 	padding: 0;
 	margin: 0;
@@ -127,6 +134,10 @@ table{
 	padding-right: .5em !important;
 	padding-left: .5em !important;
 }
+
+
+
+
 @media print {
 	.progress {
 		background-color: #F5F5F5 !important;

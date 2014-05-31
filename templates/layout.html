@@ -17,14 +17,13 @@
 
     <link rel="stylesheet" href="{{url_for('static', filename='css/blueimp-gallery.min.css')}}">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-	
 	<link href="{{ url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-flat.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-flat-extras.css')}}" rel="stylesheet">
+	
     <link href="{{ url_for('static', filename='css/main.css')}}" rel="stylesheet">
-
-
-    {% if countType %}
+    
+	{% if countType %}
         {% include 'counterIncludes.html' %}
     {% endif %}
 	
