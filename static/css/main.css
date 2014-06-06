@@ -16,7 +16,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-webkit-overflow-scrolling: touch;
 }
-/* Titles */
 
 h1,
 h2,
@@ -48,7 +47,7 @@ p {
 	font-size: 16px;
 }
 .indent {
-	text-indent: 50px;
+	text-indent: 2em;
 }
 .centered {
 	text-align: center;
@@ -69,6 +68,31 @@ p {
 	display: table-cell;
 	vertical-align: bottom;
 	behavior: url('static/css/pie/PIE.htc');
+}
+
+.table > thead > tr > th, 
+.table > tbody > tr > th, 
+.table > tfoot > tr > th, 
+.table > thead > tr > td, 
+.table > tbody > tr > td, 
+.table > tfoot > tr > td {
+	vertical-align: bottom;
+	/*border-bottom: none;*/
+	border: 0px solid #ddd;
+	
+	max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.diffTable > thead > tr > th, 
+.diffTable > tbody > tr > th, 
+.diffTable > tfoot > tr > th, 
+.diffTable > thead > tr > td, 
+.diffTable > tbody > tr > td, 
+.diffTable > tfoot > tr > td {
+	border-bottom: 1px solid #ddd;
 }
 /* Links */
 
@@ -101,6 +125,9 @@ hr {
 	margin: 1em 0;
 	padding: 0;
 }
+.banner{
+	padding-top:2.5em;
+}
 .navbar-default {
 	background-color: #9fccb5;
 	border-color: transparent;
@@ -111,7 +138,25 @@ hr {
 .navbar-default .navbar-nav > li > a {
 	color: white;
 }
+.headText {
+    text-shadow: 0.05em 0.05em 0.1em black;
+}
+.shadowed{
+/*    text-shadow: 0.00em 0.03em 0.1em #ccc;*/
+}
+.footer {
+	background-color: #9fccb5;
+	border-color: transparent;
+	padding: 2em;
+}
 /* Helpers */
+
+#footer a:link, 
+#footer a:visited, 
+#footer a:hover {  
+	color: white;  
+	text-decoration: none; 
+} 
 
 .mt {
 	margin-top: 40px;
@@ -129,6 +174,11 @@ hr {
 .fa-white {
 	color: #ffffff;
 	padding: 0;
+}
+.fa-heart{
+	color: #f78891;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
 .fa-list {
 	color: #9fccb5;

@@ -1,34 +1,47 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
- #Counter {
+#Counter {
 	background-color: #DCE5DE;
-	/*    display: block;*/
-	/*    width: 100%;*/
-	/*        margin: 100px;*/
-	/*    left: 0;*/
 }
-#Tips {
-	padding-top: 80px;
+body.transform {
+  filter: progid:DXImageTransform.Microsoft.Matrix(sizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476); /* IE6,IE7 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Matrix(SizingMethod='auto expand', M11=0.7071067811865476, M12=-0.7071067811865475, M21=0.7071067811865475, M22=0.7071067811865476)"; /* IE8 */
+  transform:rotate(180deg);
+  -ms-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg); 
 }
-/*
-.alert{
-    top: 0;
-    bottom:0;
-    position:fixed;
-    overflow-y:scroll;
-    overflow-x:hidden;
-}
-*/
 
+#Tips {
+	padding-top: 1.4em;
+}
 .alert {
 	margin: 0;
 	padding: 0;
 	border: none;
 }
-.counted {
-	margin: 0;
-	padding: 0;
-	padding-top: .2em;
-	border: none;
+.tight{
+    margin-bottom: 0 !important;
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    maring-right: 0 !important;
+    
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+    padding-bottom: 0 !important;
+    padding-right: 0 !important;
+}
+.debugging{
+	padding-top:6em !important;
+
+}
+
+@media (max-width: 768px) {
+/*@media (max-width: @screen-md-min) {*/
+	.counterTitle {
+		padding-top: 4.1em !important;
+	}
+}
+.counterTitle {
+	padding-top: 1.6em;
 }
 #statusWrapper {
 	position: absolute;
@@ -37,7 +50,7 @@
 	padding: 0;
 }
 #floatingStatus {
-	opacity: 0.95;
+/*	opacity: 0.9;*/
 	position: absolute;
 	margin: 0;
 	z-index: 99;
@@ -52,45 +65,33 @@
 	position: fixed;
 	top: 0;
 }
-.counterTitle {
-	padding-top: 1.5em;
-}
+
 .total {
 	padding: 0;
 	margin: 0;
 }
-.progress-bar-theme {
-	background-color: #9fccb5;
-	text-align: right;
+.progressPercent{
+    padding-right: .2em;
+
 }
-.progress-text .progress-bar {
-	height: 25px;
-	overflow-x: visible;
-	white-space: nowrap;
-	color: black;
+.progress-bar {
+    display: block;
+    height: 28px;
+    background-color: #9fccb5;
+	float: right;
 }
-.progressPercent {
-	text-align: right;
+.bar-background{
+    margin-bottom:0;
+    background-color: white;
 }
 input.count {
-	padding-bottom: 1px;
-	margin: 1px;
 	width: 50px;
-	height: 27px;
-	margin-right: 4px;
 }
 #maxNum {
 	width: 50px;
 	height: 26px;
 }
-.progress-gtzero {} .progress {
-	margin: 1px;
-	padding-bottom: 1px;
-	float: right;
-	height: 27px;
-	width: 100%;
-}
-.mono {
+.monoFont {
 	font-family: "Source Sans Pro", sans-serif;
 	font-size: 16px;
 }
@@ -120,15 +121,24 @@ div.infoform {
 div.counter {
 	background-color: transparent;
 }
-td {
-	text-align: left;
+th,td {
+    margin: 0 !important;
 }
 .hiddenTillPrint {
 	display: none;
 }
+table{
+    table-layout: fixed !important;   
+}
+.keyMap{
+	padding-right: .5em !important;
+	padding-left: .5em !important;
+}
+
+
+
+
 @media print {
-	/* 	Use this to try and print... */
-	/* 	https://github.com/MrRio/jsPDF */
 	.progress {
 		background-color: #F5F5F5 !important;
 		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F5F5F5', endColorstr='#F5F5F5')" !important;
@@ -170,7 +180,6 @@ td {
 	.progress-bar-theme {
 		border-width: 1px;
 		border-style: solid;
-/* 		background-color: #ccc !important; */
 	}
 	.printBar {
 		width: 70%;

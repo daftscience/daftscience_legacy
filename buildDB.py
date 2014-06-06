@@ -73,7 +73,7 @@ def build_db():
 #            print("Category")
 #            pp.pprint(splitPath)
 			#check to make sure we aren't looking at the thumbnails
-            if splitPath[1] != 'thumbs':
+            if splitPath[1] != 'thumbs' and splitPath[1] != 'smaller':
 #                pp.pprint(root)
 				#create a variable containing the full path to each image
                 splitPath.append(name)
@@ -84,15 +84,18 @@ def build_db():
                 #pp.pprint(splitPath)
 				#Create variable containing the full path to each thumbnail
                 thumbLocation = os.path.join('', *splitPath)
+                splitPath[1] = 'smaller'
+                smallLocation = os.path.join('', *splitPath)
 				#Adds all the required variables to build the gallery
 				# splitPath[3] contains the direct folder the full image is in.
-                image = [name, splitPath[2], location, thumbLocation]
+                image = [name, splitPath[2], smallLocation, thumbLocation]
 #                print("Location")
 #                pp.pprint(location)
 #                print("ThumbLocation")
 #                pp.pprint(thumbLocation) 
 #                print("\nsplitPath")
 #                pp.pprint(splitPath)
+                print("splitpath[2]" + splitPath[1])
                 print("\nImage")
                 pp.pprint(image)
                 db.execute('insert into Gallery (image, catagory, location, thumbLocation) values (?, ?, ?, ?)', image)

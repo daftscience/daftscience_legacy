@@ -8,31 +8,38 @@
     <meta name="Daftscience.com" content="">
     <meta name="Thomas J. Perry" content="">
     
-
-
     <title>daftscience.com</title>  
-
     <!-- Fonts from Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
-
     <link rel="stylesheet" href="{{url_for('static', filename='css/blueimp-gallery.min.css')}}">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-flat.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/bootstrap-flat-extras.css')}}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/main.css')}}" rel="stylesheet">
-
-    {% if counter == 'counter' %}
+	
+    <link href="{{ url_for('static', filename='css/main.css')}}?v=1.0" rel="stylesheet">
+    
+	{% if countType %}
         {% include 'counterIncludes.html' %}
     {% endif %}
-        <!--[if lt IE 9]>
+	
+    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <script>
+      <script>
         var hasIE_ughhh = true;
-    </script>
-    <![endif]-->
+      </script>
+    <![endif]-->	
+	
+	{% include 'tracker.html' %}
+	
 </head>
+<body>
+	{% include 'navbar.html' %}
+	
+	{% block body %}{% endblock %}
 
+{% include 'footer.html' %}
 
-{% block body %}{% endblock %}
+</body>
+</html>

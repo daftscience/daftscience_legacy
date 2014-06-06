@@ -28,12 +28,13 @@ import sqlite3, random
 from flask import Flask, render_template, url_for, jsonify, flash, request, session, g, abort
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, HiddenField
-from wtforms.validators import Required
-from flask.ext.assets import Environment, Bundle
+#from wtforms.validators import Required
+#from flask.ext.assets import Environment, Bundle
+from counterVariables import diffCells, diffKeys, ueoCells, ueoKeys
 import pushover
 
 app = Flask(__name__)
-assets = Environment(app)
+#assets = Environment(app)
 app.config.from_object(__name__)
 
 # Load default config and override config from an environment variable
@@ -46,6 +47,10 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
+countType = 'diff'
+
+for cell in ueoCells:
+    print(cell + ": " + ueoCells[cell])
 
 #Database Functions
 def connect_db():
@@ -98,23 +103,24 @@ def get_gallery():
 #    pp.pprint(gallery)
     return gallery
 
-
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    form = ContactForm()    
+    form = ContactForm()
+    links = ['Builds', 'Prints', 'About', 'Contact Me']
     if request.method == 'POST':
-        print(request.form['message'])
         notify(request)
-        return render_template('index.html', sent = True, gallery = get_gallery(), name=request.form['name'])
-    
+        return render_template('index.html', sent = True, links=links, gallery = get_gallery(), name=request.form['name'])
     elif request.method == 'GET':
-        return render_template('index.html', form=form, gallery=get_gallery())
-    return render_template('index.html', sent = False, gallery = get_gallery(), form=form)
+        return render_template('index.html', form=form, links=links, gallery=get_gallery())
+    return render_template('index.html', sent = False, links=links, gallery = get_gallery(), form=form)
 
 @app.route('/counter/')
 def counter():
-	links = ['Counter', 'Tips', 'References' ] 
-	return render_template('counter.html', counter='counter', links=links)
+	links = ['Counter', 'Tips', 'References']
+	print(countType)
+	if countType == 'UEO':
+		return render_template('counter.html', countType=countType, links=links, cells = ueoCells, keys = ueoKeys)    
+	return render_template('counter.html', countType=countType, links=links, cells = diffCells, keys = diffKeys)
     
 if __name__ == '__main__':
 	app.run(host='daftscience.com', debug=True)
