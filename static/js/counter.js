@@ -638,27 +638,26 @@ function recalc() {
 function normalize() {
 	//this gets the total that was last calculated in the recalc function
 	var runningTotal = $('#total').html();
-	var tot = 0;
+	total = runningTotal;
+	debugVariable = Math.round($("#neut").val()/runningTotal*100);
 	$('.countInput').each(function() {
 		var currentCell = '';
 		cellProg = $('#' + $(this).attr('id') + 'Prog');
 		cellProgText = $('#' + $(this).attr('id') + 'ProgText');
 		if ($(this).attr('id') !== 'nrbc' && $(this).attr('id') !== 'mega') {
-			if ($(this).val()) {
-				currentCell = ((parseInt($(this).val()) / runningTotal) * 100);
-				cellProg.css({"width": parseInt(currentCell) + '%'});
-				cellProgText.html(parseInt(currentCell) + '%');
-				tot += parseInt(currentCell);
-				total = tot;
-			} else if ($(this).val() === '' || parseInt($(this).val()) === 0) {
+			if ($(this).val() !== '' && $(this).val() !== 0) {
+				currentCell = Math.round($(this).val()/runningTotal*100);
+				cellProg.css({"width": (currentCell) + '%'});
+				cellProgText.html(currentCell + '%');
+			} else {
 				currentCell = '';
 				cellProg.css({"width" : "0%"});
 				cellProgText.html('');
 			}
 		}
-		if(tot > 0 && countType != 'UEO'){
-			var nrbcPercent = parseInt(($('#nrbc').val()/tot)*100) + "%";
-			var megaPercent = parseInt(($('#mega').val()/tot)*100) + "%";
+		if(runningTotal > 0 && countType != 'UEO'){
+			var nrbcPercent = Math.round(($('#nrbc').val()/runningTotal)*100) + "%";
+			var megaPercent = Math.round(($('#mega').val()/runningTotal)*100) + "%";
 			$('#nrbcProg').css({"width": nrbcPercent});
 			$('#megaProg').css({"width": megaPercent});
 			if($('#nrbc').val() > 0){
