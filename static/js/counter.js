@@ -167,7 +167,9 @@ window.onload = function() {
 		}
 		window.print();
 	});
+
 };
+
 
 function changeCount(newCount) {
 	countTo = newCount;
