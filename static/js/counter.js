@@ -162,7 +162,10 @@ window.onload = function () {
 	$('#printButton').click(function () {
 		var d = new Date();
 		var now = d.toString();
-		ga('send', 'event', "print", countType, now);
+		if(tracking){
+			ga('send', 'event', "print", countType, now);
+		}
+		
 		window.print();
 	});
 
@@ -633,7 +636,10 @@ function recalc() {
 			var now = d.toString();
 
 			//catagory, action, label, value
-			ga('send', 'event', countType, 'Finished Diff', now, tot);
+			if(tracking){
+				ga('send', 'event', countType, 'Finished Diff', now, tot);
+			}
+			
 			nag = true;
 		}
 	}
