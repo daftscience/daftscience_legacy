@@ -24,7 +24,7 @@
 
 
 import os, sys, Image, pprint
-import sqlite3, random
+import sqlite3, random, time
 from flask import Flask, render_template, url_for, jsonify, flash, request, session, g, abort
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, HiddenField
@@ -117,10 +117,11 @@ def index():
 @app.route('/counter/')
 def counter():
 	links = ['Counter', 'Tips', 'References']
+	salty = int(time.time())
 	print(countType)
 	if countType == 'UEO':
-		return render_template('counter.html', countType=countType, links=links, cells = ueoCells, keys = ueoKeys)    
-	return render_template('counter.html', countType=countType, links=links, cells = diffCells, keys = diffKeys)
+		return render_template('counter.html', salty = salty, countType=countType, links=links, cells = ueoCells, keys = ueoKeys)    
+	return render_template('counter.html', salty = salty, countType=countType, links=links, cells = diffCells, keys = diffKeys)
     
 if __name__ == '__main__':
 	app.run(host='daftscience.com', debug=True)
