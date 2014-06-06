@@ -1,15 +1,14 @@
 {% extends "layout.html" %} {% block body %}
 <!-- +++++ Welcome Section +++++ -->
-
-
-	
 <section id="1" class="home nonPrintable">
 	<div id="ww" class="nonPrintable banner">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<h1>
-						<img src="{{ url_for('static', filename='img/header_0.10.png')}}" alt="soo realistic" class="img-responsive centered">
+
+						<img id="spin" src="{{ url_for('static', filename='img/header_0.10.png')}}" alt="soo realistic" class="img-responsive centered">
+
 					</h1>
 					<p>This app was built to help Medical Laboratory Science students practice differentials. It works best using the 10 key pad. If you have any questions just click the "Tips" link at the top of the page, or scroll down.</p>
 					<p>
@@ -128,14 +127,12 @@
 						<span class="progressPercent" id="{{cells[cell]}}ProgText">0%</span>
 					</td>
 					<td class="col-xs-1 col-sm-1 tight centered">
-						<input type='number' id="{{cells[cell]}}" value='' class="count" readOnly/>
+						<input type='text' id="{{cells[cell]}}" value='' class="countInput" readOnly/>
 					</td>
 					<td class="col-xs-5 col-sm-3 tight text-left" id="{{cells[cell]}}Map">{{cell}} ({{keys[cell]}})</td>
 				</tr>
 				{% endfor %}
 			</table>
-			<input type="text" id="totalNorm" value="0" class="alwaysDisable" readonly hidden>
-
 		</div>
 		<div class="row mt centered counter">
 			<p></p>
@@ -143,8 +140,6 @@
 		<!-- /container -->
 	</section>
 </div>
-
-
 
 <div class="nonPrintable">
 	<section id="Tips">
@@ -279,4 +274,6 @@
 		</div>
 		<!-- /ww -->
 	</section>
+	
+</div>
 {% endblock %}

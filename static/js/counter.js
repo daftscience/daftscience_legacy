@@ -30,6 +30,9 @@ var diffName;
 var nag = false;
 var hasIE_ughhh = false;
 var countType = "differential"; //UEO or differential
+var total;
+var debugVariable;
+var focusedColor = "#FFD387";
 
 var seedCells = {
 	Neutrophils: "neut",
@@ -72,9 +75,9 @@ function toggleDisableX3() {
 	toggleDisable();
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
 	var top = $('#floatingStatus').offset().top - parseFloat($('#floatingStatus').css('marginTop').replace(/auto/, 0));
-	$(window).scroll(function (event) {
+	$(window).scroll(function(event) {
 		// what the y position of the scroll is
 		var y = $(this).scrollTop();
 
@@ -95,23 +98,23 @@ $(document).ready(function () {
 		}
 	});
 
-	$('#changeCountTo').click(function () {
+	$('#changeCountTo').click(function() {
 		switch (countTo) {
-		case 100:
-			changeCount(200);
-			break;
-		case 200:
-			changeCount(300);
-			break;
-		case 300:
-			changeCount(100);
-			break;
-		default:
-			changeCount(100);
+			case 100:
+				changeCount(200);
+				break;
+			case 200:
+				changeCount(300);
+				break;
+			case 300:
+				changeCount(100);
+				break;
+			default:
+				changeCount(100);
 		}
 	});
 
-	$('#toggleCountType').click(function () {
+	$('#toggleCountType').click(function() {
 		if (countType == "UEO") {
 			$(this).html("UEO");
 			$("#otherMap").html("Other (o-letter)");
@@ -132,7 +135,7 @@ $(document).ready(function () {
 
 });
 
-$(document).on("scroll", function () {
+$(document).on("scroll", function() {
 	if ($(document).scrollTop() > 100) {
 		$("header").addClass("shrink");
 	} else {
@@ -141,25 +144,22 @@ $(document).on("scroll", function () {
 });
 
 //This adds the onclick function to all of the buttons
-window.onload = function () {
-	//    document.getElementsByClassName('count')
-	var anchors = document.querySelectorAll('.count');
-	for (var i = 0; i < anchors.length; i++) {
-		var anchor = anchors[i];
-		anchor.onclick = function () {
+window.onload = function() {
+	$(".countInput").each(function(){
+		$(this).click(function(){
 			increment(this);
-		};
-		anchor.onfocus = function () {
-			this.style.backgroundColor = window.focused;
-		};
-		anchor.onblur = function () {
+		});
+		$(this).focus(function(){
+			this.style.backgroundColor = focusedColor;
+		});
+		$(this).blur(function(){
 			this.style.backgroundColor = '';
-		};
-	}
+		});
+	});
 
 	diffName = document.getElementById('diffName');
 	initScripts();
-	$("#printButton").click(function () {
+	$("#printButton").click(function() {
 		var d = new Date();
 		var now = d.toString();
 		ga('send', 'event', "print", countType, now);
@@ -180,39 +180,39 @@ function initScripts() {
 
 
 // Prevent the backspace key from navigating back.
-$(document).unbind('keydown').bind('keydown', function (event) {
-    var doPrevent = false;
-    if (event.keyCode === 8) {
-        var d = event.srcElement || event.target;
-        if ((d.tagName.toUpperCase() === 'INPUT' && (d.type.toUpperCase() === 'TEXT' || d.type.toUpperCase() === 'PASSWORD' || d.type.toUpperCase() === 'FILE' || d.type.toUpperCase() === 'EMAIL' )) 
-             || d.tagName.toUpperCase() === 'TEXTAREA') {
-            doPrevent = d.readOnly || d.disabled;
-        }
-        else {
-            doPrevent = true;
-        }
-    }
-    if (doPrevent) {
-        event.preventDefault();
-    }
+$(document).unbind('keydown').bind('keydown', function(event) {
+	var doPrevent = false;
+	if (event.keyCode === 8) {
+		var d = event.srcElement || event.target;
+		if ((d.tagName.toUpperCase() === 'INPUT' && (d.type.toUpperCase() === 'TEXT' || d.type.toUpperCase() === 'PASSWORD' || d.type.toUpperCase() === 'FILE' || d.type.toUpperCase() === 'EMAIL')) || d.tagName.toUpperCase() === 'TEXTAREA') {
+			doPrevent = d.readOnly || d.disabled;
+		} else {
+			doPrevent = true;
+		}
+	}
+	if (doPrevent) {
+		event.preventDefault();
+	}
 });
 
 //Build debug information and call KeyCheck
-jQuery(document).keydown(function (e) {
+jQuery(document).keydown(function(e) {
 	KeyCheck(e);
-	$('#debug').html("Internet Explorer: " + hasIE_ughhh + 
-					 "<br />Key pressed: " + e.keyCode + 
-					 "<br />Editing =" + editing + 
-					 "<br />Adding = " + adding + 
-					 "<br /> Nagging = " + nag + 
-					 "<br /> countType = " + countType);
+	$('#debug').html("Internet Explorer: " + hasIE_ughhh +
+		"<br />Key pressed: " + e.keyCode +
+		"<br />Editing =" + editing +
+		"<br />Adding = " + adding +
+		"<br />Nagging = " + nag +
+		"<br />countType = " + countType +
+		"<br />Total = " + total + 
+		"<br />Debug Variable = " +debugVariable);
 });
 
-(function ($) {
-	$.konami = function (callback) {
+(function($) {
+	$.konami = function(callback) {
 		konami = "38,38,40,40,37,39,37,39,66,65";
 		var k = [];
-		$(document).keydown(function (e) {
+		$(document).keydown(function(e) {
 			k.push(e.keyCode);
 			if (k.toString().indexOf(konami) >= 0) {
 				k = [];
@@ -222,19 +222,50 @@ jQuery(document).keydown(function (e) {
 	};
 })(jQuery);
 
-$.konami(function(){
+$.konami(function() {
 	$('#wylajb').show();
-	document.body.className = 'transform';
-	setTimeout(function(){ document.body.className = ''; },10000); 
-	setTimeout(function(){ $('#wylajb').show(); }, 20000)
-	
+
+	//Cool Easteregg
+	document.getElementsByTagName("body")[0].className = 'transform';
+	setTimeout(function() {
+		document.getElementsByTagName("body")[0].className = '';
+	}, 10000);
+
+	/* 	IE8 easter egg */
+	if (hasIE_ughhh) {
+		var hideDelay = 0;
+		window.alert("Oh no, you just activated annoying mode");
+		$('div *:not(script, style, noscript)').each(function() {
+			/* 		$("div").each(function(index) { */
+			var thisDiv = this;
+			if ($(this).is(":visible")) {
+				hideDelay = hideDelay + 50;
+				setTimeout(function() {
+					$(thisDiv).hide();
+				}, hideDelay);
+				setTimeout(function() {
+					$(thisDiv).show();
+				}, (hideDelay + 10500));
+			}
+		});
+		setTimeout(function() {
+			window.alert("All done, I'd avoid doing that again.");
+		}, (hideDelay + 11000));
+
+
+	}
+
+
+	setTimeout(function() {
+		$('#wylajb').hide();
+	}, 20000);
 });
 
-(function ($) {
-	$.debugCode = function (callback) {
+(function($) {
+	$.debugCode = function(callback) {
 		var debug = "68,69,66,85,71";
 		var k = [];
-		$(document).keydown(function (e) {
+		$(document).keydown(function(e) {
 			k.push(e.keyCode);
 			if (k.toString().indexOf(debug) >= 0) {
 				k = [];
@@ -245,21 +276,21 @@ $.konami(function(){
 })(jQuery);
 
 
-$.debugCode(function(){
-	if ($( "#countTitle" ).hasClass( "debugging" )){
+$.debugCode(function() {
+	if ($("#countTitle").hasClass("debugging")) {
 		$('#countTitle').removeClass("debugging");
-	}else{
+	} else {
 		$('#countTitle').addClass("debugging");
 	}
 	$('#debug').toggle();
 });
 
 
-(function ($) {
-	$.kitty = function (callback) {
+(function($) {
+	$.kitty = function(callback) {
 		kitty = "75,73,84,84,89";
 		var k = [];
-		$(document).keydown(function (e) {
+		$(document).keydown(function(e) {
 			k.push(e.keyCode);
 			if (k.toString().indexOf(kitty) >= 0) {
 				k = [];
@@ -269,7 +300,7 @@ $.debugCode(function(){
 	};
 })(jQuery);
 
-$.kitty(function(){
+$.kitty(function() {
 	window.location.href = "https://www.youtube.com/watch?v=Dt4zvJNXbdI";
 });
 
@@ -279,28 +310,22 @@ function resetForm() {
 	toggleSubtract('add');
 	//Returns max counter to 100
 	// Loops through inputs and reselts all inputs in cellForm
-	var inputs = document.getElementsByTagName("INPUT");
-	for (var i = 0; i < inputs.length; i++) {
-		if (inputs[i].className == 'count') {
-			inputs[i].value = "";
-		}
-	}
-	var elements = document.querySelectorAll('.progress-bar');
-	for (var j = 0, len = elements.length; j < len; j++) {
-		elements[j].style.width = 0 + '%';
-	}
-
-	var percentages = document.querySelectorAll('.progressPercent');
-	for (var j = 0, len = percentages.length; j < len; j++) {
-		percentages[j].innerHTML = '';
-	}
-	var inputs = document.querySelectorAll('.count');
-	for (var i = 0; i < inputs.length; i++) {
-		inputs[i].readOnly = "readonly";
-	}
+	$(".countInput").each(function() {
+		$(this).val('');
+		$(this).attr('readonly', true);
+	});
+	$(".progress-bar").each(function() {
+		$(this).css({
+			"width": "0"
+		});
+	});
+	$('.progressPercent').each(function() {
+		$(this).html('');
+	});
 	$("#lockButton").removeClass("fa-unlock");
 	$("#lockButton").addClass("fa-lock");
 	recalc();
+
 	editing = false;
 	changeAlert('ready');
 	disabled = true;
@@ -316,13 +341,11 @@ function resetForm() {
 
 //Changes the status on the top.
 function changeAlert(activateAlert) {
-	//    document.getElementsByClassName('changeable')
-	var list = $(document.querySelectorAll('.changeable'));
-	$.each(list, function (index, data) {
-		jQuery(this).hide();
+	$('.changeable').each(function() {
+		$(this).hide();
 	});
-	jQuery('#' + activateAlert).show();
-} //cleaned
+	$('#' + activateAlert).show();
+}
 
 function toggleDisable(option) {
 	//window.alert("in toggleDisable");
@@ -330,8 +353,6 @@ function toggleDisable(option) {
 	document.getElementById('safeFocus').focus();
 	$("#lockButton").removeClass("fa-lock");
 	$("#lockButton").removeClass("fa-unlock");
-
-
 	var ae = document.activeElement.nodeName.toLowerCase();
 	try {
 		// Support: IE9+
@@ -349,7 +370,6 @@ function toggleDisable(option) {
 	if ($('#edit').is(':visible')) {
 		changeAlert('ready');
 		$("#lockButton").addClass("fa-lock");
-
 	} else {
 		changeAlert('edit');
 		$("#lockButton").addClass("fa-unlock");
@@ -360,32 +380,30 @@ function toggleDisable(option) {
 	//Runs through all the variables and toggles whether or not they are 
 	//enabled. This will also change the appearence of them to reflect the
 	//current mode. 
-	var tot = 0;
-	var inputs = document.querySelectorAll('.count');
-	for (var i = 0; i < inputs.length; i++) {
-		inputs[i].readOnly = !inputs[i].readOnly;
-	}
+	$('.countInput').each(function() {
+		$(this).attr('readonly', !this.readOnly);
+	});
 	recalc();
 }
 
 function increment(cell) {
-	var tot = parseInt(document.getElementById('total').innerHTML);
 	if (editing) {
 		return;
 	}
+	var tot = parseInt($('#total').html());
 	if (adding && tot < countTo) {
 		cell.value++;
 	} else {
-		if (!adding && cell.value > 0 && cell.value != '') {
+		if (!adding && cell.value > 0 && cell.value !== '') {
 			cell.value--;
 		}
 	}
-
 	cell.focus();
 	recalc();
 }
 
 
+//scrolls to the cell that was last updated
 function setfocus(cell) {
 	if (cell.style.display === "block") {
 		var x = window.scrollX,
@@ -396,155 +414,133 @@ function setfocus(cell) {
 }
 
 function KeyCheck(evt) {
-	//Reads the key presses
-	//    window.alert(diffName.id);
 	KeyID = evt.keyCode;
+	//This will put the page in diff mode when the enter key 
+	//is pressed on the diffname box. 
 	if ($(diffName).is(":focus")) {
 		if (KeyID == "13") {
-			//            window.alert("test");
 			$(diffName).blur();
 			KeyID = 69;
 		} else {
 			return;
 		}
 	}
-
-	//document.get(Element
 	var cell = '';
 	//Picks the Key
 	switch (KeyID) {
-	case 98:
-	case 50:
-		// 2
-		if (countType == 'UEO') {
-			cell = 'other';
-		} else {
-			cell = 'neut';
-		}
-		break;
-	case 97:
-	case 49:
-		//1
-		cell = 'band';
-		break;
-	case 99:
-	case 51:
-		//3
-		if (countType == 'UEO') {
+		case 98: // 2
+		case 50:
+			if (countType == 'UEO') {
+				cell = 'other';
+			} else {
+				cell = 'neut';
+			}
+			break;
+		case 97: //1
+		case 49:
+			cell = 'band';
+			break;
+		case 99: //3
+		case 51:
+			if (countType == 'UEO') {
+				cell = 'eos';
+			} else {
+				cell = 'lymph';
+			}
+			break;
+		case 102: //6
+		case 54:
+			cell = 'mono';
+			break;
+		case 101: //5
+		case 53:
 			cell = 'eos';
-		} else {
-			cell = 'lymph';
-		}
-		break;
-	case 102:
-	case 54:
-		//6
-		cell = 'mono';
-		break;
-	case 101:
-	case 53:
-		//5
-		cell = 'eos';
-		break;
-	case 100:
-	case 52:
-
-		//4
-		cell = 'baso';
-		break;
-	case 103:
-	case 55:
-		//7
-		cell = 'meta';
-		break;
-	case 104:
-	case 56:
-		//8
-		cell = 'myelo';
-		break;
-	case 105:
-	case 57:
-		//9
-		cell = 'pro';
-		break;
-	case 110:
-	case 190:
-		//0 or . I forget
-		cell = 'blast';
-		break;
-	case 96:
-	case 48:
-		//0 or . I forget
-		cell = 'nrbc';
-		break;
-	case 79:
-		//o
-		cell = 'other';
-		break;
-	case 106:
-		//* or / i forget
-		cell = 'mega';
-		break;
-	case 111:
-	case 191:
-		//* or / i forget
-		cell = 'plasma';
-		break;
-		// Modes
-	case 36:
-	case 38:
-	case 33:
-	case 37:
-	case 12:
-	case 39:
-	case 35:
-	case 40:
-	case 34:
-		//$('#numlock').show();
-		return;
-	case 144: //dismiss numlock
-		// $('#numlock').hide();
-		return;
-	case 68: //debug mode:
-		//        $('#debug').toggle();
-		//        evt.preventDefault();
-		return;
-	case 69: //edit mode
-		//For some reason internet explorer will display the page properly if I do this times three. #whatTheFuck!
-		toggleDisableX3();
-		evt.preventDefault();
-		return;
-	case 82: //reset
-		resetForm();
-		evt.preventDefault();
-		return;
-	case 78:
-		//n
-		return;
-	case 189:
-	case 109:
-		//-
-		toggleSubtract('toggle');
-		evt.preventDefault();
-		return;
-	case 187:
-	case 107:
-		//+
-		toggleSubtract('add');
-		evt.preventDefault();
-		return;
-	default:
-		return;
+			break;
+		case 100: //4
+		case 52:
+			cell = 'baso';
+			break;
+		case 103: //7
+		case 55:
+			cell = 'meta';
+			break;
+		case 104: //8
+		case 56:
+			cell = 'myelo';
+			break;
+		case 105: //9
+		case 57:
+			cell = 'pro';
+			break;
+		case 110: //0
+		case 190:
+			cell = 'blast';
+			break;
+		case 96: //.
+		case 48:
+			cell = 'nrbc';
+			break;
+		case 79: //o
+			cell = 'other';
+			break;
+		case 106: //*
+			cell = 'mega';
+			break;
+		case 111: // /
+		case 191:
+			cell = 'plasma';
+			break;
+			// Modes
+		case 36:
+		case 38:
+		case 33:
+		case 37:
+		case 12:
+		case 39:
+		case 35:
+		case 40:
+		case 34:
+			//$('#numlock').show();
+			return;
+		case 144: //dismiss numlock
+			// $('#numlock').hide();
+			return;
+		case 68: //debug mode:
+			//        $('#debug').toggle();
+			//        evt.preventDefault();
+			return;
+		case 69: //edit mode
+			//For some reason internet explorer will display the page properly if I do this times three. #whatTheFuck!
+			toggleDisableX3();
+			evt.preventDefault();
+			return;
+		case 82: //reset
+			resetForm();
+			evt.preventDefault();
+			return;
+		case 78:
+			//n
+			return;
+		case 189:
+		case 109: //-
+			toggleSubtract('toggle');
+			evt.preventDefault();
+			return;
+		case 187:
+		case 107: //+
+			toggleSubtract('add');
+			evt.preventDefault();
+			return;
+		default:
+			return;
 	}
 	var cellElem = document.getElementById(cell);
 	//increments
-
 	if (countType == 'UEO') {
 		if (cell != 'other' && cell != 'eos') {
 			return;
 		}
 	}
-
 	if (!editing) {
 		increment(cellElem);
 		evt.preventDefault();
@@ -556,66 +552,56 @@ function toggleSubtract(mode) {
 		return;
 	}
 	switch (mode) {
-	case 'toggle':
-		if (!adding) {
-			changeAlert('ready');
-			$("#subtractButton").removeClass("fa-plus");
-			$("#subtractButton").addClass("fa-minus");
-		} else {
+		case 'toggle':
+			if (!adding) {
+				changeAlert('ready');
+				$("#subtractButton").removeClass("fa-plus");
+				$("#subtractButton").addClass("fa-minus");
+			} else {
+				changeAlert('subtract');
+				$("#subtractButton").removeClass("fa-minus");
+				$("#subtractButton").addClass("fa-plus");
+			}
+			adding = !adding;
+			break;
+		case 'subtract':
+			adding = false;
 			changeAlert('subtract');
 			$("#subtractButton").removeClass("fa-minus");
 			$("#subtractButton").addClass("fa-plus");
-		}
-		adding = !adding;
-		break;
-	case 'subtract':
-		adding = false;
-		changeAlert('subtract');
-		$("#subtractButton").removeClass("fa-minus");
-		$("#subtractButton").addClass("fa-plus");
-		recalc(); //just incase, to make sure nothing funny happened.
-		//Also this is a quick way to clean up the zeros
-		break;
-	case 'add':
-		adding = true;
-		changeAlert('ready');
-		$("#subtractButton").removeClass("fa-plus");
-		$("#subtractButton").addClass("fa-minus");
-		recalc(); //just incase, to make sure nothing funny happened.
-		//Also this is a quick way to clean up the zeros
-		break;
-	default:
-		adding = "true";
-		return;
+			recalc(); //just incase, to make sure nothing funny happened.
+			//Also this is a quick way to clean up the zeros
+			break;
+		case 'add':
+			adding = true;
+			changeAlert('ready');
+			$("#subtractButton").removeClass("fa-plus");
+			$("#subtractButton").addClass("fa-minus");
+			recalc(); //just incase, to make sure nothing funny happened.
+			//Also this is a quick way to clean up the zeros
+			break;
+		default:
+			adding = "true";
+			return;
 	}
 }
 
-
-
-
 function recalc() {
 	var tot = 0;
-	var inputs = document.getElementsByTagName("INPUT");
-	for (var i = 0; i < inputs.length; i++) {
-		if (inputs[i].className == 'count') {
-			var unNormalized = [inputs[i].id, "Norm"];
-			var cellNorm = unNormalized.join('');
-			//window.alert(cellNorm);
-			if (inputs[i].value === '0') {
-				inputs[i].value = '';
-			}
-			var intRegex = /^\d+$/;
-			intCheck = parseInt(inputs[i].value);
-			if (intRegex.test(intCheck) && inputs[i].id != 'nrbc' && inputs[i].id != 'mega') {
-				tot += intCheck;
+	$(".countInput").each(function() {
+		//This will remove any non digit characters
+		$(this).val($(this).val().replace(/\D/g, ''));
+
+		//if it's zero change it to an empty string
+		if (parseInt($(this).val()) === 0) {
+			$(this).val('');
+			// if it's not an empty string add it to the total.	
+		} else if ($(this).val() !== '') {
+			if ($(this).attr('id') !== 'nrbc' && $(this).attr('id') !== 'mega') {
+				tot += parseInt($(this).val());
 			}
 		}
-	}
-
-	document.getElementById('total').innerHTML = tot;
-	document.getElementById('toGo').innerHTML = countTo - tot;
-	normalize();
-
+	});
 	if (tot < countTo) {
 		nag = false;
 	}
@@ -623,13 +609,18 @@ function recalc() {
 		window.alert("someone's an overachiever, you've somehow counted more than " + countTo + " cells!");
 		nag = true;
 	}
+
+	$('#total').html(tot);
+	$('#toGo').html(countTo - tot);
+
+	normalize();
+
 	if (tot == countTo && !nag) {
 		if (!editing && !nag) {
 			changeAlert('done');
 			window.alert('way to go!');
 			var d = new Date();
 			var now = d.toString();
-
 			//catagory, action, label, value
 			ga('send', 'event', countType, 'Finished Diff', now, tot);
 			nag = true;
@@ -638,44 +629,37 @@ function recalc() {
 }
 
 function normalize() {
-	var runningTotal = document.getElementById('total').innerHTML;
-	var inputs = document.getElementsByTagName("INPUT");
+	//this gets the total that was last calculated in the recalc function
+	var runningTotal = $('#total').html();
 	var tot = 0;
-	for (var i = 0; i < inputs.length; i++) {
+	$('.countInput').each(function() {
 		var currentCell = '';
-		if (inputs[i].className == 'count') {
-			var unNormalized = [inputs[i].id, 'Prog'];
-			var cellProg = unNormalized.join('');
-			var cellProgText = cellProg + 'Text';
-			if (inputs[i].value === '0' || inputs[i].value === '') {
+		cellProg = $('#' + $(this).attr('id') + 'Prog');
+		cellProgText = $('#' + $(this).attr('id') + 'ProgText');
+		if ($(this).attr('id') !== 'nrbc' && $(this).attr('id') !== 'mega') {
+			if ($(this).val()) {
+				currentCell = ((parseInt($(this).val()) / runningTotal) * 100);
+				cellProg.css({"width": parseInt(currentCell) + '%'});
+				cellProgText.html(parseInt(currentCell) + '%');
+				tot += parseInt(currentCell);
+				total = tot;
+			} else if ($(this).val() === '' || parseInt($(this).val()) === 0) {
 				currentCell = '';
-			}
-			var intRegex = /^\d+$/;
-			intCheck = parseInt(inputs[i].value);
-			if (intRegex.test(intCheck) && inputs[i].id != 'nrbc' && inputs[i].id != 'mega') {
-				currentCell = ((intCheck / runningTotal) * 100);
-
-				document.getElementById(cellProg).style.width = parseInt(currentCell) + '%';
-				if (parseInt(currentCell) > 0) {
-					document.getElementById(cellProgText).innerHTML = parseInt(currentCell) + '%';
-				} else {
-					document.getElementById(cellProgText).innerHTML = '';
-				}
-				tot += currentCell;
+				cellProg.css({"width" : "0%"});
+				cellProgText.html('');
 			}
 		}
-	}
-	document.getElementById('totalNorm').value = tot;
-	if (tot > 0 && countType != 'UEO') {
-		document.getElementById('nrbcProg').style.width = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
-		if (parseInt(document.getElementById('nrbc').value) > 0) {
-			document.getElementById('nrbcProgText').innerHTML = parseInt((document.getElementById('nrbc').value / tot) * 100) + '%';
+		if(tot > 0 && countType != 'UEO'){
+			var nrbcPercent = parseInt(($('#nrbc').val()/tot)*100) + "%";
+			var megaPercent = parseInt(($('#mega').val()/tot)*100) + "%";
+			$('#nrbcProg').css({"width": nrbcPercent});
+			$('#megaProg').css({"width": megaPercent});
+			if($('#nrbc').val() > 0){
+				$("#nrbcProgText").html(nrbcPercent);
+			}
+			if($('#mega').val() > 0){
+				$("#megaProgText").html(megaPercent);
+			}
 		}
-		document.getElementById('megaProg').style.width = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
-		if (parseInt(document.getElementById('mega').value) > 0) {
-			document.getElementById('megaProgText').innerHTML = parseInt((document.getElementById('mega').value / tot) * 100) + '%';
-		}
-	}
-
-	//fixRoundingError();
+	});
 }
