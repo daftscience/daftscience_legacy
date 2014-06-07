@@ -32,7 +32,7 @@ var hasIE_ughhh = false;
 var countType = "differential"; //UEO or differential
 var total;
 var debugVariable;
-var focusedColor = "#FFD387";
+var focusedColor = "#dff0d8";
 
 var seedCells = {
 	Neutrophils: "neut",

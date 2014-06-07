@@ -138,7 +138,7 @@ table {
 		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F5F5F5', endColorstr='#F5F5F5')" !important;
 	}
 	.progress-bar {
-border: 2px solid !important;
+		border: 2px solid !important;
 		height: 26px !important;
 		background-color: #F5F5F5 !important;
 		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F5F5F5', endColorstr='#F5F5F5')" !important;
