@@ -3,12 +3,12 @@
 <section id="1" class="home nonPrintable">
 	<div id="ww" class="nonPrintable banner">
 		<div class="container">
-			<div class="row">
+			<div class="row animated">
 				<div class="col-lg-8 col-lg-offset-2 centered">
 					<h1>
-						<img id="spin" src="{{ url_for('static', filename='img/header.png')}}?v={{fileVersions['diffHeader']}}" alt="soo realistic" class="img-responsive centered">
+						<img id="spin" src="{{ url_for('static', filename='img/header.png')}}?v={{fileVersions['diffHeader']}}" alt="soo realistic" class="img-responsive centered ee">
 					</h1>
-					<p>This app was built to help Medical Laboratory Science students practice differentials. It works best using the 10 key pad. If you have any questions just click the "Tips" link at the top of the page, or scroll down.</p>
+					<p class="ee">This app was built to help Medical Laboratory Science students practice differentials. It works best using the 10 key pad. If you have any questions just click the "Tips" link at the top of the page, or scroll down.</p>
 					<p>
 						<u>IMPORTANT:</u>This is for practice purposes only, not intended for clinical differentials. There are known, and possibly unknown mathematical errors in how relative values are calculated (rounding errors: see below.) Please double check any values you get.
 					</p>
@@ -26,44 +26,44 @@
 <div id="statusWrapper" class="container">
 	<div id="floatingStatus" class="row mt centered alert alert-success">
 		<div class="col-sm-3 counted">
-			<h3 class="counted">Counted:
+			<h3 class="counted ee">Counted:
 				<span id="total" class="counted">0</span>
 			</h3>
 		</div>
 		<div class="col-sm-6 hiddenTillPrint"></div>
 		<div class="col-sm-6 nonPrintable">
-			<div id="ready" class="alert alert-success changeable">
+			<div id="ready" class="alert alert-success changeable ee">
 				<p>Ready to go</p>
 				If you have questions or need help scroll down to see the help section.
 			</div>
-			<div id="UEO" class="alert alert-success changeable" hidden>
+			<div id="UEO" class="alert alert-success changeable ee" hidden>
 				<p>Urine Eosinophil mode</p>
 				start your diff!
 			</div>
-			<div id="done" class="alert alert-success changeable" hidden>
+			<div id="done" class="alert alert-success changeable ee" hidden>
 				<p>Finished!</p>
 				Hit 'R' to reset, or Ctrl+P to print.<br>
 			</div>
-			<div id="subtract" class="alert alert-danger changeable" hidden>
+			<div id="subtract" class="alert alert-danger changeable ee" hidden>
 				<p>Subtrating</p>
 				Buttons will now subtract, hit '+' to resume diff.<br>
 			</div>
-			<div id="edit" class="alert alert-warning changeable" hidden>
+			<div id="edit" class="alert alert-warning changeable ee" hidden>
 				<p>Edit Mode</p>
 				Change the title or percentages, hit 'E' to resume diff. <p> </p>
 			</div>
-			<div id="wylajb" class="alert alert-success alert-dismissable" hidden>
+			<div id="wylajb" class="alert alert-success alert-dismissable ee" hidden>
 				<p>konami mode:</p>
 				What have you done?!
 			</div>
-			<div id="debug" class="alert alert-warning debug" hidden></div>
-			<div id="numlock" class="alert alert-danger alert-dismissable" hidden>
+			<div id="debug" class="alert alert-warning debug ee" hidden></div>
+			<div id="numlock" class="alert alert-danger alert-dismissable ee" hidden>
 				<p>whoa, hang on a sec...</p>
 				That was close, you have to turn the number lock on before you start counting. It's usually somewhere above the 7 key.
 			</div>
 		</div>
 		<div class="col-sm-3 counted">
-			<h3 class="counted">Remaining:
+			<h3 class="counted ee">Remaining:
 				<span id="toGo" class="counted">100</span>
 			</h3>
 		</div>
@@ -78,16 +78,21 @@
 	<section class="counter">
 		<div class="row centered counter">
 			<div class="col-sm-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-				<h1 class="counterTitle shadowed" id="countTitle">Electronic Diff-o-matic</h1>
+				<h1 class="counterTitle shadowed ee" id="countTitle">Electronic Diff-o-matic</h1>
 			</div>
 		</div>
 		<div class="row centered counter">
 			<!--			<div class="center-block">-->
-			<div class="pagination">
+			<div class="pagination ee">
 				<div class="btn-toolbar text-center">
 					<div class="btn-group">
-						<button type="button" class="btn btn-default" id="changeCountTo">100</button>
-						<button type="button" class="btn btn-default" id="toggleCountType">UEO</button>
+						<button type="button" class="btn btn-default changeCount btn-primary" value="100">100</button>
+						<button type="button" class="btn btn-default changeCount" value="200">200</button>
+						<button type="button" class="btn btn-default changeCount" value="300">300</button>
+					</div>
+					<div class="btn-group">
+						<button type="button" class="btn btn-default countType btn-primary" id="toggleCountType">Diff</button>
+						<button type="button" class="btn btn-default countType" id="toggleCountType">UEO</button>
 					</div>
 					<div class="btn-group">
 						<button type="button" class="btn btn-default btn-warning" onclick="toggleSubtract('toggle');">
@@ -103,10 +108,10 @@
 			</div>
 			<!--			</div>-->
 		</div>
-		<div class="row mt centered counter">
+		<div class="row mt ee centered counter">
 			<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 				<div class="input-group input-group-lg">
-					<span class="input-group-addon">
+					<span class="ee input-group-addon">
 						<i class="fa fa-barcode" id="safeFocus" onclick="toggleDisableX3();"></i>
 					</span>
 					<input type="text" id="diffName" class="form-control" placeholder="Differential I.D." disabled>
@@ -115,23 +120,22 @@
 		</div>
 
 		<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-			<table class="table tight diffTable">
-				{% for cell in cells %}
-				<tr class="tight {{cells[cell]}}{% if cells[cell] != 'eos' %}{% if cells[cell] != 'other' %} notUEO{% endif %}{% endif %}" id="{{cells[cell]}}Tr">
-					<td class="col-xs-5 col-sm-7 tight bar-background">
-						<span id='{{cells[cell]}}Prog' class="progress-bar"></span>
-					</td>
-					<td class="col-xs-1 col-sm-1 tight text-right">
-						<span class="progressPercent" id="{{cells[cell]}}ProgText">0%</span>
-					</td>
-					<td class="col-xs-1 col-sm-1 tight centered">
-						<input type='text' id="{{cells[cell]}}" value='' class="countInput" readOnly/>
-					</td>
-					<td class="col-xs-5 col-sm-3 tight text-left" id="{{cells[cell]}}Map">{{cell}} ({{keys[cell]}})</td>
-				</tr>
-				{% endfor %}
-			</table>
+			{% for cell in cells %}
+			<div class="row ee {{cells[cell]}}{% if cells[cell] != 'eos' %}{% if cells[cell] != 'other' %} notUEO {% endif %}{% endif %}animated cellRow">
+				<div class="col-xs-5 col-sm-7 tight bar-background">
+					<span id='{{cells[cell]}}Prog' class="progress-bar"></span>
+				</div>
+				<div class="col-xs-1 col-sm-1 tight text-right">
+					<span class="progressPercent" id="{{cells[cell]}}ProgText">0%</span>
+				</div>
+				<div class="col-xs-1 col-sm-1 tight centered">
+					<input type='text' id="{{cells[cell]}}" value='' class="countInput" readOnly>
+				</div>
+				<div class="col-xs-5 col-sm-3 tight text-left" id="{{cells[cell]}}Label">{{cell}} ({{keys[cell]}})</div>
+			</div>
+			{% endfor %}
 		</div>
+		
 		<div class="row mt centered counter">
 			<p></p>
 		</div>

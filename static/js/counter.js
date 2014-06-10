@@ -32,8 +32,8 @@ var hasIE_ughhh = false;
 var countType = "differential"; //UEO or differential
 var total;
 var debugVariable;
-var focusedColor = "#dff0d8";
-
+var focusedColor = "#fdf8e5";
+var subtractFocusColor = "#f2dedf";
 var seedCells = {
 	Neutrophils: "neut",
 	"Bands Cells": "band",
@@ -114,23 +114,55 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#toggleCountType').click(function() {
-		if (countType == "UEO") {
-			$(this).html("UEO");
-			$("#otherMap").html("Other (o-letter)");
-			$("#eosMap").html("Eosinophils (5)");
-			countType = 'differential';
-			$("#changeCountTo").show();
-		} else {
-			$("#changeCountTo").hide();
-			$("#otherMap").html("Other (2)");
-			$("#eosMap").html("Eosinophils (3)");
-			countType = 'UEO';
-			$(this).html("Diff");
-		}
-		$(".notUEO").slideToggle(0);
+	$('.countType').click(function() {
+		$(".countType").removeClass("btn-primary");
+		$(this).addClass("btn-primary");
+		countType = $(this).html();
+		if (countType == "UEO"){
+			$("#otherLabel").html("Other (2)");
+			$("#eosLabel").html("Eosinophils (3)");	
+			var animateDelay = 0;
+			$('.notUEO').each(function(){
+				var elem = this;
+				$(elem).slideUp(1000);
+				animateDelay += 50;
+				setTimeout(function(){
+					$(elem).removeClass("slideInRight");
+					$(elem).addClass("slideOutLeft");
+				}, animateDelay);
+			});
+			$(".changeCount").each(function(){
+				$(this).attr("disabled", "disabled");
+				if($(this).val() == 200){
+					$(this).click();
+					$(this).removeAttr("disabled");	
+				}
+			});
+		}else {
+			if (countType == "Diff"){
+				$("#otherLabel").html("Other (o-letter)");
+				$("#eosLabel").html("Eosinophils (5)");
+				var animateDelay = 0;
+				$('.notUEO').each(function(){
+					var elem = this;
+					animateDelay += 50;
+//				This will make the element slide in after its back to it's normal size
+					setTimeout(function(){
+						$(elem).removeClass("slideOutLeft");
+						$(elem).slideDown(1000);
+						$(elem).addClass("slideInRight");
+					}, animateDelay);
+				});
+				$(".changeCount").each(function(){
+					$(this).removeAttr("disabled");
+					if($(this).val() == 100){
+						$(this).click();
+					}
+				});
+				
+			}		
+		}		
 		resetForm();
-
 	});
 
 });
@@ -147,12 +179,20 @@ $(document).on("scroll", function() {
 window.onload = function() {
 	$(".countInput").each(function(){
 		$(this).click(function(){
+			if(editing){
+				$(this).select();
+			}
 			increment(this);
 		});
 		$(this).focus(function(){
-			this.style.backgroundColor = focusedColor;
+			if(!adding){
+				$(this).parent().parent(".cellRow").css("background", subtractFocusColor);
+			}else {
+				$(this).parent().parent(".cellRow").css("background", focusedColor);
+			}
 		});
 		$(this).blur(function(){
+			$(this).parent().parent(".cellRow").css("background", "");
 			this.style.backgroundColor = '';
 		});
 	});
@@ -166,6 +206,16 @@ window.onload = function() {
 			ga('send', 'event', "print", countType, now);
 		}
 		window.print();
+	});
+	
+	$('.changeCount').click(function(){
+		$('.changeCount').each(function(){
+			$(this).removeClass("btn-primary");
+		});
+		$(this).addClass("btn-primary");
+		countTo = $(this).html();
+		recalc();
+		return false;
 	});
 
 };
@@ -228,40 +278,34 @@ jQuery(document).keydown(function(e) {
 
 $.konami(function() {
 	$('#wylajb').show();
-
 	//Cool Easteregg
-	document.getElementsByTagName("body")[0].className = 'transform';
-	setTimeout(function() {
-		document.getElementsByTagName("body")[0].className = '';
-	}, 10000);
-
-	/* 	IE8 easter egg */
-	if (hasIE_ughhh) {
-		var hideDelay = 0;
-		window.alert("Oh no, you just activated annoying mode");
-		$('div *:not(script, style, noscript)').each(function() {
-			/* 		$("div").each(function(index) { */
-			var thisDiv = this;
-			if ($(this).is(":visible")) {
-				hideDelay = hideDelay + 50;
-				setTimeout(function() {
-					$(thisDiv).hide();
-				}, hideDelay);
-				setTimeout(function() {
-					$(thisDiv).show();
-				}, (hideDelay + 10500));
+//	document.getElementsByTagName("body")[0].className = 'transform';
+//	setTimeout(function() {
+//		document.getElementsByTagName("body")[0].className = '';
+//	}, 10000);
+//	$('div *:not(script, style, noscript)').each(function() {
+	$(".ee").each(function(){
+		$(this).click(function(){
+			$(this).addClass("animated");
+			$(this).addClass("hinge");
+			if(hasIE_ughhh){
+				$(this).slideUp(100);
 			}
 		});
-		setTimeout(function() {
-			window.alert("All done, I'd avoid doing that again.");
-		}, (hideDelay + 11000));
-
-
-	}
-
-
+	});
+	
+	
 	setTimeout(function() {
 		$('#wylajb').hide();
+		$(".ee").each(function(){
+			$(this).removeClass("animated");
+			$(this).removeClass("hinge");
+			if(hasIE_ughhh){
+				$(this).slideDown(150);
+				$('#numLock').hide();
+				$('#debug').hide();
+			}
+		});
 	}, 20000);
 });
 

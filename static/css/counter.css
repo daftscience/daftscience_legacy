@@ -6,6 +6,8 @@ body.transform {
 	transform: rotate(25deg);
 	-ms-transform: rotate(25deg);
 	-webkit-transform: rotate(25deg);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.9659258262890683, M12=-0.2588190451025207, M21=0.2588190451025207, M22=0.9659258262890683, SizingMethod='auto expand')";
+
 }
 #Tips {
 	padding-top: 1.4em;
@@ -60,6 +62,9 @@ body.transform {
 	position: fixed;
 	top: 0;
 }
+.cellRow{
+	margin: 1px;
+}
 .total {
 	padding: 0;
 	margin: 0;
@@ -74,15 +79,19 @@ body.transform {
 	float: right;
 }
 .bar-background {
+	opacity: 0.8;
 	margin-bottom: 0;
 	background-color: white;
 }
 input.countInput {
+	height: 28px;
+	font-size: 100%;
+	text-align: center;
 	width: 2.5em;
 	border: 1px solid #000000; 
 }
 input[readonly] {
-/* 	background-color:#DCE5DE; */
+ 	background-color:#EEEEEE; 
 }
 #maxNum {
 	width: 50px;
