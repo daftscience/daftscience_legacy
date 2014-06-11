@@ -29,7 +29,7 @@ from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, HiddenField
 #from wtforms.validators import Required
 #from flask.ext.assets import Environment, Bundle
-from counterVariables import diffCells, diffKeys, ueoCells, ueoKeys
+from counterVariables import diffCells, diffKeys, ueoCells, ueoKeys, paraCells, paraKeys
 import pushover
 
 app = Flask(__name__)
@@ -46,7 +46,6 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
-countType = 'diff'
 fileVersions = {}
 folderPath = os.path.dirname(os.path.realpath(__file__))
 fileVersions["counterCss"] = os.path.getmtime(folderPath + "/static/css/counter.css")
@@ -126,11 +125,16 @@ def counter():
 	global fileVersions
 	pprint.pprint(fileVersions)
 	links = ['Counter', 'Tips', 'References']
-# 	print(countType)
-# 	if countType == 'UEO':
-# 		return render_template('counter.html', fileVersions=fileVersions, countType=countType, links=links, cells = ueoCells, keys = ueoKeys)    
-	return render_template('counter.html', fileVersions = fileVersions, countType=countType, links=links, cells = diffCells, keys = diffKeys)
-    
+	return render_template('counter.html', fileVersions = fileVersions, links=links, cells = diffCells, keys = diffKeys)
+
+@app.route('/oap/')
+def oap():
+	global fileVersions
+	pprint.pprint(fileVersions)
+	links = ['Counter', 'Tips', 'References']
+	return render_template('counter.html', fileVersions = fileVersions, links=links, cells = paraCells, keys = paraKeys)
+ 
+	
 if __name__ == '__main__':
 	app.run(host='daftscience.com', debug=True)
 

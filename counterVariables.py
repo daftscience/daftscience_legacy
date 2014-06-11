@@ -7,6 +7,16 @@ ueoKeys = OrderedDict()
 ueoKeys['Eosinophils']      = "3"
 ueoKeys['Others']           = "2"
 
+paraKeys = OrderedDict()
+paraKeys['firstKind']     = '1'
+paraKeys['secondKind']	='2'
+paraKeys['thirdKind']	='3'
+
+paraCells = OrderedDict()
+paraCells['firstKind']     = 'fk'
+paraCells['secondKind']	= 'sk'
+paraCells['thirdKind'] = 'tk'
+
 diffCells = OrderedDict()
 diffCells['Neutrophils']    = 'neut'
 diffCells['Bands Cells']    = 'band'

@@ -135,7 +135,7 @@ $(document).ready(function() {
 				$(this).attr("disabled", "disabled");
 				if($(this).val() == 200){
 					$(this).click();
-					$(this).removeAttr("disabled");	
+/* 					$(this).removeAttr("disabled");	 */
 				}
 			});
 		}else {
