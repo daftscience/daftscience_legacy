@@ -217,6 +217,21 @@ window.onload = function() {
 		recalc();
 		return false;
 	});
+	
+	$("#fixMeBtn").click(function(){
+		$('#wylajb').hide();
+		$(".ee").each(function(){
+			$(this).removeClass("animated");
+			$(this).removeClass("hinge");
+			if(hasIE_ughhh){
+				$(this).slideDown(150);
+				$('#numLock').hide();
+				$('#debug').hide();
+			}
+			$(this).unbind("click");
+		});
+		$("#fixMe").hide();
+	});
 
 };
 
@@ -279,11 +294,6 @@ jQuery(document).keydown(function(e) {
 $.konami(function() {
 	$('#wylajb').show();
 	//Cool Easteregg
-//	document.getElementsByTagName("body")[0].className = 'transform';
-//	setTimeout(function() {
-//		document.getElementsByTagName("body")[0].className = '';
-//	}, 10000);
-//	$('div *:not(script, style, noscript)').each(function() {
 	$(".ee").each(function(){
 		$(this).click(function(){
 			$(this).addClass("animated");
@@ -296,17 +306,8 @@ $.konami(function() {
 	
 	
 	setTimeout(function() {
-		$('#wylajb').hide();
-		$(".ee").each(function(){
-			$(this).removeClass("animated");
-			$(this).removeClass("hinge");
-			if(hasIE_ughhh){
-				$(this).slideDown(150);
-				$('#numLock').hide();
-				$('#debug').hide();
-			}
-		});
-	}, 20000);
+		$("#fixMe").show();
+	}, 10000);
 });
 
 (function($) {

@@ -9,7 +9,7 @@
 						<img id="spin" src="{{ url_for('static', filename='img/header.png')}}?v={{fileVersions['diffHeader']}}" alt="soo realistic" class="img-responsive centered ee">
 					</h1>
 					<p class="ee">This app was built to help Medical Laboratory Science students practice differentials. It works best using the 10 key pad. If you have any questions just click the "Tips" link at the top of the page, or scroll down.</p>
-					<p>
+					<p class="ee">
 						<u>IMPORTANT:</u>This is for practice purposes only, not intended for clinical differentials. There are known, and possibly unknown mathematical errors in how relative values are calculated (rounding errors: see below.) Please double check any values you get.
 					</p>
 				</div>
@@ -32,6 +32,10 @@
 		</div>
 		<div class="col-sm-6 hiddenTillPrint"></div>
 		<div class="col-sm-6 nonPrintable">
+			<div id="fixMe" hidden>
+				<button type="button" class="btn btn-default btn-primary" id="fixMeBtn">Fix Me!!!</button>
+
+			</div>
 			<div id="ready" class="alert alert-success changeable ee">
 				<p>Ready to go</p>
 				If you have questions or need help scroll down to see the help section.
@@ -108,7 +112,7 @@
 			</div>
 			<!--			</div>-->
 		</div>
-		<div class="row mt ee centered counter">
+		<div class="row mt ee centered counter ee">
 			<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 				<div class="input-group input-group-lg">
 					<span class="ee input-group-addon">
@@ -147,26 +151,26 @@
 	<section id="Tips">
 		<div class="container pt" id="help">
 			<div class="row mt">
-				<div class="col-lg-8 col-lg-offset-2 centered">
+				<div class="col-lg-8 col-lg-offset-2 centered ee">
 					<h1>Tips and Tricks</h1>
 				</div>
 			</div>
 			<div class="row mt">
-				<div class="col-md-4 centered">
+				<div class="col-md-4 centered ee">
 					<i class="fa fa-cogs fa-5x fa-green"></i>
 					<h3>How do I use this fancy thing?</h3>
 				</div>
-				<div class="col-md-4 centered">
+				<div class="col-md-4 centered ee">
 					<i class="fa fa-keyboard-o fa-5x fa-green"></i>
 					<h3>Keyboard layout</h3>
 				</div>
-				<div class="col-md-4 centered">
+				<div class="col-md-4 centered ee">
 					<i class="fa fa-bug fa-5x fa-green"></i>
 					<h3>Normalization issues</h3>
 				</div>
 			</div>
 			<div class="row mt">
-				<div class="col-md-4">
+				<div class="col-md-4 ee">
 					<dl>
 						<dt>Subtract cells</dt>
 						<dd>
@@ -196,7 +200,7 @@
 						</dd>
 					</dl>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 ee">
 					<table class="table tight table-condensed">
 						<thead>
 							<tr>
@@ -218,7 +222,7 @@
 						</tbody>
 					</table>
 					<hr>
-					<ul class="fa-ul">
+					<ul class="fa-ul ee">
 						<strong class="keylist">Modes</strong>
 						<li>
 							<span class="monoFont">R </span>
@@ -234,7 +238,7 @@
 						</li>
 					</ul>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 ee">
 					<dl>
 						<dt>What is this?</dt>
 						<dd>
@@ -257,7 +261,7 @@
 		<hr>
 		<!-- /container -->
 	</section>
-	<section id="References">
+	<section id="References" class="ee">
 		<!-- +++++ Reference material +++++ -->
 		<div id="ref">
 			<div class="container">
