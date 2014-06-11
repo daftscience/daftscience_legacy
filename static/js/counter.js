@@ -292,6 +292,7 @@ jQuery(document).keydown(function(e) {
 })(jQuery);
 
 $.konami(function() {
+	if(!hasIE_ughhh){
 	$('#wylajb').show();
 	//Cool Easteregg
 	$(".ee").each(function(){
@@ -303,11 +304,10 @@ $.konami(function() {
 			}
 		});
 	});
-	
-	
 	setTimeout(function() {
 		$("#fixMe").show();
-	}, 10000);
+	}, 20000);
+	}
 });
 
 (function($) {
