@@ -23,10 +23,12 @@
 
 
 
-import os, sys, Image, pprint, sqlite3, random, time
+import os, sys, Image, sqlite3, random, time, json
 from flask import Flask, render_template, url_for, jsonify, flash, request, session, g, abort
 from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, HiddenField
+from pprint import pprint
+from collections import OrderedDict
 #from wtforms.validators import Required
 #from flask.ext.assets import Environment, Bundle
 from counterVariables import diffCells, diffKeys, ueoCells, ueoKeys, paraCells, paraKeys
@@ -54,16 +56,12 @@ fileVersions["counterJs"] = os.path.getmtime(folderPath + "/static/js/counter.js
 fileVersions["diffHeader"] = os.path.getmtime(folderPath + "/static/img/header.png")
 
 
-for cell in ueoCells:
-    print(cell + ": " + ueoCells[cell])
-
-#Database Functions
 def connect_db():
-    """Connects to the specific database."""
-    rv = sqlite3.connect(app.config['DATABASE'])
-    rv.row_factory = sqlite3.Row
-    rv.text_factory = str
-    return rv
+	"""Connects to the specific database."""
+	rv = sqlite3.connect(app.config['DATABASE'])
+	rv.row_factory = sqlite3.Row
+	rv.text_factory = str
+	return rv
 
 def get_db():
     if not hasattr(g, 'sqlite_db'): 
@@ -122,17 +120,20 @@ def index():
 
 @app.route('/counter/')
 def counter():
-	global fileVersions
-	pprint.pprint(fileVersions)
+	jsonFile=open(folderPath+  "/static/json/differential.json")
+	differentialJson = json.load(jsonFile, object_pairs_hook=OrderedDict)
+	jsonFile.close()
+#	global fileVersions
+#	pprint(fileVersions)
 	links = ['Counter', 'Tips', 'References']
-	return render_template('counter.html', fileVersions = fileVersions, links=links, cells = diffCells, keys = diffKeys)
+	return render_template('counter.html', fileVersions = fileVersions, links=links, cells = differentialJson)
 
 @app.route('/oap/')
 def oap():
 	global fileVersions
-	pprint.pprint(fileVersions)
+	pprint(fileVersions)
 	links = ['Counter', 'Tips', 'References']
-	return render_template('counter.html', fileVersions = fileVersions, links=links, cells = paraCells, keys = paraKeys)
+	return render_template('counter.html', fileVersions = fileVersions, links=links, cells = ueoJson)
  
 	
 if __name__ == '__main__':

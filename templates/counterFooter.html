@@ -11,3 +11,16 @@
 		<a xmlns:dct="http://purl.org/dc/terms/" href="http://daftscience.com/counter/" rel="dct:source">daftscience.com/counter/</a>.
 	</div>
 </div>
+<!--<script src="{{url_for('static', filename='json/cells.json')}}"></script>-->
+
+
+<script>
+	var differentialJson, ueoJson;
+	$.getJSON("{{url_for('static', filename='json/differential.json')}}", function(json) {
+  	differentialJson = json;
+	});
+	$.getJSON("{{url_for('static', filename='json/ueo.json')}}", function(json) {
+  	ueoJson = json;
+	});
+
+</script>

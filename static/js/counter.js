@@ -34,39 +34,10 @@ var total;
 var debugVariable;
 var focusedColor = "#fdf8e5";
 var subtractFocusColor = "#f2dedf";
-var seedCells = {
-	Neutrophils: "neut",
-	"Bands Cells": "band",
-	Lymphocytes: "lymph",
-	Monocytes: "mono",
-	Eosinophils: "eos",
-	Basophils: "baso",
-	Metamyelocytes: "meta",
-	Myelocytes: "myelo",
-	Promyelocytes: "pro",
-	Blasts: "blast",
-	NRBCs: "nrbc",
-	Others: "other",
-	Megakaryocytes: "mega",
-	"Plasma Cells": "plasma"
-};
+var differentialJson = null;
 
-var cellKeys = {
-	Neutrophils: "2",
-	"Bands Cells": "1",
-	Lymphocytes: "3",
-	Monocytes: "6",
-	Eosinophils: "5",
-	Basophils: "4",
-	Metamyelocytes: "7",
-	Myelocytes: "8",
-	Promyelocytes: "9",
-	Blasts: " . ",
-	NRBCs: "0 -zero",
-	Others: "o -letter",
-	Megakaryocytes: "*",
-	"Plasma Cells": "/"
-};
+
+
 
 //Forces IE to redraw the elements.
 function toggleDisableX3() {
@@ -75,7 +46,8 @@ function toggleDisableX3() {
 	toggleDisable();
 }
 
-$(document).ready(function() {
+$(document).ready(function() {	
+	
 	var top = $('#floatingStatus').offset().top - parseFloat($('#floatingStatus').css('marginTop').replace(/auto/, 0));
 	$(window).scroll(function(event) {
 		// what the y position of the scroll is
@@ -97,7 +69,6 @@ $(document).ready(function() {
 			$('#floatingStatus').removeClass('fixed');
 		}
 	});
-
 	$('#changeCountTo').click(function() {
 		switch (countTo) {
 			case 100:
@@ -114,6 +85,8 @@ $(document).ready(function() {
 		}
 	});
 
+//	window.alert(cells);
+	
 	$('.countType').click(function() {
 		$(".countType").removeClass("btn-primary");
 		$(this).addClass("btn-primary");
@@ -177,6 +150,8 @@ $(document).on("scroll", function() {
 
 //This adds the onclick function to all of the buttons
 window.onload = function() {
+
+	
 	$(".countInput").each(function(){
 		$(this).click(function(){
 			if(editing){
@@ -474,72 +449,9 @@ function KeyCheck(evt) {
 			return;
 		}
 	}
-	var cell = '';
+	var selectedCell = null;
 	//Picks the Key
 	switch (KeyID) {
-		case 98: // 2
-		case 50:
-			if (countType == 'UEO') {
-				cell = 'other';
-			} else {
-				cell = 'neut';
-			}
-			break;
-		case 97: //1
-		case 49:
-			cell = 'band';
-			break;
-		case 99: //3
-		case 51:
-			if (countType == 'UEO') {
-				cell = 'eos';
-			} else {
-				cell = 'lymph';
-			}
-			break;
-		case 102: //6
-		case 54:
-			cell = 'mono';
-			break;
-		case 101: //5
-		case 53:
-			cell = 'eos';
-			break;
-		case 100: //4
-		case 52:
-			cell = 'baso';
-			break;
-		case 103: //7
-		case 55:
-			cell = 'meta';
-			break;
-		case 104: //8
-		case 56:
-			cell = 'myelo';
-			break;
-		case 105: //9
-		case 57:
-			cell = 'pro';
-			break;
-		case 110: //0
-		case 190:
-			cell = 'blast';
-			break;
-		case 96: //.
-		case 48:
-			cell = 'nrbc';
-			break;
-		case 79: //o
-			cell = 'other';
-			break;
-		case 106: //*
-			cell = 'mega';
-			break;
-		case 111: // /
-		case 191:
-			cell = 'plasma';
-			break;
-			// Modes
 		case 36:
 		case 38:
 		case 33:
@@ -580,16 +492,37 @@ function KeyCheck(evt) {
 			toggleSubtract('add');
 			evt.preventDefault();
 			return;
-		default:
-			return;
-	}
-	var cellElem = document.getElementById(cell);
-	//increments
-	if (countType == 'UEO') {
-		if (cell != 'other' && cell != 'eos') {
-			return;
-		}
-	}
+		default: 
+			 //this block will loop through the json files looking for a matching
+			// keycode
+			if (countType == 'UEO'){
+					//this loops through the cells. 
+				for (cell in ueoJson) {
+					// this will loop through the keys (usually there are two, sometimes one)
+					for (key in ueoJson[cell]["keyMap"]){
+						if (KeyID == ueoJson[cell]["keyMap"][key]){
+							selectedCell = ueoJson[cell]["abrev"];
+						}
+					}
+				}
+			}else{
+				//same as above.
+				for (cell in differentialJson) {
+						for (key in differentialJson[cell]["keyMap"]){
+							if (KeyID == differentialJson[cell]["keyMap"][key]){
+								selectedCell = differentialJson[cell]["abrev"];
+							}
+						} //end of for
+					} // end of for
+			} //end of else
+	} //end of switch
+	var cellElem = document.getElementById(selectedCell);
+	
+//	if (countType == 'UEO') {
+//		if (selectedCell != 'other' && selectedCell != 'eos') {
+//			return;
+//		}
+//	}
 	if (!editing) {
 		increment(cellElem);
 		evt.preventDefault();

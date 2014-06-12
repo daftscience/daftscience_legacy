@@ -125,17 +125,17 @@
 
 		<div class="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
 			{% for cell in cells %}
-			<div class="row ee {{cells[cell]}}{% if cells[cell] != 'eos' %}{% if cells[cell] != 'other' %} notUEO {% endif %}{% endif %}animated cellRow">
+			<div class="row ee {{cells[cell]['abrev']}}{% if cells[cell]['abrev'] != 'eos' %}{% if cells[cell]['abrev'] != 'other' %} notUEO {% endif %}{% endif %}animated cellRow">
 				<div class="col-xs-5 col-sm-7 tight bar-background">
-					<span id='{{cells[cell]}}Prog' class="progress-bar"></span>
+					<span id="{{cells[cell]['abrev']}}Prog" class="progress-bar"></span>
 				</div>
 				<div class="col-xs-1 col-sm-1 tight text-right">
-					<span class="progressPercent" id="{{cells[cell]}}ProgText">0%</span>
+					<span class="progressPercent" id='{{cells[cell]["abrev"]}}ProgText'>0%</span>
 				</div>
 				<div class="col-xs-1 col-sm-1 tight centered">
-					<input type='text' id="{{cells[cell]}}" value='' class="countInput" readOnly>
+					<input type='text' id="{{cells[cell]['abrev']}}" value='' class="countInput" readOnly>
 				</div>
-				<div class="col-xs-5 col-sm-3 tight text-left" id="{{cells[cell]}}Label">{{cell}} ({{keys[cell]}})</div>
+				<div class="col-xs-5 col-sm-3 tight text-left" id="{{cells[cell]['abrev']}}Label">{{cell}} ({{cells[cell]["key"]}})</div>
 			</div>
 			{% endfor %}
 		</div>
@@ -216,7 +216,7 @@
 								<td class="tight text-center">
 									<i class="fa fa-angle-double-right  fa-list"></i>
 								</td>
-								<td class="tight text-left">{{keys[cell]}}</td>
+								<td class="tight text-left">{{cells[cell]["key"]}}</td>
 							</tr>
 							{% endfor %}
 						</tbody>
