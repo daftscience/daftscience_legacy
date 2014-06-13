@@ -1,0 +1,12 @@
+{
+	"White Blood Cell": {
+		"abrev": "wbc",
+		"key": 3,
+		"keyMap":[99,51]
+	},
+	"Red Blood Cell": {
+		"abrev": "rbc",
+		"key": "2",
+		"keyMap":[98, 50]
+	}
+}
