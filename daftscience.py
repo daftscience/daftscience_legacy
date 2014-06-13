@@ -20,15 +20,17 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-import os, sys, time, json
-from flask import Flask, render_template, url_for, request, abort
+from wtforms import TextField, TextAreaField, SubmitField, HiddenField
+from flask import Flask, render_template, url_for, request, abort, g
+import os, sys, time, json, sqlite3, random
 from collections import OrderedDict
-
-from modules.db_functions import *
 from modules.functions import *
-
-from counter import counter
+from flask.ext.wtf import Form
 from testSite import testSite
+from counter import counter
+import pushover
+
+#from daftscience import app
 
 
 app = Flask(__name__)
@@ -52,6 +54,55 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 	
 files = ["static/css/main.css"]
 fileVersions = make_timestamps(files)
+
+
+
+
+def connect_db():
+	"""Connects to the specific database."""
+	rv = sqlite3.connect(app.config['DATABASE'])
+	rv.row_factory = sqlite3.Row
+	rv.text_factory = str
+	return rv
+
+def get_db():
+    if not hasattr(g, 'sqlite_db'): 
+        g.sqlite_db = connect_db()
+    return g.sqlite_db
+
+
+
+#Contact form stuff
+class ContactForm(Form):
+  name = TextField("Name")
+  email = TextField("Email")
+  subject = TextField("Subject")
+  message = TextAreaField("Message")
+  submit = SubmitField("Send")
+
+
+def notify(request):
+    pushover.init("ajXLegLrmdRJvvWCHHy8Gavmkws9Ti")
+    client = pushover.Client("uZ58dxNBaZhMp4epGW8a8RRWzsMavr")
+    client.send_message("From: " + request.form['name'] +\
+                        "\nE-mail: " + request.form['email'] + "\n\n" +\
+                        request.form['message'], 
+                        title = "New Daftscience.com comment",
+                        priority=1)
+
+def get_gallery():
+    gallery = [{}]
+    conn = get_db()
+    cur = conn.execute('select image, catagory, location, thumbLocation from Gallery order by image desc')
+    entries = cur.fetchall()
+    type(entries)
+    for entry in entries:
+        type(entry[2])
+#        pp.pprint(entry[2])
+        gallery.append({'cat': entry[1], 'loc': entry[2], 'thumbLoc': entry[3]})
+    random.shuffle(gallery)
+#    pp.pprint(gallery)
+    return gallery
 
 @app.teardown_appcontext
 def close_db(error):
