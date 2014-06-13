@@ -53,6 +53,13 @@ app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 files = ["static/css/main.css"]
 fileVersions = make_timestamps(files)
 
+@app.teardown_appcontext
+def close_db(error):
+    """Closes the database again at the end of the request."""
+    if hasattr(g, 'sqlite_db'):
+        g.sqlite_db.close()
+
+
 @app.route('/', methods=['POST', 'GET'])
 def index():
 	form = ContactForm()

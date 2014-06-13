@@ -2,7 +2,7 @@ from flask.ext.wtf import Form
 from wtforms import TextField, TextAreaField, SubmitField, HiddenField
 from flask import g
 import os, sqlite3, random
-from daftscience import app
+#from daftscience import app
 import pushover
 
 def connect_db():
@@ -16,13 +16,7 @@ def get_db():
     if not hasattr(g, 'sqlite_db'): 
         g.sqlite_db = connect_db()
     return g.sqlite_db
-        
-		
-@app.teardown_appcontext
-def close_db(error):
-    """Closes the database again at the end of the request."""
-    if hasattr(g, 'sqlite_db'):
-        g.sqlite_db.close()
+
 
 
 #Contact form stuff

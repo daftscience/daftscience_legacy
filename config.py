@@ -2,10 +2,6 @@ from flask import Flask
 import os
 
 
-app = Flask(__name__)
-#assets = Environment(app)
-app.config.from_object(__name__)
-
 # Load default config and override config from an environment variable
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'Gallery.db'),
