@@ -1,5 +1,49 @@
 {% extends "layout.html" %} {% block body %}
 <input type="hidden" autofocus="true" />
+<div class=" row mt centered">
+	<div class="col-md-8 col-md-offset-2">
+		<h1 class="welcome">Welcome to <strong>D<i class="fa fa-flask"></i>ftscience</strong>.com</h1>
+	</div>
+	<div class="row mt centered">
+		<div class="col-md-6 col-md-offset-3">
+			<p>
+				Here you can find a few of my recent projects. Most of them, along with this site, are still works in progress.
+			</p>
+			<hr/>
+		</div>	
+	</div>
+</div>
+
+<div class="container" id="diffCounter">
+	<div class="row mt">
+		<div class="col-md-8 col-md-offset-2 centered">
+			<h1>Daftscience <i class="fa fa-globe fa-green"></i> Diffcounter </h1>
+		</div>
+	</div>
+	<div class="row mt">
+		<div class="col-md-8 col-md-offset-2">
+			<a href="http://daftscience.com/counter"><img src="{{url_for('static', filename='img/header.png')}}" class="img-responsive"></a>
+		</div>
+	</div>
+	<div class="row mt">
+		<div class="col-md-8 col-md-offset-2">
+			<p class="indent">
+				The goal was to make a web based differential counter for students of biomedical science that was not only easy to use, but that would
+				emulate software used in a clinical setting. Recently, the focus has been on modularization. The templates were built using <a href="http://http://flask.pocoo.org/">Flask</a> and some json
+				files. By modifying the json files it is possible to change not only the layout of the pages, but the keymapping as well. While the origonal goals have been met, 
+				there are still a few more features that are in the works. 
+			</p>
+		</div>
+		<div class="col-lg-8 col-lg-offset-2">
+
+		</div>
+		<!-- /row -->
+
+	</div>
+</div>
+<!-- /container -->
+
+
 
 <div class="container banner" id="Builds">
 	<div class="row mt centered">
