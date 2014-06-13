@@ -18,3 +18,20 @@
 <!--THe color scheme used in this site can be found here: -->
 <!--http://colorschemedesigner.com/#3c41TrpDHw0w0-->
 <!--http://colorschemedesigner.com/#3c31TrpDHw0w0-->
+
+
+
+<script>
+	var differentialJson, ueoJson;
+	$.getJSON("{{url_for('static', filename='json/differential.json')}}", function(json) {
+  		differentialJson = json;
+	});
+	$.getJSON("{{url_for('static', filename='json/ueo.json')}}", function(json) {
+  		ueoJson = json;
+	});
+	$.getJSON("{{url_for('static', filename='json/parasite.json')}}", function(json) {
+  		parasiteJson = json;
+	});
+	
+	var countType = "{{countType}}";
+</script>

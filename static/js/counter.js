@@ -29,15 +29,10 @@ var KeyID;
 var diffName;
 var nag = false;
 var hasIE_ughhh = false;
-var countType = "differential"; //UEO or differential
 var total;
 var debugVariable;
 var focusedColor = "#fdf8e5";
 var subtractFocusColor = "#f2dedf";
-var differentialJson = null;
-
-
-
 
 //Forces IE to redraw the elements.
 function toggleDisableX3() {
@@ -46,13 +41,11 @@ function toggleDisableX3() {
 	toggleDisable();
 }
 
-$(document).ready(function() {	
-	
+$(document).ready(function() {
 	var top = $('#floatingStatus').offset().top - parseFloat($('#floatingStatus').css('marginTop').replace(/auto/, 0));
 	$(window).scroll(function(event) {
 		// what the y position of the scroll is
 		var y = $(this).scrollTop();
-
 		// whether that's below the form
 		//IE8 for some reason will trigger when the top bar hits the
 		//      status bar. Other browsers need to subtract the navbar height.
@@ -86,7 +79,6 @@ $(document).ready(function() {
 	});
 
 //	window.alert(cells);
-	
 	$('.countType').click(function() {
 		$(".countType").removeClass("btn-primary");
 		$(this).addClass("btn-primary");
@@ -108,7 +100,6 @@ $(document).ready(function() {
 				$(this).attr("disabled", "disabled");
 				if($(this).val() == 200){
 					$(this).click();
-/* 					$(this).removeAttr("disabled");	 */
 				}
 			});
 		}else {
@@ -137,22 +128,7 @@ $(document).ready(function() {
 		}		
 		resetForm();
 	});
-
-});
-
-$(document).on("scroll", function() {
-	if ($(document).scrollTop() > 100) {
-		$("header").addClass("shrink");
-	} else {
-		$("header").removeClass("shrink");
-	}
-});
-
-//This adds the onclick function to all of the buttons
-window.onload = function() {
-
-	
-	$(".countInput").each(function(){
+$(".countInput").each(function(){
 		$(this).click(function(){
 			if(editing){
 				$(this).select();
@@ -171,9 +147,9 @@ window.onload = function() {
 			this.style.backgroundColor = '';
 		});
 	});
-
+	
 	diffName = document.getElementById('diffName');
-	initScripts();
+	resetForm();
 	$("#printButton").click(function() {
 		var d = new Date();
 		var now = d.toString();
@@ -207,9 +183,15 @@ window.onload = function() {
 		});
 		$("#fixMe").hide();
 	});
+});
 
-};
-
+$(document).on("scroll", function() {
+	if ($(document).scrollTop() > 100) {
+		$("header").addClass("shrink");
+	} else {
+		$("header").removeClass("shrink");
+	}
+});
 
 function changeCount(newCount) {
 	countTo = newCount;
@@ -217,12 +199,6 @@ function changeCount(newCount) {
 	recalc();
 	return false;
 }
-
-function initScripts() {
-	resetForm();
-}
-
-
 // Prevent the backspace key from navigating back.
 $(document).unbind('keydown').bind('keydown', function(event) {
 	var doPrevent = false;
@@ -439,6 +415,7 @@ function setfocus(cell) {
 
 function KeyCheck(evt) {
 	KeyID = evt.keyCode;
+	var selectedCell = null;
 	//This will put the page in diff mode when the enter key 
 	//is pressed on the diffname box. 
 	if ($(diffName).is(":focus")) {
@@ -449,7 +426,7 @@ function KeyCheck(evt) {
 			return;
 		}
 	}
-	var selectedCell = null;
+
 	//Picks the Key
 	switch (KeyID) {
 		case 36:
@@ -493,37 +470,43 @@ function KeyCheck(evt) {
 			evt.preventDefault();
 			return;
 		default: 
-			 //this block will loop through the json files looking for a matching
-			// keycode
-			if (countType == 'UEO'){
-					//this loops through the cells. 
-				for (cell in ueoJson) {
+		//this block will loop through the json files looking for a matching
+		// keycode
+			switch(countType){
+				case 'UEO':
+					for (var cell in ueoJson) {
 					// this will loop through the keys (usually there are two, sometimes one)
-					for (key in ueoJson[cell]["keyMap"]){
-						if (KeyID == ueoJson[cell]["keyMap"][key]){
-							selectedCell = ueoJson[cell]["abrev"];
+						for (var key in ueoJson[cell].keyMap){
+							if (KeyID == ueoJson[cell].keyMap[key]){
+								selectedCell = ueoJson[cell].abrev;
+							}
 						}
 					}
-				}
-			}else{
-				//same as above.
-				for (cell in differentialJson) {
-						for (key in differentialJson[cell]["keyMap"]){
-							if (KeyID == differentialJson[cell]["keyMap"][key]){
-								selectedCell = differentialJson[cell]["abrev"];
+					break;
+				case 'Diff':
+					for (var cell in differentialJson) {
+						for (var key in differentialJson[cell].keyMap){
+							if (KeyID == differentialJson[cell].keyMap[key]){
+								selectedCell = differentialJson[cell].abrev;
 							}
 						} //end of for
-					} // end of for
-			} //end of else
+					}
+					break;
+				case 'Para':
+					for (var cell in parasiteJson) {
+						for (var key in parasiteJson[cell].keyMap){
+							if (KeyID == parasiteJson[cell].keyMap[key]){
+								selectedCell = parasiteJson[cell].abrev;
+							}
+						} //end of for
+					}
+					break;
+				default:
+					return;// end of for
+			}
 	} //end of switch
 	var cellElem = document.getElementById(selectedCell);
-	
-//	if (countType == 'UEO') {
-//		if (selectedCell != 'other' && selectedCell != 'eos') {
-//			return;
-//		}
-//	}
-	if (!editing) {
+	if (!editing && cellElem) {
 		increment(cellElem);
 		evt.preventDefault();
 	}

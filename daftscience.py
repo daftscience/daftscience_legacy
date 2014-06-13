@@ -123,17 +123,16 @@ def counter():
 	jsonFile=open(folderPath+  "/static/json/differential.json")
 	differentialJson = json.load(jsonFile, object_pairs_hook=OrderedDict)
 	jsonFile.close()
-#	global fileVersions
-#	pprint(fileVersions)
 	links = ['Counter', 'Tips', 'References']
-	return render_template('counter.html', fileVersions = fileVersions, links=links, cells = differentialJson)
+	return render_template('counter.html', fileVersions = fileVersions, links=links,countType = "Diff", cells = differentialJson)
 
 @app.route('/oap/')
 def oap():
-	global fileVersions
-	pprint(fileVersions)
+	jsonFile=open(folderPath+  "/static/json/parasite.json")
+	parasiteJson = json.load(jsonFile, object_pairs_hook=OrderedDict)
+	jsonFile.close()
 	links = ['Counter', 'Tips', 'References']
-	return render_template('counter.html', fileVersions = fileVersions, links=links, cells = ueoJson)
+	return render_template('counter.html', fileVersions = fileVersions, links=links, countType = "Para", cells = parasiteJson)
  
 	
 if __name__ == '__main__':
