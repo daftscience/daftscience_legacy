@@ -114,7 +114,7 @@ def close_db(error):
 @app.route('/', methods=['POST', 'GET'])
 def index():
 	form = ContactForm()
-	links = ['Builds', 'Prints', 'About', 'Contact Me']
+	links = ['Diff-Counter', 'Builds', 'Prints', 'About', 'Contact Me']
 	if request.method == 'POST':
 		notify(request)
 		return render_template('index.html', fileVersions = fileVersions, sent = True, links=links, gallery = get_gallery(), name=request.form['name'])
