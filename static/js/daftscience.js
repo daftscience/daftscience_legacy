@@ -39,4 +39,19 @@ $(document).ready(function() {
 			$('#occupation').html(json.occupation);
 			$('#skills').html(json.skills);
 		});
+	
+	
+/* <img src="https://img.youtube.com/vi/3f1wwZh_YOI/maxresdefault.jpg" class="img-responsive" > */
+
+	    blueimp.Gallery([
+        {
+            title: 'Timelapse snowman',
+            type: 'text/html',
+            youtube: '3f1wwZh_YOI'
+        },
+
+    ], {
+        container: '#blueimp-video-carousel',
+        carousel: true
+    });
 });

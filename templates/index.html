@@ -10,7 +10,7 @@
 				Here you can find a few of my recent projects. Most of them, along with this site, are still works in progress.
 			</p>
 			<hr/>
-		</div>	
+		</div>
 	</div>
 </div>
 
@@ -22,25 +22,26 @@
 	</div>
 	<div class="row mt">
 		<div class="col-md-8 col-md-offset-2">
-			<a href="http://daftscience.com/counter"><img id="diffcounterIMG" src="{{url_for('static', filename='img/header.png')}}" class="img-responsive"></a>
+			<a href="http://daftscience.com/counter">
+				<img id="diffcounterIMG" src="{{url_for('static', filename='img/header.png')}}" class="img-responsive">
+			</a>
 		</div>
 	</div>
 	<div class="row mt">
 		<div class="col-md-8 col-md-offset-2">
 			<p class="indent">
-				The goal was to make a web based differential counter for students of biomedical science that was not only easy to use, but that would
-				emulate software used in a clinical setting. Recently, the focus has been on modularization. The templates were built using <a href="http://http://flask.pocoo.org/">Flask</a> and some json
-				files. By modifying the json files it is possible to change not only the layout of the pages, but the keymapping as well. While the original goals have been met, 
-				there are still a few more features that are in the works. 
+				The goal was to make a web based differential counter for students of biomedical science that was not only easy to use, but that would emulate software used in a clinical setting. Recently, the focus has been on modularization. The templates were built
+				using <a href="http://http://flask.pocoo.org/">Flask</a> and some json files. By modifying the json files it is possible to change not only the layout of the pages, but the keymapping as well. While the original goals have been met, there are still
+				a few more features that are in the works.
 			</p>
 		</div>
 		<div class="col-md-8 col-md-offset-2">
-	<hr>
+			<hr>
 		</div>
 		<!-- /row -->
 
 	</div>
-	
+
 </div>
 <!-- /container -->
 
@@ -122,7 +123,7 @@
 				<div id="links">
 					{% for image in gallery %}{% if image %}<a href="{{ url_for('static', filename='%s' % image.loc)}}" title="{{image.cat}}" data-gallery><img src="{{ url_for('static', filename='%s' % image.thumbLoc)}}" alt="{{image.cat}} "></a>{% endif %}{% endfor %}
 				</div>
-			<hr>
+				<hr>
 			</div>
 		</div>
 		<div class="row">
@@ -137,9 +138,14 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2 centered" id="youtube">
-			    <a href="http://www.youtube.com/watch?v=3f1wwZh_YOI" type="text/hml" data-youtube="3f1wwZh_YOI" data-gallery>
-					<img src="https://img.youtube.com/vi/3f1wwZh_YOI/maxresdefault.jpg" class="img-responsive" >
-				</a>
+
+				<div id="blueimp-video-carousel" class="blueimp-gallery blueimp-gallery-controls blueimp-gallery-carousel">
+					<div class="slides"></div>
+					<h3 class="title"></h3>
+					<a class="prev">‹</a>
+					<a class="next">›</a>
+					<a class="play-pause"></a>
+				</div>
 			</div>
 		</div>
 		<!-- /row -->
@@ -253,14 +259,7 @@
 </div>
 
 <!-- The Gallery as inline carousel, can be positioned anywhere on the page -->
-<div id="blueimp-gallery-carousel" class="blueimp-gallery blueimp-gallery-carousel">
-    <div class="slides"></div>
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
-</div>
+
 
 
 
@@ -279,54 +278,20 @@
 
 
 <script>
-
-document.getElementById('links').onclick = function (event) {
-    event = event || window.event;
-    var target = event.target || event.srcElement,
-        link = target.src ? target.parentNode : target,
-        options = {index: link, event: event},
-        links = this.getElementsByTagName('a');
-	var options ={
-		hidePageScrollbars: false,
-		disableScroll: false
-	}
-    blueimp.Gallery(links, options);
-};
-	
-
-/* 	document.getElementById('youtube').onclick = function (event) {
+	document.getElementById('links').onclick = function(event) {
 		event = event || window.event;
 		var target = event.target || event.srcElement,
 			link = target.src ? target.parentNode : target,
-			options = {index: link, event: event},
+			options = {
+				index: link,
+				event: event
+			},
 			links = this.getElementsByTagName('a');
-		blueimp.Gallery(links, options); */
-		blueimp.Gallery([
-			{
-				title: 'A YouYube video',
-				href: 'https://www.youtube.com/watch?v=3f1wwZh_YOI',
-				type: 'text/html',
-				youtube: '3f1wwZh_YOI',
-				poster: 'https://img.youtube.com/vi/3f1wwZh_YOI/maxresdefault.jpg'
-			}]);
-		
-		
-};
-
-</script>
-
-<!-- <script>
-	var fullscreenOptions = {
-    // Defines if the gallery should open in fullscreen mode:
-    fullScreen: true
-};
-	blueimp.Gallery(
-		document.getElementById('links').getElementsByTagName('a'), {
-			container: '#blueimp-gallery-carousel',
-			carousel: true
+		var options = {
+			hidePageScrollbars: false,
+			disableScroll: false
 		}
-	);
-
-</script> -->
-
+		blueimp.Gallery(links, options);
+	};
+</script>
 {% endblock %}
