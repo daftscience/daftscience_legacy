@@ -41,8 +41,68 @@ function toggleDisableX3() {
 	toggleDisable();
 }
 
+function checkWindowSize() {
+	if ($(window).width() < 768) {
+		$("#sizeWarning").show();
+	} else {
+		$("#sizeWarning").show();
+	}
+}
+
+$(window).resize(function() {
+	checkWindowSize();
+});
+
+function initClickEvents() {
+	$(".printButton").click(function() {
+		var d = new Date();
+		var now = d.toString();
+		if (tracking) {
+			ga('send', 'event', "print", countType, now);
+		}
+		window.print();
+	});
+	$(".hideModalButton").click(function() {
+		$('.modal').modal('hide');
+	});
+	$(".resetButton").click(function() {
+		resetForm();
+	});
+	$(".showResetWarningButton").click(function(){
+		$("#resetWarningModal").modal('show');
+	});
+	$('.changeCount').click(function() {
+		$('.changeCount').each(function() {
+			$(this).removeClass("btn-primary");
+		});
+		$(this).addClass("btn-primary");
+		countTo = $(this).html();
+		recalc();
+		return false;
+	});
+	$("#fixMeBtn").click(function() {
+		$('#wylajb').hide();
+		$(".ee").each(function() {
+			$(this).removeClass("animated");
+			$(this).removeClass("hinge");
+			if (hasIE_ughhh) {
+				$(this).slideDown(150);
+				$('#numLock').hide();
+				$('#debug').hide();
+			}
+			$(this).unbind("click");
+		});
+		$("#fixMe").hide();
+	});
+
+
+}
+
 $(document).ready(function() {
 	var top = $('#floatingStatus').offset().top - parseFloat($('#floatingStatus').css('marginTop').replace(/auto/, 0));
+	diffName = document.getElementById('diffName');
+	resetForm();
+	checkWindowSize();
 	$(window).scroll(function(event) {
 		// what the y position of the scroll is
 		var y = $(this).scrollTop();
@@ -52,7 +112,7 @@ $(document).ready(function() {
 		if (hasIE_ughhh) {
 			scrollSwitch = top - 20;
 		} else {
-			scrollSwitch = top - 50;
+			scrollSwitch = top - 70;
 		}
 		if (y >= (scrollSwitch)) {
 			// if so, ad the fixed class
@@ -77,121 +137,87 @@ $(document).ready(function() {
 				changeCount(100);
 		}
 	});
-
-//	window.alert(cells);
 	$('.countType').click(function() {
 		$(".countType").removeClass("btn-primary");
 		$(this).addClass("btn-primary");
 		countType = $(this).html();
-		if (countType == "UEO"){
+		if (countType == "UEO") {
 			$("#otherLabel").html("Other (2)");
-			$("#eosLabel").html("Eosinophils (3)");	
+			$("#eosLabel").html("Eosinophils (3)");
 			var animateDelay = 0;
-			$('.notUEO').each(function(){
+			$('.notUEO').each(function() {
 				var elem = this;
 				$(elem).slideUp(1000);
 				animateDelay += 50;
-				setTimeout(function(){
+				setTimeout(function() {
 					$(elem).removeClass("slideInRight");
 					$(elem).addClass("slideOutLeft");
 				}, animateDelay);
 			});
-			$(".changeCount").each(function(){
+			$(".changeCount").each(function() {
 				$(this).attr("disabled", "disabled");
-				if($(this).val() == 200){
+				if ($(this).val() == 200) {
 					$(this).click();
 				}
 			});
-		}else {
-			if (countType == "Diff"){
+		} else {
+			if (countType == "Diff") {
 				$("#otherLabel").html("Other (o-letter)");
 				$("#eosLabel").html("Eosinophils (5)");
 				var animateDelay = 0;
-				$('.notUEO').each(function(){
+				$('.notUEO').each(function() {
 					var elem = this;
 					animateDelay += 50;
-//				This will make the element slide in after its back to it's normal size
-					setTimeout(function(){
+					//				This will make the element slide in after its back to it's normal size
+					setTimeout(function() {
 						$(elem).removeClass("slideOutLeft");
 						$(elem).slideDown(1000);
 						$(elem).addClass("slideInRight");
 					}, animateDelay);
 				});
-				$(".changeCount").each(function(){
+				$(".changeCount").each(function() {
 					$(this).removeAttr("disabled");
-					if($(this).val() == 100){
+					if ($(this).val() == 100) {
 						$(this).click();
 					}
 				});
-				
-			}		
-		}		
+
+			}
+		}
 		resetForm();
 	});
-$(".countInput").each(function(){
-		$(this).click(function(){
-			if(editing){
+	$(".countInput").each(function() {
+		$(this).click(function() {
+			if (editing) {
 				$(this).select();
 			}
 			increment(this);
 		});
-		$(this).focus(function(){
-			if(!adding){
+		$(this).focus(function() {
+			if (!adding) {
 				$(this).parent().parent(".cellRow").css("background", subtractFocusColor);
-			}else {
+			} else {
 				$(this).parent().parent(".cellRow").css("background", focusedColor);
 			}
 		});
-		$(this).blur(function(){
+		$(this).blur(function() {
 			$(this).parent().parent(".cellRow").css("background", "");
 			this.style.backgroundColor = '';
 		});
 	});
-	
-	diffName = document.getElementById('diffName');
-	resetForm();
-	$("#printButton").click(function() {
-		var d = new Date();
-		var now = d.toString();
-		if(tracking){
-			ga('send', 'event', "print", countType, now);
-		}
-		window.print();
-	});
-	
-	$('.changeCount').click(function(){
-		$('.changeCount').each(function(){
-			$(this).removeClass("btn-primary");
-		});
-		$(this).addClass("btn-primary");
-		countTo = $(this).html();
-		recalc();
-		return false;
-	});
-	
-	$("#fixMeBtn").click(function(){
-		$('#wylajb').hide();
-		$(".ee").each(function(){
-			$(this).removeClass("animated");
-			$(this).removeClass("hinge");
-			if(hasIE_ughhh){
-				$(this).slideDown(150);
-				$('#numLock').hide();
-				$('#debug').hide();
-			}
-			$(this).unbind("click");
-		});
-		$("#fixMe").hide();
-	});
+
+	initClickEvents();
+
+	/* $('#myModal').modal(options); */
 });
 
-$(document).on("scroll", function() {
+/* $(document).on("scroll", function() {
 	if ($(document).scrollTop() > 100) {
 		$("header").addClass("shrink");
 	} else {
 		$("header").removeClass("shrink");
 	}
-});
+}); */
 
 function changeCount(newCount) {
 	countTo = newCount;
@@ -224,8 +250,8 @@ jQuery(document).keydown(function(e) {
 		"<br />Adding = " + adding +
 		"<br />Nagging = " + nag +
 		"<br />countType = " + countType +
-		"<br />Total = " + total + 
-		"<br />Debug Variable = " +debugVariable);
+		"<br />Total = " + total +
+		"<br />Debug Variable = " + debugVariable);
 });
 
 (function($) {
@@ -243,21 +269,21 @@ jQuery(document).keydown(function(e) {
 })(jQuery);
 
 $.konami(function() {
-	if(!hasIE_ughhh){
-	$('#wylajb').show();
-	//Cool Easteregg
-	$(".ee").each(function(){
-		$(this).click(function(){
-			$(this).addClass("animated");
-			$(this).addClass("hinge");
-			if(hasIE_ughhh){
-				$(this).slideUp(100);
-			}
+	if (!hasIE_ughhh) {
+		$('#wylajb').show();
+		//Cool Easteregg
+		$(".ee").each(function() {
+			$(this).click(function() {
+				$(this).addClass("animated");
+				$(this).addClass("hinge");
+				if (hasIE_ughhh) {
+					$(this).slideUp(100);
+				}
+			});
 		});
-	});
-	setTimeout(function() {
-		$("#fixMe").show();
-	}, 20000);
+		setTimeout(function() {
+			$("#fixMe").show();
+		}, 20000);
 	}
 });
 
@@ -305,6 +331,7 @@ $.kitty(function() {
 });
 
 function resetForm() {
+	$('.modal').modal('hide');
 	//Returns counter to addition mode. 
 	$('#wylajb').hide();
 	toggleSubtract('add');
@@ -414,6 +441,9 @@ function setfocus(cell) {
 }
 
 function KeyCheck(evt) {
+	if($('#finishedModal').hasClass('in')){
+		return;
+	}
 	KeyID = evt.keyCode;
 	var selectedCell = null;
 	//This will put the page in diff mode when the enter key 
@@ -469,15 +499,15 @@ function KeyCheck(evt) {
 			toggleSubtract('add');
 			evt.preventDefault();
 			return;
-		default: 
-		//this block will loop through the json files looking for a matching
-		// keycode
-			switch(countType){
+		default:
+			//this block will loop through the json files looking for a matching
+			// keycode
+			switch (countType) {
 				case 'UEO':
 					for (var cell in ueoJson) {
-					// this will loop through the keys (usually there are two, sometimes one)
-						for (var key in ueoJson[cell].keyMap){
-							if (KeyID == ueoJson[cell].keyMap[key]){
+						// this will loop through the keys (usually there are two, sometimes one)
+						for (var key in ueoJson[cell].keyMap) {
+							if (KeyID == ueoJson[cell].keyMap[key]) {
 								selectedCell = ueoJson[cell].abrev;
 							}
 						}
@@ -485,8 +515,8 @@ function KeyCheck(evt) {
 					break;
 				case 'Diff':
 					for (var cell in differentialJson) {
-						for (var key in differentialJson[cell].keyMap){
-							if (KeyID == differentialJson[cell].keyMap[key]){
+						for (var key in differentialJson[cell].keyMap) {
+							if (KeyID == differentialJson[cell].keyMap[key]) {
 								selectedCell = differentialJson[cell].abrev;
 							}
 						} //end of for
@@ -494,15 +524,15 @@ function KeyCheck(evt) {
 					break;
 				case 'Para':
 					for (var cell in parasiteJson) {
-						for (var key in parasiteJson[cell].keyMap){
-							if (KeyID == parasiteJson[cell].keyMap[key]){
+						for (var key in parasiteJson[cell].keyMap) {
+							if (KeyID == parasiteJson[cell].keyMap[key]) {
 								selectedCell = parasiteJson[cell].abrev;
 							}
 						} //end of for
 					}
 					break;
 				default:
-					return;// end of for
+					return; // end of for
 			}
 	} //end of switch
 	var cellElem = document.getElementById(selectedCell);
@@ -552,6 +582,7 @@ function toggleSubtract(mode) {
 }
 
 function recalc() {
+	$("#finishedAlert").hide();
 	var tot = 0;
 	$(".countInput").each(function() {
 		//This will remove any non digit characters
@@ -579,20 +610,20 @@ function recalc() {
 	$('#toGo').html(countTo - tot);
 
 	normalize();
+	
 
 	if (tot == countTo && !nag) {
 		if (!editing && !nag) {
 			changeAlert('done');
-			window.alert('way to go!');
+			$('#finishedModal').modal('toggle');
 			var d = new Date();
 			var now = d.toString();
 			//catagory, action, label, value
-			if(tracking){
+			if (tracking) {
 				ga('send', 'event', countType, 'Finished Diff', now, tot);
 			}
-			
-			nag = true;
 		}
+		nag = true;
 	}
 }
 
@@ -600,31 +631,42 @@ function normalize() {
 	//this gets the total that was last calculated in the recalc function
 	var runningTotal = $('#total').html();
 	total = runningTotal;
-	debugVariable = Math.round($("#neut").val()/runningTotal*100);
+	$("#totalProgress").css({
+					"width":((runningTotal/countTo)*100) + '%'
+				});
+	debugVariable = Math.round($("#neut").val() / runningTotal * 100);
 	$('.countInput').each(function() {
 		var currentCell = '';
 		cellProg = $('#' + $(this).attr('id') + 'Prog');
 		cellProgText = $('#' + $(this).attr('id') + 'ProgText');
 		if ($(this).attr('id') !== 'nrbc' && $(this).attr('id') !== 'mega') {
 			if ($(this).val() !== '' && $(this).val() !== 0) {
-				currentCell = Math.round($(this).val()/runningTotal*100);
-				cellProg.css({"width": (currentCell) + '%'});
+				currentCell = Math.round($(this).val() / runningTotal * 100);
+				cellProg.css({
+					"width": (currentCell) + '%'
+				});
 				cellProgText.html(currentCell + '%');
 			} else {
 				currentCell = '';
-				cellProg.css({"width" : "0%"});
+				cellProg.css({
+					"width": "0%"
+				});
 				cellProgText.html('');
 			}
 		}
-		if(runningTotal > 0 && countType != 'UEO'){
-			var nrbcPercent = Math.round(($('#nrbc').val()/runningTotal)*100) + "%";
-			var megaPercent = Math.round(($('#mega').val()/runningTotal)*100) + "%";
-			$('#nrbcProg').css({"width": nrbcPercent});
-			$('#megaProg').css({"width": megaPercent});
-			if($('#nrbc').val() > 0){
+		if (runningTotal > 0 && countType != 'UEO') {
+			var nrbcPercent = Math.round(($('#nrbc').val() / runningTotal) * 100) + "%";
+			var megaPercent = Math.round(($('#mega').val() / runningTotal) * 100) + "%";
+			$('#nrbcProg').css({
+				"width": nrbcPercent
+			});
+			$('#megaProg').css({
+				"width": megaPercent
+			});
+			if ($('#nrbc').val() > 0) {
 				$("#nrbcProgText").html(nrbcPercent);
 			}
-			if($('#mega').val() > 0){
+			if ($('#mega').val() > 0) {
 				$("#megaProgText").html(megaPercent);
 			}
 		}

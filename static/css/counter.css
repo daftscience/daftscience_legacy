@@ -2,6 +2,9 @@
  #Counter {
 	background-color: #DCE5DE;
 }
+body{
+	min-width:610px;
+}
 body.transform {
 	transform: rotate(25deg);
 	-ms-transform: rotate(25deg);
@@ -12,10 +15,18 @@ body.transform {
 #Tips {
 	padding-top: 1.4em;
 }
-.alert {
+.statusAlert {
 	margin: 0;
 	padding: 0;
 	border: none;
+	border-left:solid;
+	border-right:solid;
+	border-width: 2px;
+	line-height: 40px;
+	
+}
+.alertMessage{
+	padding:5px;
 }
 .tight {
 	margin-bottom: 0 !important;
@@ -26,18 +37,72 @@ body.transform {
 	padding-left: 0 !important;
 	padding-bottom: 0 !important;
 	padding-right: 0 !important;
+ 	white-space: nowrap;
 }
 .debugging {
 	padding-top: 6em !important;
 }
+#sizeWarning{
+	visibility: hidden;
+    position: fixed; 
+	margin: 1em;
+	z-index: 99;
+	padding: 1em;
+	border-left: solid;
+	border-color:black;
+    bottom: 0;
+    left: 0;
+    right: 0;
+/*     height: 50px; */
+
+}
+#finishedAlert{
+	position: fixed; 
+	margin: 1em;
+	z-index: 99;
+	padding: 1em;
+	border-left: solid;
+	border-color:black;
+    bottom: 100;
+    left: 0;
+    right: 0;
+/*     height: 50px; */
+}
+.modal-dialog{
+	background-color: white;
+	
+}
+.modal-header{
+	padding:1em;
+	
+}
+.modal-content{
+	border: none;
+	padding:1em;
+	margin:1em;
+	
+}
+.alertDescription{
+	visibility: hidden;
+}
+@media (max-width: 610px) {
+	/*@media (max-width: @screen-md-min) {*/
+}
 @media (max-width: 768px) {
 	/*@media (max-width: @screen-md-min) {*/
 	.counterTitle {
-		padding-top: 4.1em !important;
+		padding-top: 3.1em !important;
+	}
+	#sizeWarning{
+		visibility: visible;
+	}
+	.statusInfo{
+		line-height: 10px;
 	}
 }
 .counterTitle {
-	padding-top: 1.6em;
+	padding-top: 2.8em;
+	padding-bottom:2em;
 }
 #statusWrapper {
 	position: absolute;
@@ -48,6 +113,7 @@ body.transform {
 #floatingStatus {
 	/*	opacity: 0.9;*/
 	position: absolute;
+	padding-top: .2em;
 	margin: 0;
 	z-index: 99;
 	width: 100%;
@@ -62,12 +128,11 @@ body.transform {
 	position: fixed;
 	top: 0;
 }
+.statusInfo{
+	line-height: 50px;
+}
 .cellRow{
 	margin: 1px;
-}
-.total {
-	padding: 0;
-	margin: 0;
 }
 .progressPercent {
 	padding-right: .2em;
@@ -77,6 +142,14 @@ body.transform {
 	height: 28px;
 	background-color: #9fccb5;
 	float: right;
+}
+#totalProgress{
+	border-color: #3c763d !important;
+	border-width: 2px !important;
+	border-left:solid;
+	border-right:solid;
+	height: 5px;
+	float: left;	
 }
 .bar-background {
 	opacity: 0.8;
@@ -142,6 +215,11 @@ table {
 	padding-left: .5em !important;
 }
 @media print {
+	.counterTitle{
+		margin: 0em;
+		padding:0em;
+		
+	}
 	.progress {
 		background-color: #F5F5F5 !important;
 		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F5F5F5', endColorstr='#F5F5F5')" !important;
@@ -168,7 +246,7 @@ table {
 	.counter {
 		width: 100%;
 	}
-	.alert {
+.alert {
 		border: 0;
 	}
 	.btn {
