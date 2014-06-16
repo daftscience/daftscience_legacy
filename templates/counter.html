@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block body %}
 <!-- +++++ Welcome Section +++++ -->
-<div class="modal fade nonPrintable" tabindex="-1" role="dialog" aria-labelledby="finishedModal" aria-hidden="true" id="finishedModal">
+<div class="modal fade open nonPrintable" tabindex="-1" role="dialog" aria-labelledby="finishedModal" aria-hidden="true" id="finishedModal">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-header">
 			<h2>
@@ -27,7 +27,7 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-header">
 			<h2>
-		 Warning!
+		 Annoying Confirmation Alert!
 		</h2>
 		</div>
 		<div class="modal-content centered">
@@ -95,7 +95,7 @@
 					<div class="alertMessage">Finished!</div>
 				</div>
 				<div id="subtract" class="alert alert-danger changeable ee statusAlert" hidden>
-					<div class="alertMessage">Subtrating</div>
+					<div class="alertMessage">Subtracting</div>
 				</div>
 				<div id="edit" class="alert alert-warning changeable ee statusAlert" hidden>
 					<div class="alertMessage">Edit Mode</div>
@@ -105,7 +105,7 @@
 				</div>
 				<div id="debug" class="alert alert-warning debug ee" hidden></div>
 			</div>
-		<div>
+		<div id="totalProgressDiv">
 			<span id="totalProgress" class="progress-bar"></span>
 		</div>
 		</div>

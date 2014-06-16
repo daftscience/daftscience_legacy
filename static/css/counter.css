@@ -2,15 +2,14 @@
  #Counter {
 	background-color: #DCE5DE;
 }
-body{
-	min-width:610px;
+body {
+	min-width: 610px;
 }
 body.transform {
 	transform: rotate(25deg);
 	-ms-transform: rotate(25deg);
 	-webkit-transform: rotate(25deg);
 	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.9659258262890683, M12=-0.2588190451025207, M21=0.2588190451025207, M22=0.9659258262890683, SizingMethod='auto expand')";
-
 }
 #Tips {
 	padding-top: 1.4em;
@@ -19,14 +18,13 @@ body.transform {
 	margin: 0;
 	padding: 0;
 	border: none;
-	border-left:solid;
-	border-right:solid;
+	border-left: solid;
+	border-right: solid;
 	border-width: 2px;
 	line-height: 40px;
-	
 }
-.alertMessage{
-	padding:5px;
+.alertMessage {
+	padding: 5px;
 }
 .tight {
 	margin-bottom: 0 !important;
@@ -37,52 +35,48 @@ body.transform {
 	padding-left: 0 !important;
 	padding-bottom: 0 !important;
 	padding-right: 0 !important;
- 	white-space: nowrap;
+	white-space: nowrap;
 }
 .debugging {
 	padding-top: 6em !important;
 }
-#sizeWarning{
+#sizeWarning {
 	visibility: hidden;
-    position: fixed; 
+	position: fixed;
 	margin: 1em;
 	z-index: 99;
 	padding: 1em;
 	border-left: solid;
-	border-color:black;
-    bottom: 0;
-    left: 0;
-    right: 0;
-/*     height: 50px; */
-
+	border-color: black;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	/*     height: 50px; */
 }
-#finishedAlert{
-	position: fixed; 
+#finishedAlert {
+	position: fixed;
 	margin: 1em;
 	z-index: 99;
 	padding: 1em;
 	border-left: solid;
-	border-color:black;
-    bottom: 100;
-    left: 0;
-    right: 0;
-/*     height: 50px; */
+	border-color: black;
+	bottom: 100;
+	left: 0;
+	right: 0;
+	/*     height: 50px; */
 }
-.modal-dialog{
+.modal-dialog {
 	background-color: white;
-	
 }
-.modal-header{
-	padding:1em;
-	
+.modal-header {
+	padding: 1em;
 }
-.modal-content{
+.modal-content {
 	border: none;
-	padding:1em;
-	margin:1em;
-	
+	padding: 1em;
+	margin: 1em;
 }
-.alertDescription{
+.alertDescription {
 	visibility: hidden;
 }
 @media (max-width: 610px) {
@@ -93,16 +87,16 @@ body.transform {
 	.counterTitle {
 		padding-top: 3.1em !important;
 	}
-	#sizeWarning{
+	#sizeWarning {
 		visibility: visible;
 	}
-	.statusInfo{
+	.statusInfo {
 		line-height: 10px;
 	}
 }
 .counterTitle {
 	padding-top: 2.8em;
-	padding-bottom:2em;
+	padding-bottom: 2em;
 }
 #statusWrapper {
 	position: absolute;
@@ -119,7 +113,6 @@ body.transform {
 	width: 100%;
 	padding-bottom: .2em;
 	border-bottom: thin solid #9fccb5;
-	
 }
 #floatingStatus.fixed {
 	margin-top: 50px;
@@ -128,10 +121,10 @@ body.transform {
 	position: fixed;
 	top: 0;
 }
-.statusInfo{
+.statusInfo {
 	line-height: 50px;
 }
-.cellRow{
+.cellRow {
 	margin: 1px;
 }
 .progressPercent {
@@ -143,13 +136,13 @@ body.transform {
 	background-color: #9fccb5;
 	float: right;
 }
-#totalProgress{
+#totalProgressDiv {} #totalProgress {
 	border-color: #3c763d !important;
 	border-width: 2px !important;
-	border-left:solid;
-	border-right:solid;
+	border-left: solid;
+	border-right: solid;
 	height: 5px;
-	float: left;	
+	float: left;
 }
 .bar-background {
 	opacity: 0.8;
@@ -161,10 +154,10 @@ input.countInput {
 	font-size: 100%;
 	text-align: center;
 	width: 2.5em;
-	border: 1px solid #000000; 
+	border: 1px solid #000000;
 }
 input[readonly] {
- 	background-color:#EEEEEE; 
+	background-color: #EEEEEE;
 }
 #maxNum {
 	width: 50px;
@@ -215,10 +208,9 @@ table {
 	padding-left: .5em !important;
 }
 @media print {
-	.counterTitle{
+	.counterTitle {
 		margin: 0em;
-		padding:0em;
-		
+		padding: 0em;
 	}
 	.progress {
 		background-color: #F5F5F5 !important;
@@ -246,7 +238,7 @@ table {
 	.counter {
 		width: 100%;
 	}
-.alert {
+	.alert {
 		border: 0;
 	}
 	.btn {

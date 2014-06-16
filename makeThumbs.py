@@ -24,14 +24,20 @@
 
 # !/usr/bin/python
 
-import os, sys, Magick, Image, pprint
+import os, sys, Image, pprint
 from random import shuffle
 from copy import copy, deepcopy
+from makeJSON import make_json
+from shutil import copyfile
 
 
 shrinkWidth = 200
 thumbWidth = 200
 
+def gif_copy(imageLoc, smallLoc, thumbLoc):
+		print("Gif Copy")
+		copyfile(imageLoc, smallLoc)
+		
 def shrink(imageLoc, smallLoc, w):
     im = Image.open(imageLoc)
     imageFormat = im.format
@@ -45,7 +51,6 @@ def shrinkCrop(imageLoc, tempLoc):
     thumbSize = 75,75
     img = Image.open(imageLoc)
     width, height = img.size
-    
     if width > height:
         delta = width - height
         left = int(delta/2)
@@ -62,51 +67,49 @@ def shrinkCrop(imageLoc, tempLoc):
     img = img.crop((left, upper, right, lower))
     img.thumbnail(thumbSize, Image.ANTIALIAS)
     img.save(tempLoc, quality=95)
+    print ("Image Cropped: " + tempLoc)
 
 for root, dirs, files in os.walk("static/images/", topdown=False):
-    for name in files:
-        print(name)
-        splitPath = root.split(os.sep)
-        splitPath.append(name)
-        imageLoc = os.path.join('', *splitPath)
-        print(splitPath[2])
-        if splitPath[2] != 'thumbs' and splitPath[2] != "smaller":
-#			make the path for the smaller files
-#   Copy the list as an array
-            smallPath = deepcopy(splitPath)
+	for name in files:
+#		print(name)
+		splitPath = root.split(os.sep)
+		splitPath.append(name)
+		imageLoc = os.path.join('', *splitPath)
+#		print(splitPath[2])
+		if splitPath[2] != 'thumbs' and splitPath[2] != "smaller":
+#	make the path for the smaller files
+# Copy the list as an array
+			smallPath = deepcopy(splitPath)
 #	add the new subdirectory
-            smallPath.insert(2, 'smaller/')
+			smallPath.insert(2, 'smaller/')
 #	Remove the file name
-            tmp = smallPath.pop()
+			tmp = smallPath.pop()
 #	create string with directory
-            smallDir = os.path.join('', *smallPath)
+			smallDir = os.path.join('', *smallPath)
 #	add the stupid path back
-            smallPath.append(tmp)
+			smallPath.append(tmp)
 #	create string with full location of image
-            smallLoc = os.path.join('', *smallPath)
-
-            if not os.path.exists(smallDir):
-                os.makedirs(smallDir)
-			
-#			make the path for the thumbs
-            thumbPath = deepcopy(splitPath)
-            thumbPath.insert(2, 'thumbs/')
-            tmp = thumbPath.pop()
-            thumbDir = os.path.join('', *thumbPath)
-            thumbPath.append(tmp)
-            thumbLoc = os.path.join('', *thumbPath)
-            
-            if not os.path.exists(thumbDir):
-                os.makedirs(thumbDir)
-			
-			
-            print("Small Location: " + smallLoc)
-            print("Small dir: " + smallDir)
-            print("Thumb Location: " + thumbLoc)
-            print("Image Location: " + imageLoc)
-
-			
-#            shrink(imageLoc, smallLoc, 1200) 
-            shrinkCrop(imageLoc, thumbLoc)
-	
-	
+			smallLoc = os.path.join('', *smallPath)
+			if not os.path.exists(smallDir):
+				os.makedirs(smallDir)
+#	make the path for the thumbs
+			thumbPath = deepcopy(splitPath)
+			thumbPath.insert(2, 'thumbs/')
+			tmp = thumbPath.pop()
+			thumbDir = os.path.join('', *thumbPath)
+			thumbPath.append(tmp)
+			thumbLoc = os.path.join('', *thumbPath)
+			if not os.path.exists(thumbDir):
+				os.makedirs(thumbDir)			
+#			print("Image Location: " + imageLoc)
+#			print(os.path.splitext(imageLoc)[1])
+#			print("Small Location: " + smallLoc)
+#			print("Small dir: " + smallDir)
+#			print("Thumb Location: " + thumbLoc)
+			print("Image Location: " + imageLoc)
+			if os.path.splitext(imageLoc)[1].lower() == '.gif':
+				gif_copy(imageLoc, smallLoc, thumbLoc)
+			else:
+				shrink(imageLoc, smallLoc, 1200) 
+				shrinkCrop(imageLoc, thumbLoc)
+#make_json()

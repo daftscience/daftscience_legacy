@@ -21,12 +21,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 from wtforms import TextField, TextAreaField, SubmitField, HiddenField
-from flask import Flask, render_template, url_for, request, abort, g
-import os, sys, time, json, sqlite3, random
+from flask import Flask, render_template, url_for, request, abort
+import os, sys, time, json, random
 from collections import OrderedDict
 from modules.functions import *
 from flask.ext.wtf import Form
-from testSite import testSite
 from counter import counter
 import pushover
 
@@ -39,38 +38,20 @@ app.config.from_object(__name__)
 
 
 app.register_blueprint(counter)
-app.register_blueprint(testSite)
 
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'Gallery.db'),
-    DEBUG=True,
-    SECRET_KEY='development key',
-    USERNAME='admin',
-    PASSWORD='default'
+#	DATABASE=os.path.join(app.root_path, 'Gallery.db'),
+	DEBUG=True,
+	SECRET_KEY='development key',
+	USERNAME='admin',
+	PASSWORD='default'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)  
 	
 files = ["static/css/main.css"]
 fileVersions = make_timestamps(files)
-
-
-
-
-def connect_db():
-	"""Connects to the specific database."""
-	rv = sqlite3.connect(app.config['DATABASE'])
-	rv.row_factory = sqlite3.Row
-	rv.text_factory = str
-	return rv
-
-def get_db():
-    if not hasattr(g, 'sqlite_db'): 
-        g.sqlite_db = connect_db()
-    return g.sqlite_db
-
-
 
 #Contact form stuff
 class ContactForm(Form):
@@ -82,33 +63,35 @@ class ContactForm(Form):
 
 
 def notify(request):
-    pushover.init("ajXLegLrmdRJvvWCHHy8Gavmkws9Ti")
-    client = pushover.Client("uZ58dxNBaZhMp4epGW8a8RRWzsMavr")
-    client.send_message("From: " + request.form['name'] +\
-                        "\nE-mail: " + request.form['email'] + "\n\n" +\
-                        request.form['message'], 
-                        title = "New Daftscience.com comment",
-                        priority=1)
+	pushover.init("ajXLegLrmdRJvvWCHHy8Gavmkws9Ti")
+	client = pushover.Client("uZ58dxNBaZhMp4epGW8a8RRWzsMavr")
+	client.send_message("From: " + request.form['name'] +\
+											"\nE-mail: " + request.form['email'] + "\n\n" +\
+											request.form['message'], 
+											title = "New Daftscience.com comment",
+											priority=1)
 
 def get_gallery():
-    gallery = [{}]
-    conn = get_db()
-    cur = conn.execute('select image, catagory, location, thumbLocation from Gallery order by image desc')
-    entries = cur.fetchall()
-    type(entries)
-    for entry in entries:
-        type(entry[2])
-#        pp.pprint(entry[2])
-        gallery.append({'cat': entry[1], 'loc': entry[2], 'thumbLoc': entry[3]})
-    random.shuffle(gallery)
-#    pp.pprint(gallery)
-    return gallery
+	gallery = []
+	
+	with open("static/json/images.json") as json_file:
+		json_images = json.load(json_file)
+	for images in json_images:
+		for image in images:
+			gallery.append({
+											'cat': images[image]["Folder"],
+											'loc': images[image]["SmallLoc"],
+											'thumbLoc': images[image]["ThumbLoc"]
+										})
+	random.shuffle(gallery)
+	pprint(gallery)
+	return gallery
 
-@app.teardown_appcontext
-def close_db(error):
-    """Closes the database again at the end of the request."""
-    if hasattr(g, 'sqlite_db'):
-        g.sqlite_db.close()
+#@app.teardown_appcontext
+#def close_db(error):
+#	"""Closes the database again at the end of the request."""
+#	if hasattr(g, 'sqlite_db'):
+#		g.sqlite_db.close()
 
 
 @app.route('/', methods=['POST', 'GET'])
