@@ -156,6 +156,9 @@ input.countInput {
 	width: 2.5em;
 	border: 1px solid #000000;
 }
+.news{
+	color: black;
+}
 input[readonly] {
 	background-color: #EEEEEE;
 }

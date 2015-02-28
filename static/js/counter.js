@@ -488,6 +488,7 @@ function KeyCheck(evt) {
 			return;
 		case 78:
 			//n
+			window.alert("nkey");
 			return;
 		case 189:
 		case 109: //-

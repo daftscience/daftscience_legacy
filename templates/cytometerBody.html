@@ -1,0 +1,198 @@
+<div id="Counter" class="container-fluid counter">
+	<h1 class="centered">
+		WebCytometer
+	</h1>
+	<div class="col-md-8 col-md-offset-2">
+		<hr>
+	</div>
+	<!-- 	Controls -->
+	<div class="settings">
+		<div class="col-xs-12">
+			<div class="row">
+				<!-- 				WBC Area Button -->
+				<div class="col-xs-6 col-sm-4 col-sm-offset-2">
+					<div class="col-xs-6">
+						<img id="wbcImage" src="{{ url_for('static', filename='img/webcytometer/10mm.png')}}" width="80px" alt="soo realistic" class="areaPicture responsive centered">
+					</div>
+					<div class="col-xs-6">
+						<div class="btn-group centered">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								WBC Area <i class="fa fa-caret-down"></i>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a class="wbcSelect 010mm">
+										<div class="row wbcSelect 010mm">
+											<div class="col-xs-4">10 mm2</div>
+											<div class="col-xs-8">
+												<img src="{{ url_for('static', filename='img/webcytometer/10mm.png')}}" width="50px" alt="soo realistic" class="">
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a class="wbcSelect 02mm">
+										<div class="row wbcSelect 02mm">
+											<div class="col-xs-4">2 mm2</div>
+											<div class="col-xs-8">
+												<img src="{{ url_for('static', filename='img/webcytometer/2mm.png')}}" width="50px" alt="soo realistic" class="">
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a class="wbcSelect 04mm">
+										<div class="row wbcSelect 04mm">
+											<div class="col-xs-4">0.4 mm2</div>
+											<div class="col-xs-8">
+												<img src="{{ url_for('static', filename='img/webcytometer/0.4mm.png')}}" width="50px" alt="soo realistic" class="">
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">DF</span>
+							<input type="text" class="txtboxes" id="wbcDilution">
+						</div>
+					</div>
+					<div class="checkbox col-xs-12">
+						<label>
+							<input type="checkbox" id="crystalViolet">Crystal Violet (9:10 dilution)
+						</label>
+					</div>
+				</div>
+
+				<!-- 				RBC Area Button -->
+				<div class="col-xs-6 col-sm-4 ">
+					<div class="col-xs-6">
+						<img id="rbcImage" src="{{ url_for('static', filename='img/webcytometer/10mm.png')}}" width="80px" alt="soo realistic" class="areaPicture responsive">
+					</div>
+					<div class="col-xs-6">
+						<div class="btn-group">
+							<button type="button" class="btn btn-default dropdown-toggle btn-block" data-toggle="dropdown">
+								<div>
+									RBC Area <i class="fa fa-caret-down"></i>
+								</div>
+
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li>
+									<a class="rbcSelect 010mm">
+										<div class="row rbcSelect 010mm">
+											<div class="col-xs-4">10 mm2</div>
+											<div class="col-xs-8">
+												<img src="{{ url_for('static', filename='img/webcytometer/10mm.png')}}" width="50px" alt="soo realistic" class="">
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a class="rbcSelect 02mm">
+										<div class="row rbcSelect 02mm">
+											<div class="col-xs-4">2 mm2</div>
+											<div class="col-xs-8">
+												<img src="{{ url_for('static', filename='img/webcytometer/2mm.png')}}" width="50px" alt="soo realistic" class="">
+											</div>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a class="rbcSelect 04mm">
+										<div class="row rbcSelect 04mm">
+											<div class="col-xs-4">0.4 mm2</div>
+											<div class="col-xs-8">
+												<img src="{{ url_for('static', filename='img/webcytometer/0.4mm.png')}}" width="50px" alt="soo realistic" class="">
+											</div>
+										</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon">DF</span>
+							<input type="text" class="txtboxes" id="rbcDilution">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+			<hr>
+		</div>
+
+	</div>
+
+	<!-- Input -->
+	<div class="count col-xs-12 col-sm-8 col-sm-offset-2">
+		<div class="col-xs-4">
+			<div class="col-xs-12 centered">
+				WBCs
+			</div>
+			<div class="col-xs-12 centered">
+				<input type='text' id="wbcs1" value='' class="countInput txtboxes">
+			</div>
+			<div class="col-xs-12 centered">
+				<input type='text' id="wbcs2" value='' class="countInput txtboxes">
+			</div>
+			<div class="col-xs-12 centered">
+				<input type="text" id="wbcSTD" value='' class="countInput txtboxes" readonly>
+			</div>
+		</div>
+		<div class="col-xs-4 centered">
+			<div class="col-xs-12 centered">
+				Select Side
+			</div>
+			<div class="btn-group-vertical">
+				<button type="button" class="btn btn-default countSide btn-primary" id="topBTN" value="1">Top</button>
+				<button type="button" class="btn btn-default countSide" id="bottomBTN" value="2">Bottom</button>
+			</div>
+			<div><i class="fa fa-arrow-left"></i> %Difference <i class="fa fa-arrow-right"></i>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="col-xs-12 centered">
+				RBCs
+			</div>
+			<div class="col-xs-12 centered">
+				<input type='text' id="rbcs1" value='' class="countInput txtboxes">
+			</div>
+			<div class="col-xs-12 centered">
+				<input type='text' id="rbcs2" value='' class="countInput txtboxes">
+			</div>
+			<div class="col-xs-12 centered">
+				<input type="text" id="rbcSTD" value='' class="countInput txtboxes" readonly>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="formula">
+	<h2 class="centered">
+		Calculation
+	</h2>
+	$${Cells\over \mu L} = { Cells Counted \ast {1 \over depth_{mm} } \ast Dilution Factor \over Area Counted _{mm^2} }$$
+</div>
+
+<div class="formula">
+	<div class="col-sm-6">
+		<h2 class="centered">
+			White Blood Cells
+		</h2>
+		<div class="wbcCalculations">
+			$${Cells\over \mu L} = { Cells Counted \ast {1 \over depth_{mm} } \ast Dilution Factor \over Area Counted _{mm^2} }$$
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<h2 class="centered">
+			Red Blood Cells
+		</h2>
+		<div class="rbcCalculations">
+			$${Cells\over \mu L} = { Cells Counted \ast {1 \over depth_{mm} } \ast Dilution Factor \over Area Counted _{mm^2} }$$
+		</div>
+	</div>
+</div>
+

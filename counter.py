@@ -11,11 +11,26 @@ counter = Blueprint('counter', __name__)
 files = ["static/css/counter.css", "static/css/main.css", "static/js/counter.js", "static/img/header.png"]
 fileVersions = make_timestamps(files)
 
-
 @counter.route("/counter/")
 def diffCounter():
 	jsonFile=open("static/json/differential.json")
 	differentialJson = json.load(jsonFile, object_pairs_hook=OrderedDict)
 	jsonFile.close()
- 	links = ['Counter', 'Tips', 'References']
- 	return render_template('counter.html', fileVersions = fileVersions, links=links,countType = "Diff", cells = differentialJson)
+ 	links = ['Tips', 'References']
+ 	return render_template('counter.html', fileVersions = fileVersions, links=links,countType = "Diff", cells = differentialJson, mapping="json/differential.json")
+
+@counter.route("/bfcounter/")
+def bfCounter():
+	jsonFile=open("static/json/bf.differential.json")
+	differentialJson = json.load(jsonFile, object_pairs_hook=OrderedDict)
+	jsonFile.close()
+ 	links = ['Tips', 'References']
+ 	return render_template('counter.html', fileVersions = fileVersions, links=links,countType = "Diff", cells = differentialJson, mapping="json/seton.differential.json")
+
+@counter.route("/smcadiffs/")
+def smcaCounter():
+	jsonFile=open("static/json/seton.differential.json")
+	differentialJson = json.load(jsonFile, object_pairs_hook=OrderedDict)
+	jsonFile.close()
+ 	links = ['Tips', 'References']
+ 	return render_template('counter.html', fileVersions = fileVersions, links=links,countType = "Diff", cells = differentialJson, mapping="json/seton.differential.json")

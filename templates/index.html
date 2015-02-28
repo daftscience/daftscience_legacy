@@ -119,9 +119,16 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-lg-6 col-lg-offset-3">
+				<div class="col-xs-4 showPrint"> prints </div>
+				<div class="col-xs-4 showPrint"> prusa </div>
+				<div class="col-xs-4 showPrint"> rostock </div>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
 				<div id="links">
-					{% for image in gallery %}{% if image %}<a href="{{ url_for('static', filename='%s' % image.loc)}}" title="{{image.cat}}" data-gallery><img src="{{ url_for('static', filename='%s' % image.thumbLoc)}}" alt="{{image.cat}} "></a>{% endif %}{% endfor %}
+					{% for image in gallery %}{% if image %}<a href="{{ url_for('static', filename='%s' % image.loc)}}" title="{{image.cat}}" class="{{image.cat}}" data-gallery><img src="{{ url_for('static', filename='%s' % image.thumbLoc)}}" alt="{{image.cat}} "></a>{% endif %}{% endfor %}
 				</div>
 				<hr>
 			</div>

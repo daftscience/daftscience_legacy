@@ -11,18 +11,18 @@
 <![endif]-->
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
-<script src="{{url_for('static', filename='js/counter.js')}}?v={{fileVersions['static/js/counter.js']}}"></script>
 <link href="{{url_for('static', filename='css/counter.css')}}?v={{fileVersions['static/css/counter.css']}}" rel="stylesheet">
-
-<!--THe color scheme used in this site can be found here: -->
-<!--http://colorschemedesigner.com/#3c41TrpDHw0w0-->
-<!--http://colorschemedesigner.com/#3c31TrpDHw0w0-->
-
-
-
+{% if bodyfluid %} 
+<script type="text/javascript"
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+	<link href="{{url_for('static', filename='css/webcytometer.css')}}?v={{fileVersions['static/css/webcytometer.css']}}" rel="stylesheet">
+	<script src="{{url_for('static', filename='js/webcytometer.js')}}?v={{fileVersions['static/js/webcytometer.js']}}"></script>
+{% else %}
+	<script src="{{url_for('static', filename='js/counter.js')}}?v={{fileVersions['static/js/counter.js']}}"></script>
 <script>
 	var differentialJson, ueoJson;
-	$.getJSON("{{url_for('static', filename='json/differential.json')}}", function(json) {
+	$.getJSON("{{url_for('static', filename=mapping)}}", function(json) {
   		differentialJson = json;
 	});
 	$.getJSON("{{url_for('static', filename='json/ueo.json')}}", function(json) {
@@ -34,3 +34,10 @@
 	
 	var countType = "{{countType}}";
 </script>
+{% endif %}
+<!--THe color scheme used in this site can be found here: -->
+<!--http://colorschemedesigner.com/#3c41TrpDHw0w0-->
+<!--http://colorschemedesigner.com/#3c31TrpDHw0w0-->
+
+
+

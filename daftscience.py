@@ -27,6 +27,7 @@ from collections import OrderedDict
 from modules.functions import *
 from flask.ext.wtf import Form
 from counter import counter
+from bfCounter import fluidCounter
 import pushover
 
 #from daftscience import app
@@ -38,6 +39,7 @@ app.config.from_object(__name__)
 
 
 app.register_blueprint(counter)
+app.register_blueprint(fluidCounter)
 
 
 # Load default config and override config from an environment variable

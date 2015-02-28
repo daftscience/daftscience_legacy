@@ -1,0 +1,23 @@
+.areaPicture {
+	padding-left: 0;
+	padding-right: 2px;
+	padding-left: 2px;
+	padding-bottom: 2px;
+}
+.input-group-addon{
+	width: 4em !important;
+}
+input.txtboxes {
+	height: 28px;
+	font-size: 100%;
+	text-align: center;
+	width: 3.5em;
+	border: 1px solid #000000;
+}
+.counter{
+	padding-bottom: 3em;
+}
+.btn{
+	height: 28px;
+	width: 8em;
+}

@@ -1,0 +1,67 @@
+{
+	"Neutrophils": {
+		"abrev": "neut",
+		"key": 1,
+		"keyMap":[97,49]
+	},
+	"Band Cells": {
+		"abrev": "band",
+		"key": 4,
+		"keyMap":[100,52]
+	},
+	"Lymphocytes": {
+		"abrev": "lymph",
+		"key": 2,
+		"keyMap":[50,98]
+	},
+	"Monocytes": {
+		"abrev": "mono",
+		"key": 3,
+		"keyMap":[99,51]
+	},
+	"Eosinophils": {
+		"abrev": "eos",
+		"key": 5,
+		"keyMap":[101,53]
+	},
+	"Basophils": {
+		"abrev": "baso",
+		"key": 6,
+		"keyMap":[102,54]
+	},
+	"Metamyelocytes": {
+		"abrev": "meta",
+		"key": 7,
+		"keyMap":[103,55]
+	},
+	"Myelocytes": {
+		"abrev": "myelo",
+		"key": 8,
+		"keyMap":[104,56]
+	},
+	"Promyelocytes": {
+		"abrev": "pro",
+		"key": 9,
+		"keyMap":[105,56]
+	},
+	"Blasts": {
+		"abrev": "blasts",
+		"key": "Z",
+		"keyMap":[90]
+	},
+	"Reactive Lymphs": {
+		"abrev": "rlymph",
+		"key": " . ",
+		"keyMap":[110,190]
+	},
+	"Others": {
+		"abrev": "other",
+		"key": "X",
+		"keyMap":[88]
+	},
+		"NRBCs": {
+		"abrev": "nrbc",
+		"key": "0 -zero",
+		"keyMap":[96,48]
+	}
+}
