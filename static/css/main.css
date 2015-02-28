@@ -8,11 +8,11 @@
  */
 
 body {
-	background-color: #f2f2f2;
+/* 	background-color: #f2f2f2; */
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 	font-size: 16px;
-	color: #555;
+/* 	color: #555; */
 	-webkit-font-smoothing: antialiased;
 	-webkit-overflow-scrolling: touch;
 }
@@ -33,11 +33,11 @@ h1 {
 	font-size: 40px;
 }
 h3 {
-	color: #95a5a6;
+	color: #5C6BC0;
 	font-weight: 400;
 }
 h4 {
-	color: #95a5a6;
+	color: #5C6BC0;
 	font-weight: 400;
 	font-size: 20px;
 }
@@ -99,7 +99,7 @@ p {
 /* Links */
 
 a {
-	color: #9fccb5;
+	color: #5C6BC0;
 	word-wrap: break-word;
 	-webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
 	-moz-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -108,12 +108,18 @@ a {
 	transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 a: hover, a: focus {
- 	color: #7b7b7b;
+ 	color: #5C6BC0;
 	color: red;
 	text-decoration: none;
 	outline: 0;
 }
+/* a:visited { 
+    background-color: #5C6BC0;
+    color: #5C6BC0;
+} */
 a: before, a: after {
+    background-color: #5C6BC0;
+    color: #5C6BC0;
 	-webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
 	-moz-transition: color 0.1s ease-in, background 0.1s ease-in;
 	-ms-transition: color 0.1s ease-in, background 0.1s ease-in;
@@ -132,7 +138,7 @@ hr {
 	padding-top:2.5em;
 }
 .navbar-default {
-	background-color: #9fccb5;
+	background-color: #5C6BC0;
 	border-color: transparent;
 }
 .navbar-default .navbar-brand {
@@ -148,7 +154,8 @@ hr {
 /*    text-shadow: 0.00em 0.03em 0.1em #ccc;*/
 }
 .footer {
-	background-color: #9fccb5;
+    color: #DDD;
+	background-color: #5C6BC0;
 	border-color: transparent;
 	padding: 2em;
 }
@@ -184,14 +191,18 @@ hr {
     -webkit-text-stroke-color: black;
 }
 .fa-list {
-	color: #9fccb5;
+	color: #5C6BC0;
 }
-.fa-green {
-	font-size: 40px;
-	color: #9fccb5;
+.fa-theme {
+	color: #5C6BC0;
 }
+.theme{
+    background-color: #5C6BC0;
+    
+}
+
 .fa-header {
-	font-size: 80px;
+	font-size: 10em;
 }
 /* Base styles (regardless of theme) */
 
@@ -226,13 +237,13 @@ hr {
 }
 .bs-callout-theme {
 	background-color: #f0f7fd;
-	border-color: #9fccb5;
+	border-color: #5C6BC0;
 }
 /* HeaderWrap */
 
 #headerwrap {
 	/* background: url(../img/bg01.jpg) no-repeat center top; */
-	background-color: #9fccb5;
+	background-color: #5C6BC0;
 	margin-top: -20px;
 	padding-top: 175px;
 	background-attachment: relative;

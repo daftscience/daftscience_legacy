@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
  #Counter {
-	background-color: #DCE5DE;
+     margin-top: .1em;
+/* 	background-color: #DCE5DE; */
 }
 body {
 	min-width: 610px;
@@ -95,8 +96,8 @@ body.transform {
 	}
 }
 .counterTitle {
-	padding-top: 2.8em;
-	padding-bottom: 2em;
+ 	padding-top: 1.6em;
+/* 	padding-bottom: 2em; */
 }
 #statusWrapper {
 	position: absolute;
@@ -104,15 +105,20 @@ body.transform {
 	width: 100%;
 	padding: 0;
 }
+.btn-material-indigo-300{
+    background-color: #5C6BC0;
+    
+}
 #floatingStatus {
 	/*	opacity: 0.9;*/
 	position: absolute;
-	padding-top: .2em;
+    background-color: white;
+	padding-top: .1em;
 	margin: 0;
 	z-index: 99;
 	width: 100%;
 	padding-bottom: .2em;
-	border-bottom: thin solid #9fccb5;
+	border-bottom: thin solid #5C6BC0;
 }
 #floatingStatus.fixed {
 	margin-top: 50px;
@@ -125,7 +131,7 @@ body.transform {
 	line-height: 50px;
 }
 .cellRow {
-	margin: 1px;
+	margin: 2px;
 }
 .progressPercent {
 	padding-right: .2em;
@@ -133,11 +139,11 @@ body.transform {
 .progress-bar {
 	display: block;
 	height: 28px;
-	background-color: #9fccb5;
+/* 	background-color: #9fccb5; */
 	float: right;
 }
 #totalProgressDiv {} #totalProgress {
-	border-color: #3c763d !important;
+	border-color: #5C6BC0 !important;
 	border-width: 2px !important;
 	border-left: solid;
 	border-right: solid;
@@ -145,7 +151,7 @@ body.transform {
 	float: left;
 }
 .bar-background {
-	opacity: 0.8;
+/* 	opacity: 0.8; */
 	margin-bottom: 0;
 	background-color: white;
 }
@@ -154,7 +160,7 @@ input.countInput {
 	font-size: 100%;
 	text-align: center;
 	width: 2.5em;
-	border: 1px solid #000000;
+	border: 1px solid;
 }
 .news{
 	color: black;

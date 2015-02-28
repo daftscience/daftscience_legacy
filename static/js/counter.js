@@ -73,9 +73,9 @@ function initClickEvents() {
 	});
 	$('.changeCount').click(function() {
 		$('.changeCount').each(function() {
-			$(this).removeClass("btn-primary");
+			$(this).removeClass("btn-material-indigo-300");
 		});
-		$(this).addClass("btn-primary");
+		$(this).addClass("btn-material-indigo-300");
 		countTo = $(this).html();
 		recalc();
 		return false;
@@ -138,8 +138,8 @@ $(document).ready(function() {
 		}
 	});
 	$('.countType').click(function() {
-		$(".countType").removeClass("btn-primary");
-		$(this).addClass("btn-primary");
+		$(".countType").removeClass("btn-material-indigo-300");
+		$(this).addClass("btn-material-indigo-300");
 		countType = $(this).html();
 		if (countType == "UEO") {
 			$("#otherLabel").html("Other (2)");
@@ -361,8 +361,8 @@ function resetForm() {
 
 	if (countType == 'UEO') {
 		changeCount(200);
-	} else {
-		changeCount(100);
+/* 	} else { */
+/* 		changeCount(100); */
 	}
 }
 
@@ -445,6 +445,7 @@ function KeyCheck(evt) {
 		return;
 	}
 	KeyID = evt.keyCode;
+/*     window.alert(KeyID); */
 	var selectedCell = null;
 	//This will put the page in diff mode when the enter key 
 	//is pressed on the diffname box. 
