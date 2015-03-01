@@ -1,40 +1,42 @@
-      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-      <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html>
 
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="Daftscience.com" content="" />
-	<meta name="Thomas J. Perry" content="" />
-	<title>daftscience.com</title>
-	<!-- Fonts from Google Fonts -->
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="{{url_for('static', filename='css/blueimp-gallery.min.css')}}">
-	<link rel="stylesheet" href="{{url_for('static', filename='css/blueimp-gallery-video.css')}}">
-	<link rel="stylesheet" href="{{url_for('static', filename='css/blueimp-gallery-indicator.css')}}">
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link href="{{ url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
-<!-- 	<link href="{{ url_for('static', filename='css/icomoon.css')}}" rel="stylesheet"> -->
-<!-- 	<link href="{{ url_for('static', filename='css/bootstrap-theme.css')}}" rel="stylesheet"> -->
+    <meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+    <!--    <meta charset="utf-8" /> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Daftscience.com" content="">
+    <meta name="Thomas_J.Perry" content="">
+    <title>daftscience.com</title>
+    <!-- Fonts from Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/blueimp-gallery.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/blueimp-gallery-video.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/blueimp-gallery-indicator.css')}}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-<!-- 	<link href="{{ url_for('static', filename='css/animate.css')}}" rel="stylesheet"> -->
-<!-- 	<link href="{{ url_for('static', filename='css/bootstrap-flat.css')}}" rel="stylesheet"> -->
-<!-- 	<link href="{{ url_for('static', filename='css/bootstrap-flat-extras.css')}}" rel="stylesheet"> -->
-	<link href="{{ url_for('static', filename='css/main.css')}}?v={{fileVersions['static/css/main.css']}}" rel="stylesheet">{% if cells %} {% include 'counterIncludes.html' %} {% endif %}
+    <!--     <link href="{{ url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet"> -->
+    <!-- 	<link href="{{ url_for('static', filename='css/icomoon.css')}}" rel="stylesheet"> -->
+    <!-- 	<link href="{{ url_for('static', filename='css/bootstrap-theme.css')}}" rel="stylesheet"> -->
 
-    
-    
-    
+    <!-- 	<link href="{{ url_for('static', filename='css/animate.css')}}" rel="stylesheet"> -->
+    <!-- 	<link href="{{ url_for('static', filename='css/bootstrap-flat.css')}}" rel="stylesheet"> -->
+    <!-- 	<link href="{{ url_for('static', filename='css/bootstrap-flat-extras.css')}}" rel="stylesheet"> -->
+    <link href="{{ url_for('static', filename='css/main.css')}}?v={{fileVersions['static/css/main.css']}}" rel="stylesheet">{% if cells %} {% include 'counterIncludes.html' %} {% endif %}
+
+
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/-9.8.2/css/ripples.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/material-wfont.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/ripples.min.css" rel="stylesheet">
     <!-- Dropdown.js -->
     <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
-    
-    
-	<!--[if lt IE 9]>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/js/ripples.min.js"></script> -->
+
+    <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
       <script>
@@ -42,15 +44,15 @@
       </script>
     <![endif]-->
 
-	<script>
-		var tracking = false;
-	</script>
-	{% include 'tracker.html' %}
+    <script>
+        var tracking = false;
+    </script>
+    {% include 'tracker.html' %}
 
 </head>
 
 <body>
-	{% include 'navbar.html' %} {% block body %}{% endblock %} {% include 'footer.html' %}
+    {% include 'navbar.html' %} {% block body %}{% endblock %} {% include 'footer.html' %}
 
 </body>
 

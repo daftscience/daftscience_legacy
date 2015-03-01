@@ -31,20 +31,19 @@ var req2 = "?fields=aboutMe%2CbraggingRights%2CcurrentLocation%2CdisplayName%2Ce
 var apiKey = "AIzaSyCKcv7erbLDPqMyF0cRU0BMlQWf4XfbX4o";
 var user = "tomperrydaftscience";
 $(document).ready(function() {
-		request = req1 + user + req2 + apiKey;
-		$.getJSON(request, function(json) {
-			$("#myPicture").attr("src", json.image.url + "&sz=200");
-			//    window.alert(json.tagline);
-			$('#tagline').html(json.tagline);
-			$('#occupation').html(json.occupation);
-			$('#skills').html(json.skills);
-		});
-	
-	
-/* <img src="https://img.youtube.com/vi/3f1wwZh_YOI/maxresdefault.jpg" class="img-responsive" > */
+    request = req1 + user + req2 + apiKey;
+    $.getJSON(request, function(json) {
+        $("#myPicture").attr("src", json.image.url + "&sz=200");
+        //    window.alert(json.tagline);
+        $('#tagline').html(json.tagline);
+        $('#occupation').html(json.occupation);
+        $('#skills').html(json.skills);
+    });
 
-	    blueimp.Gallery([
-        {
+
+    /* <img src="https://img.youtube.com/vi/3f1wwZh_YOI/maxresdefault.jpg" class="img-responsive" > */
+
+    blueimp.Gallery([{
             title: 'Timelapse snowman',
             type: 'text/html',
             youtube: '3f1wwZh_YOI'
@@ -54,4 +53,13 @@ $(document).ready(function() {
         container: '#blueimp-video-carousel',
         carousel: true
     });
+
+    $(document).ready(function() {
+        $.material.init();
+        $.material.ripples();
+        $.material.input();
+
+    });
+
+
 });
