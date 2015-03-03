@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+    <!--    <meta charset="utf-8" /> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Daftscience.com" content="">
+    <meta name="Thomas_J.Perry" content="">
+    <title>daftscience.com</title>
+    <!-- Fonts from Google Fonts -->
+    {% if cells %} 
+        {% include 'beta/counterIncludes.html' %} 
+    
+    {% else%}
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/beta/blueimp-gallery.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/beta/blueimp-gallery-video.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='css/beta/blueimp-gallery-indicator.css')}}">
+       
+    {% endif %}
+    
+    
+    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/ripples.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/material-wfont.min.css" rel="stylesheet">
+    <!-- Dropdown.js -->
+    <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <script>
+        var hasIE_ughhh = true;
+      </script>
+    <![endif]-->
+
+    <script>
+        var tracking = false;
+    </script>
+    {% include 'tracker.html' %}
+
+</head>
+
+<body>
+    {% include 'beta/navbar.html' %} {% block body %}{% endblock %} {% include 'beta/footer.html' %}
+</body>
+
+</html>

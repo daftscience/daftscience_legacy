@@ -1,0 +1,43 @@
+<!-- Bootstrap core CSS -->
+<!-- Custom styles for this template -->
+<!--[if lt IE 9]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE8.js"></script>
+<![endif]-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/1.1.6/waypoints.min.js"></script>
+<!--[if !IE]>
+<script src="{{ url_for('static', filename='js/hover.zoom.js')}}"></script>
+<script src="{{ url_for('static', filename='js/hover.zoom.conf.js')}}"></script>
+<![endif]-->
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+
+<link href="{{url_for('static', filename='css/beta/counter.css')}}?v={{fileVersions['static/css/beta/counter.css']}}" rel="stylesheet">
+{% if bodyfluid %} 
+<script type="text/javascript"
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+	<link href="{{url_for('static', filename='css/beta/webcytometer.css')}}?v={{fileVersions['static/css/beta/webcytometer.css']}}" rel="stylesheet">
+	<script src="{{url_for('static', filename='js/webcytometer.js')}}?v={{fileVersions['static/js/webcytometer.js']}}"></script>
+{% else %}
+	<script src="{{url_for('static', filename='js/beta/counter.js')}}?v={{fileVersions['static/js/beta/counter.js']}}"></script>
+<script>
+	var differentialJson, ueoJson;
+	$.getJSON("{{url_for('static', filename=mapping)}}", function(json) {
+  		differentialJson = json;
+	});
+	$.getJSON("{{url_for('static', filename='json/ueo.json')}}", function(json) {
+  		ueoJson = json;
+	});
+	$.getJSON("{{url_for('static', filename='json/parasite.json')}}", function(json) {
+  		parasiteJson = json;
+	});
+	
+	var countType = "{{countType}}";
+</script>
+{% endif %}
+<!--THe color scheme used in this site can be found here: -->
+<!--http://colorschemedesigner.com/#3c41TrpDHw0w0-->
+<!--http://colorschemedesigner.com/#3c31TrpDHw0w0-->
+
+
+

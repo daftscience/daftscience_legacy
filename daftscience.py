@@ -102,10 +102,10 @@ def index():
 	links = ['Diff-Counter', 'Builds', 'Prints', 'About', 'Contact Me']
 	if request.method == 'POST':
 		notify(request)
-		return render_template('index.html', fileVersions = fileVersions, sent = True, links=links, gallery = get_gallery(), name=request.form['name'])
+		return render_template('beta/index.html', fileVersions = fileVersions, sent = True, links=links, gallery = get_gallery(), name=request.form['name'])
 	elif request.method == 'GET':
-		return render_template('index.html', fileVersions = fileVersions, form=form, links=links, gallery=get_gallery())
-	return render_template('index.html', fileVersions = fileVersions, sent = False, links=links, gallery = get_gallery(), form=form)
+		return render_template('beta/index.html', fileVersions = fileVersions, form=form, links=links, gallery=get_gallery())
+	return render_template('beta/index.html', fileVersions = fileVersions, sent = False, links=links, gallery = get_gallery(), form=form)
 	
 if __name__ == '__main__':
 	app.run(host='daftscience.com', debug=True)

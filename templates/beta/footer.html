@@ -1,0 +1,38 @@
+<div id="footer" class="footer">
+	{% if cells %} {% include 'counterFooter.html' %}
+	<div class="row mt centered tight">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8 tight">
+			<hr>
+		</div>
+		<div class="col-sm-2"></div>
+	</div>
+	{% endif %}
+	<div class="centered nonPrintable">
+		made with <i class="fa fa-heart"></i> by: <a href="https://plus.google.com/+TomPerrydaftscience"><span class="fa fa-google-plus"></span> Tom</a>
+		<br />
+		<a href="http://daftscience.com">daftscience.com </a>
+		<span class="glyphicon glyphicon-copyright-mark"></span> 
+		Copyright 2011-2014 
+		<br />Code licensed under <a href="https://github.com/daftscience/daftscience/blob/master/LICENSE">MIT</a> 
+		<p></p>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.3/jquery.mobile.min.js"></script> -->
+
+<!-- <script src="/static/js/bootstrap.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/js/ripples.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/js/material.min.js"></script>   
+
+{% if cells %}
+ <script src="{{url_for('static', filename='js/daftscience.js')}}"></script>  
+<script>
+    
+</script>
+
+{% endif %}
+<!--      non printable-->

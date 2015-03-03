@@ -1,0 +1,342 @@
+{% extends "beta/layout.html" %} {% block body %}
+<!-- +++++ Welcome Section +++++ -->
+<div class="modal fade out nonPrintable" tabindex="-1" role="dialog" aria-labelledby="finishedModal" aria-hidden="true" id="finishedModal">
+    <div class="modal-dialog modal-lg">
+        <div class="model model-content">
+            <div class="modal-header">
+                <h2> You've finished!</h2>
+            </div>
+            <div class="modal-body centered">
+                <div>
+                    You've finished your count. What would you like to do next?
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default hideModalButton">
+                    <i class="fa fa-bar-chart-o fa-rotate-270"></i> Review results</button>
+                <button class="btn btn-default btn-warning showResetWarningButton">
+                    <i class="fa fa-undo"></i> New diff</button>
+                <button class="btn btn-default printButton">
+                    <i class="fa fa-print"></i> Print</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade out nonPrintable" tabindex="-1" role="dialog" aria-labelledby="resetWarningModal" aria-hidden="true" id="resetWarningModal">
+    <div class="modal-dialog modal-lg">
+        <div class="model model-content">
+            <div class="modal-header">
+                <h2>
+		 Annoying Confirmation Alert!
+		</h2>
+            </div>
+            <div class="modal-body centered">
+                <div>
+                    Are you sure you want start over? This diff will be lost for all eternity.
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button class="btn hideModalButton">
+                    <i class="fa fa-bar-chart-o fa-rotate-270"></i> Keep Results</button>
+                <button class="btn btn-warning resetButton">
+                    <i class="fa fa-eraser"></i> Delete and start over.</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="1" class="home nonPrintable">
+    <div id="ww" class="nonPrintable banner">
+        <div class="container">
+            <div class="row animated">
+                <div class="col-lg-8 col-lg-offset-2 centered">
+                    <h1>
+						<img id="spin" src="{{ url_for('static', filename='img/header.png')}}?v={{fileVersions['static/img/header.png']}}" alt="soo realistic" class="img-responsive centered ee">
+					</h1>
+                    <p class="ee">This app was built to help Medical Laboratory Science students practice differentials. It works best using the 10 key pad. If you have any questions just click the "Tips" link at the top of the page, or scroll down.</p>
+                    <p class="ee">
+                        <u>IMPORTANT:</u>This is for practice purposes only, not intended for clinical differentials. There are known, and possibly unknown mathematical errors in how relative values are calculated (rounding errors: see below.) Please
+                        double check any values you get.
+                    </p>
+                </div>
+                <!-- /col-lg-8 -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /ww -->
+</section>
+<!-- +++++ Differential Section +++++ -->
+
+<div id="sizeWarning" class="alert alert-danger">
+    <a href="" class="close" id="sizeWarningClose" data-dismiss="alert"><i class="fa fa-times-circle"></i></a>
+    <p class="text-center">
+        The site does not render well on smaller devices. If you're using a browser, please resize your window.
+    </p>
+</div>
+<!-- .btn-material-red-200:not(.btn-link):not(.btn-flat) -->
+<!-- <div id="preview" class="alert alert-material-blue-grey-200 shadow-z-1 nonPrintable">
+    <a href="" class="close" data-dismiss="alert"><i class="fa fa-times-circle"></i></a>
+    <h4 class="centered">
+		Something New!
+	</h4>
+    <p class="text-center">
+        Checkout the new <a href="http://daftscience.com/webcytometer/" class="a-material-indigo-500"><strong>WebCytometer</strong></a> that's in development.
+    </p>
+    <p class="text-center">
+        <strong>hint:</strong> It might be time to put a computer near the fluid scope. <i class="fa fa-smile-o"></i>
+    </p>
+</div>
+ -->
+
+<div id="statusWrapper" class="container">
+    <div id="floatingStatus" class="row mt centered alert shadow-z-2">
+        <div class="col-sm-3 counted tight">
+            <h3 class="counted ee tight statusInfo">Counted: <span id="total" class="counted">0</span></h3>
+        </div>
+        <div class="col-sm-6 hiddenTillPrint"></div>
+        <div class="col-sm-6 nonPrintable">
+            <div>
+                <div id="fixMe" hidden>
+                    <button type="button" class="btn btn-default btn-primary" id="fixMeBtn">Fix Me!!!</button>
+                </div>
+                <div id="ready" class="alert alert changeable ee statusAlert">
+                    <div class="alertMessage">Ready to go</div>
+                </div>
+                <div id="UEO" class="alert alert-success changeable ee statusAlert" hidden>
+                    <div class="alertMessage">Urine Eosinophil mode</div>
+                </div>
+                <div id="done" class="alert alert-success changeable ee statusAlert" hidden>
+                    <div class="alertMessage">Finished!</div>
+                </div>
+                <div id="subtract" class="alert alert-danger changeable ee statusAlert" hidden>
+                    <div class="alertMessage">Subtracting</div>
+                </div>
+                <div id="edit" class="alert alert-warning changeable ee statusAlert" hidden>
+                    <div class="alertMessage">Edit Mode</div>
+                </div>
+                <div id="wylajb" class="alert alert-success alert-dismissable ee statusAlert" hidden>
+                    <div class="alertMessage">konami mode: oh noes</div>
+                </div>
+                <div id="debug" class="alert alert-warning debug ee" hidden></div>
+            </div>
+            <div id="totalProgressDiv" class="progress">
+                <span id="totalProgress" class="progress-bar progress-bar-material-indigo"></span>
+            </div>
+        </div>
+        <div class="col-sm-3 counted tight">
+            <h3 class="counted ee tight statusInfo">Remaining: <span id="toGo" class="counted">100</span></h3>
+        </div>
+    </div>
+</div>
+<section class="">
+    <div class="row">
+        <div class="panel panel-default">
+        <div id="Counter" class="col-xs-12 col-sm-10 col-sm-offset-1">
+            <div class="panel panel-body centered">
+                <div class="col-xs-12 text-center">
+                    <h1 class="counterTitle ee centered" id="countTitle">Diff-o-meter</h1>
+                </div>
+                <div class="col-xs-12 text-center">
+                    <div class="col-xs-12 text-center">
+                        <div class="btn-group ">
+                            <button type="button" class="btn btn-default btn-raised changeCount btn-material-indigo-300" value="100">100</button>
+                            <button type="button" class="btn btn-default btn-raised changeCount" value="200">200</button>
+                            <button type="button" class="btn btn-default btn-raised changeCount" value="300">300</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default countType btn-material-indigo-300" id="toggleCountType">Diff</button>
+                            <button type="button" class="btn btn-default countType" id="toggleCountType">UEO</button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 centered">
+                        <div class="btn-group centered">
+                            <button type="button" class="btn btn-raised" onclick="toggleSubtract('toggle');">
+                                <i class="fa fa-minus" id="subtractButton"></i>
+                            </button>
+                            <button type="button" class="btn btn-raised" onclick="toggleDisableX3();">
+                                <i class="fa fa-lock" id="lockButton"></i> Edit</button>
+                            <button type="button" class="btn btn-raised showResetWarningButton">
+                                <i class="fa fa-eraser"></i> Reset</button>
+                            <button type="button" class="btn btn-raised printButton">
+                                <i class="fa fa-print"></i> Print</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 mt ee">
+                    <div class="row counter differentialName">
+                        <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 centered">
+                            <div class="input-group input-group-lg">
+                                <span class="btn btn-raised ee input-group-addon"><i class="fa fa-barcode" id="safeFocus" onclick="toggleDisableX3();"></i></span>
+                                <input type="text" id="diffName" class="form-control" placeholder="Differential I.D." disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 centered">
+                        {% for cell in cells %}
+                        <div class="row ee {{cells[cell]['abrev']}}{% if cells[cell]['abrev'] != 'eos' %}{% if cells[cell]['abrev'] != 'other' %} notUEO {% endif %}{% endif %}animated cellRow">
+                            <!-- progress bar -->
+                            <div class="col-xs-7 col-sm-8 tight progress bar-background ">
+                                <span id="{{cells[cell]['abrev']}}Prog" class="progress-bar progress-bar-material-indigo"></span>
+                            </div>
+                            <!-- percentage text-->
+                            <div class="col-xs-1 col-sm-1 tight text-right">
+                                <span class="progressPercent" id='{{cells[cell]["abrev"]}}ProgText'>0%</span>
+                            </div>
+                            <!-- textbox input -->
+                            <div class="col-xs-1 col-sm-1 tight centered">
+                                <input type='text' id="{{cells[cell]['abrev']}}" value='' class="countInput" readOnly>
+                            </div>
+                            <!-- label -->
+                            <div class="col-xs-3 col-sm-2 tight text-left" id="{{cells[cell]['abrev']}}Label">{{cell}} ({{cells[cell]["key"]}})</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="row mt centered counter">
+                        <p></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<div class="nonPrintable">
+    <section id="Tips">
+        <div class="container pt" id="help">
+            <div class="row mt">
+                <div class="col-lg-8 col-lg-offset-2 centered ee">
+                    <h1>Tips and Tricks</h1>
+                </div>
+            </div>
+            <div class="row mt">
+                <div class="col-md-4 centered ee">
+                    <i class="fa fa-cogs fa-5x fa-theme"></i>
+                    <h3>How do I use this fancy thing?</h3>
+                </div>
+                <div class="col-md-4 centered ee">
+                    <i class="fa fa-keyboard-o fa-5x fa-theme"></i>
+                    <h3>Keyboard layout</h3>
+                </div>
+                <div class="col-md-4 centered ee">
+                    <i class="fa fa-bug fa-5x fa-theme"></i>
+                    <h3>Normalization issues</h3>
+                </div>
+            </div>
+            <div class="row mt">
+                <div class="col-md-4 ee">
+                    <dl>
+                        <dt>Subtract cells</dt>
+                        <dd>
+                            <p>Press the "-" key or button to start subtracting cells. Press the "+" key or button to resume.</p>
+                        </dd>
+                        <dt>Manual edit</dt>
+                        <dd>
+                            <p>Press the "E" key or the "Edit" button to manually change the counts, press it again to resume. The
+                                <i class="fa fa-unlock"></i> icon on the edit button indicates you're in "Edit Mode"</p>
+                        </dd>
+                        <dt>Differential Name</dt>
+                        <dd>
+                            <p>In edit mode the name field is editable, when enter is pressed Diff-o-matic will exit edit mode.</p>
+                        </dd>
+                        <dt>Urine Eosinophils</dt>
+                        <dd>
+                            <p>
+                                Pressing the "UEO" button will put you into Urine Eos mode. This allows you to do a 200 cell count with eosinophils and others. The keymapping will change to the 2 key and 3 key, respectively. to switch back to differential mode press the "Diff" button.</p>
+                        </dd>
+                        <dt>Count more cells</dt>
+                        <dd>
+                            <p>This counter will let you count 100, 200 or 300 cells. For differentials, the default is 100. Urine eosinophils are set up to count 200 cells.
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-md-4 ee">
+                    <table class="table tight table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="col-md-6 tight text-right">Cells</th>
+                                <th class="col-md-1"></th>
+                                <th class="col-md-5 tight text-left">Keys</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cell in cells %}
+                            <tr class="tight">
+                                <td class="tight text-right">{{cell}}</td>
+                                <td class="tight text-center">
+                                    <i class="fa fa-angle-double-right  fa-list"></i>
+                                </td>
+                                <td class="tight text-left">{{cells[cell]["key"]}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <hr>
+                    <ul class="fa-ul ee">
+                        <strong class="keylist">Modes</strong>
+                        <li>
+                            <span class="monoFont">R </span>
+                            <i class="fa fa-angle-double-right  fa-list"></i>Reset form
+                        </li>
+                        <li>
+                            <span class="monoFont">E </span>
+                            <i class="fa fa-angle-double-right  fa-list"></i>Edit Mode
+                        </li>
+                        <li>
+                            <span class="monoFont">D </span>
+                            <i class="fa fa-angle-double-right  fa-list"></i>Debug Mode
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4 ee">
+                    <dl>
+                        <dt>What is this?</dt>
+                        <dd>
+                            <p>The progress bars to the right were designed to give normalized percentages for 200 cell counts. Using cutting edge mathematical formulas, advanced super computing power and an old magic eight ball, the Diff-o-Matic is capable
+                                of providing that value in real time!
+                            </p>
+                        </dd>
+                        <dt>DISCLAIMER:</dt>
+                        <dd>
+                            <p>In standard rounding rules it is common for numbers ending in 5 to be rounded up. However, because n.5 is exactly between its nearest integers, always rounding up will create a positive bias.</p>
+                            <p>In order to correct that bias the Diff-o-Matic uses a
+                                <strong>Round to Even </strong>method. This will round any number ending in .5 to the nearest even integer (e.g. 2.5 -> 2 .)
+                            </p>
+                            <p>Unfortunately, this will cause relative values of 0.5 to be rounded down to 0. The worlds top engineers, scientists, and barista have been working on this issue around the clock, a patch will be released shortly.</p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <hr>
+        <!-- /container -->
+    </section>
+    <section id="References" class="ee">
+        <!-- +++++ Reference material +++++ -->
+        <div id="ref">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 centered">
+                        <!--<img src="header.png" alt="Stanley">-->
+                        <h1>Reference Material</h1>
+                        <p>Coming Soon:</p>
+                        <p>A list of resources to help with performing differentials.</p>
+                    </div>
+                    <!-- /col-lg-8 -->
+                </div>
+                <!-- /row -->
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /ww -->
+    </section>
+</div>
+{% endblock %}

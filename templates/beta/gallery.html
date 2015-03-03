@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block gallery %}
+
+{% for image in gallery %} 
+<article class="col-md-4 isotopeItem {{image.cat}}">
+<div class="portfolio-item">
+	<img src="{{image.thumbLoc}}" alt=""/>
+	<div class="portfolio-desc align-center">
+		<h5><a href="{{image.loc}}" class="fancybox">Click Me</a></h5>
+		<a href="{{image.loc}}" class="fancybox">
+			<i class="fa fa-plus fa-2x"></i>
+		</a>
+	</div>
+</div>
+</article>
+
+<h2>{{image.cat}}</h2>
+<h5>{{image.loc}} - {{image.thumbLoc}} </h5>
+{% endfor %}
+
+{% endblock %}
