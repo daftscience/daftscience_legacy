@@ -54,12 +54,7 @@ $(document).ready(function() {
         carousel: true
     });
 
-    $(document).ready(function() {
-        $.material.init();
-        $.material.ripples();
-        $.material.input();
 
-    });
 
 
 });

@@ -10,6 +10,8 @@
     <meta name="Thomas_J.Perry" content="">
     <title>daftscience.com</title>
     <!-- Fonts from Google Fonts -->
+    
+
     {% if cells %} 
         {% include 'beta/counterIncludes.html' %} 
     
@@ -18,7 +20,6 @@
         <link rel="stylesheet" href="{{url_for('static', filename='css/beta/blueimp-gallery.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='css/beta/blueimp-gallery-video.css')}}">
         <link rel="stylesheet" href="{{url_for('static', filename='css/beta/blueimp-gallery-indicator.css')}}">
-       
     {% endif %}
     
     
@@ -29,6 +30,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/material-wfont.min.css" rel="stylesheet">
     <!-- Dropdown.js -->
     <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/beta/main.css')}}?v={{fileVersions['static/css/beta/main.css']}}" rel="stylesheet">{% if cells %} {% include 'counterIncludes.html' %} {% endif %}
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -49,4 +51,14 @@
     {% include 'beta/navbar.html' %} {% block body %}{% endblock %} {% include 'beta/footer.html' %}
 </body>
 
+    
+    <script>
+        $(document).ready(function() {
+        $.material.init();
+        $.material.ripples();
+        $.material.input();
+
+    });
+    </script>
+    
 </html>

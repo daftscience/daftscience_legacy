@@ -8,7 +8,7 @@
  */
 
 body {
-/* 	background-color: #f2f2f2; */
+ 	background-color: #f2f2f2; 
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 	font-size: 16px;
@@ -172,11 +172,11 @@ hr {
 	margin-top: 40px;
 	margin-bottom: 40px;
 }
-.form-control {
+./*form-control {
 	height: 42px;
 	font-size: 18px;
 	width: 280px;
-}
+}*/
 .fa {
 	text-rendering: auto;
 	font-variant: normal;
