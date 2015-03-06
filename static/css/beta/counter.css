@@ -41,6 +41,31 @@ body.transform {
 .debugging {
 	padding-top: 6em !important;
 }
+td.label-cell{
+	text-align: left;
+  	width: 147px;	
+}
+td.input-cell{
+  width: 40px;
+  text-align: center;
+}
+td.percentage-cell {
+  text-align: center;
+  width: 60px;
+}
+
+
+
+th.label-cell{
+  	width: 147px;	
+}
+th.input-cell{
+  width: 40px;
+}
+th.percentage-cell{
+  width: 60px;
+}
+
 #sizeWarning {
 	visibility: hidden;
 	position: fixed;
@@ -118,7 +143,7 @@ body.transform {
 	z-index: 99;
 	width: 100%;
 	padding-bottom: .2em;
-	border-bottom: thin solid #5C6BC0;
+	/*border-bottom: thin solid #5C6BC0;*/
 }
 #floatingStatus.fixed {
 	margin-top: 50px;
@@ -133,12 +158,21 @@ body.transform {
 .cellRow {
 	margin: 2px;
 }
+.progress{
+		vertical-align: middle;
+}
+.vcenter{
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
 .progressPercent {
 	padding-right: .2em;
 }
 .progress-bar {
 	display: block;
 	height: 28px;
+	vertical-align: middle;
 /* 	background-color: #9fccb5; */
 	float: right;
 }
@@ -153,25 +187,36 @@ body.transform {
 .bar-background {
 /* 	opacity: 0.8; */
 	margin-bottom: 0;
-	background-color: white;
+	/*background-color: white;*/
+}
+.form-group {
+	margin-bottom:0px;
 }
 input.countInput {
-	height: 28px;
+	padding: 0px;
 	font-size: 100%;
 	text-align: center;
 	width: 2.5em;
-	border: 1px solid;
+	/*border: 1px solid;*/
+	float:left;
+
 }
 .news{
 	color: black;
 }
 input[readonly] {
-	background-color: #EEEEEE;
+	border: 1px none;
+	background-color: #E8EAF6;
 }
 #maxNum {
 	width: 50px;
 	height: 26px;
 }
+h1{
+	color: #5C6BC0;
+
+}
+
 .monoFont {
 	font-family: "Source Sans Pro", sans-serif;
 	font-size: 16px;
@@ -202,6 +247,7 @@ div.infoform {
 
 .differentialName{
     margin: 10px;
+    padding: 10px;
 }
 div.counter {
 	background-color: transparent;

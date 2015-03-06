@@ -1,9 +1,9 @@
-<html>
-
-<head>
-    <meta name="generator" content="HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
-    <!--    <meta charset="utf-8" /> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Daftscience.com" content="">
@@ -12,7 +12,32 @@
     <!-- Fonts from Google Fonts -->
     
 
-    {% if cells %} 
+
+  
+    
+    
+    
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/ripples.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/material-wfont.min.css" rel="stylesheet">
+    <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
+    
+
+
+
+
+    <link href="{{ url_for('static', filename='css/beta/main.css')}}?v={{fileVersions['static/css/beta/main.css']}}" rel="stylesheet">
+
+
+  {% if cells %} 
         {% include 'beta/counterIncludes.html' %} 
     
     {% else%}
@@ -22,24 +47,8 @@
         <link rel="stylesheet" href="{{url_for('static', filename='css/beta/blueimp-gallery-indicator.css')}}">
     {% endif %}
     
+    <link href="{{ url_for('static', filename='css/animate.css')}}" rel="stylesheet">
     
-    
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/ripples.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/css/material-wfont.min.css" rel="stylesheet">
-    <!-- Dropdown.js -->
-    <link href="//cdn.rawgit.com/FezVrasta/dropdown.js/master/jquery.dropdown.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/beta/main.css')}}?v={{fileVersions['static/css/beta/main.css']}}" rel="stylesheet">{% if cells %} {% include 'counterIncludes.html' %} {% endif %}
-
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-      <script>
-        var hasIE_ughhh = true;
-      </script>
-    <![endif]-->
-
     <script>
         var tracking = false;
     </script>
@@ -51,14 +60,46 @@
     {% include 'beta/navbar.html' %} {% block body %}{% endblock %} {% include 'beta/footer.html' %}
 </body>
 
-    
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/1.1.6/waypoints.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/js/material.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.2/js/ripples.min.js"></script>
+
+
+
     <script>
         $(document).ready(function() {
         $.material.init();
         $.material.ripples();
         $.material.input();
-
     });
     </script>
+{% if cells %}
+        <script src="{{url_for('static', filename='js/beta/counter.js')}}?v={{fileVersions['static/js/beta/counter.js']}}"></script>
+
+    <script>
+        var differentialJson, ueoJson;
+        $.getJSON("{{url_for('static', filename=mapping)}}", function(json) {
+            differentialJson = json;
+        });
+        $.getJSON("{{url_for('static', filename='json/ueo.json')}}", function(json) {
+            ueoJson = json;
+        });
+        $.getJSON("{{url_for('static', filename='json/parasite.json')}}", function(json) {
+            parasiteJson = json;
+        });
+        var countType = "{{countType}}";
+    </script>
+    
+
+{% else %}
+        
+{% endif %}
+
     
 </html>

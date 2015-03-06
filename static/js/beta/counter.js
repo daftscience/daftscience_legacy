@@ -31,7 +31,7 @@ var nag = false;
 var hasIE_ughhh = false;
 var total;
 var debugVariable;
-var focusedColor = "#fdf8e5";
+var focusedColor = "#E8EAF6";
 var subtractFocusColor = "#f2dedf";
 
 //Forces IE to redraw the elements.
@@ -76,7 +76,7 @@ function initClickEvents() {
 			$(this).removeClass("btn-material-indigo-300");
 		});
 		$(this).addClass("btn-material-indigo-300");
-		countTo = $(this).html();
+		countTo = $(this).attr("value");
 		recalc();
 		return false;
 	});
@@ -140,7 +140,7 @@ $(document).ready(function() {
 	$('.countType').click(function() {
 		$(".countType").removeClass("btn-material-indigo-300");
 		$(this).addClass("btn-material-indigo-300");
-		countType = $(this).html();
+		countType = $(this).attr("value");;
 		if (countType == "UEO") {
 			$("#otherLabel").html("Other (2)");
 			$("#eosLabel").html("Eosinophils (3)");
@@ -195,13 +195,18 @@ $(document).ready(function() {
 		});
 		$(this).focus(function() {
 			if (!adding) {
-				$(this).parent().parent(".cellRow").css("background", subtractFocusColor);
+				// $(this).parent().parent(".cellRow").css("background", subtractFocusColor);
+				// window.alert($(this).parent.parent.parent(".cellRow")
+				$(this).parent().parent().parent(".cellRow").addClass("danger");
 			} else {
-				$(this).parent().parent(".cellRow").css("background", focusedColor);
+				// $(this).parent().parent(".cellRow").css("background", focusedColor);
+				$(this).parent().parent().parent(".cellRow").addClass("info");
 			}
 		});
 		$(this).blur(function() {
-			$(this).parent().parent(".cellRow").css("background", "");
+			// $(this).parent().parent(".cellRow").css("background", "");
+			$(this).parent().parent().parent(".cellRow").removeClass("danger");
+			$(this).parent().parent().parent(".cellRow").removeClass("info");
 			this.style.backgroundColor = '';
 		});
 	});
@@ -607,7 +612,7 @@ function recalc() {
 		window.alert("someone's an overachiever, you've somehow counted more than " + countTo + " cells!");
 		nag = true;
 	}
-
+	// window.alert('countTo ' + countTo);
 	$('#total').html(tot);
 	$('#toGo').html(countTo - tot);
 

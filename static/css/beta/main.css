@@ -17,7 +17,9 @@ body {
 	-webkit-overflow-scrolling: touch;
 }
 .welcome{
-	margin-top: 5em;
+	margin-top: 2em;
+	font-family: 'Lato', sans-serif;
+	color: #222;
 }
 h1,
 h2,
@@ -27,7 +29,7 @@ h5,
 h6 {
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
-	color: #333;
+	color: #FFF;
 }
 h1 {
 	font-size: 40px;
@@ -37,7 +39,7 @@ h3 {
 	font-weight: 400;
 }
 h4 {
-	color: #5C6BC0;
+	color: #FFF;
 	font-weight: 400;
 	font-size: 20px;
 }
@@ -167,7 +169,10 @@ hr {
 	color: white;  
 	text-decoration: none; 
 } 
-
+.content{
+	margin: 1px;
+	padding: 10px;
+}
 .mt {
 	margin-top: 40px;
 	margin-bottom: 40px;
