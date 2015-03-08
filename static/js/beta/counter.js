@@ -197,16 +197,16 @@ $(document).ready(function() {
 			if (!adding) {
 				// $(this).parent().parent(".cellRow").css("background", subtractFocusColor);
 				// window.alert($(this).parent.parent.parent(".cellRow")
-				$(this).parent().parent().parent(".cellRow").addClass("danger");
+				$(this).parent().parent().parent().parent(".cellRow").addClass("danger");
 			} else {
 				// $(this).parent().parent(".cellRow").css("background", focusedColor);
-				$(this).parent().parent().parent(".cellRow").addClass("info");
+				$(this).parent().parent().parent().parent(".cellRow").addClass("info");
 			}
 		});
 		$(this).blur(function() {
 			// $(this).parent().parent(".cellRow").css("background", "");
-			$(this).parent().parent().parent(".cellRow").removeClass("danger");
-			$(this).parent().parent().parent(".cellRow").removeClass("info");
+			$(this).parent().parent().parent().parent(".cellRow").removeClass("danger");
+			$(this).parent().parent().parent().parent(".cellRow").removeClass("info");
 			this.style.backgroundColor = '';
 		});
 	});
